@@ -53,12 +53,11 @@
                                         <?php
                                         if ($t->ATIVO_ID_ATIVO == 1) {
                                             ?>
-                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/inativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Desativar  </a></td> 
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/inativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Desativar</a></td> 
                                             <?php
                                         } else {
                                             ?>
-
-                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Ativar  </a></td> 
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Ativar</a></td> 
                                             <?php
                                         }
                                         ?>

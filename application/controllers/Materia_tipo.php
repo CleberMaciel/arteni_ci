@@ -19,16 +19,28 @@ class Materia_tipo extends CI_Controller {
     public function inserir() {
         $data['NOME'] = $this->input->post('texto');
         $data['ATIVO_ID_ATIVO'] = $this->input->post('ativo');
-        $this->model->inserir($data);
-        redirect('/Materia_tipo');
+        $result = $this->model->inserir($data);
+        if ($result == true) {
+            $this->session->set_flashdata('tipo_ok', 'msg');
+            redirect('/Materia_tipo');
+        } else {
+            $this->session->set_flashdata('tipo_fail', 'msg');
+            redirect('/Materia_tipo');
+        }
     }
 
     public function inativo($id) {
-        $this->model->inativo($id);
-        redirect('Materia_tipo');
+        $result = $this->model->inativo($id);
+        if ($result == true) {
+            $this->session->set_flashdata('tipo_inativo_ok', 'msg');
+            redirect('/Materia_tipo');
+        } else {
+            $this->session->set_flashdata('tipo_inativo_fail', 'msg');
+            redirect('/Materia_tipo');
+        }
     }
-    
-     public function ativo($id) {
+
+    public function ativo($id) {
         $this->model->ativo($id);
         redirect('Materia_tipo');
     }
