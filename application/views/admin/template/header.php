@@ -7,11 +7,13 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Startmin - Bootstrap Admin Theme</title>
+        <title>Arteni - Painel Administrativo</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+
         <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
+<!--        <link href="<?php echo base_url('assets/css/bootstrap-theme.min.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/bootstrap-social.css') ?>" rel="stylesheet">-->
 
         <!-- MetisMenu CSS -->
         <link href="<?php echo base_url('assets/css/metisMenu.min.css') ?>" rel="stylesheet">
@@ -28,6 +30,13 @@
         <!-- Custom Fonts -->
         <link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
 
+        <!-- DataTables CSS -->
+        <link href="<?php echo base_url('assets/css/dataTables/dataTables.bootstrap.css') ?>" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="<?php echo base_url('assets/css/dataTables/dataTables.responsive.css') ?>" rel="stylesheet">
+
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -42,7 +51,7 @@
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Startmin</a>
+                    <a class="navbar-brand" href="#">Arteni</a>
                 </div>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -102,28 +111,19 @@
                     <div class="sidebar-nav navbar-collapse">
 
                         <ul class="nav" id="side-menu">
-                            <li class="sidebar-search">
-                                <div class="input-group custom-search-form">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </li>
+
                             <li>
                                 <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-sitemap fa-fw"></i> Matéria-Prima<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">Second Level Item</a>
+                                        <a href="#">Tipo de Matéria-Prima</a>
                                     </li>
                                     <li>
                                         <a href="#">Third Level <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level">
+                                        <ul class="nav nav-third-level" >
                                             <li>
                                                 <a href="#">Third Level Item</a>
                                             </li>
@@ -137,3 +137,4 @@
                 </div>
             </nav>
 
+        </div>

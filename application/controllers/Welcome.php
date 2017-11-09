@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('admin/template/header');
+		$this->load->view('admin/materiaPrima/tipo');
 		$this->load->view('admin/template/footer');
 	}
 }

@@ -10,12 +10,7 @@ class Materia_tipo_model extends CI_Model {
         return $this->db->insert('MATERIA_PRIMA_TIPO', $p);
     }
 
-    function deletar($id) {
-        $this->db->where('id', $id);
-        return $this->db->delete('MATERIA_PRIMA_TIPO');
-    }
-
-    function listarPessoas() {
+    function listarTipo() {
         $lista = $this->db->get('MATERIA_PRIMA_TIPO');
         return $lista->result();
     }
