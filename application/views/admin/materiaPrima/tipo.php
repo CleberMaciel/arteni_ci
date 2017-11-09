@@ -30,6 +30,7 @@
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Tipo de Matéria-prima</th>
                                     <th>Estatus</th>
                                     <th>Editar</th>
@@ -39,12 +40,31 @@
                             <tbody>
                                 <tr class="odd gradeX">
                                     <?php foreach ($tipo as $t): ?>
-                                    <td><?php echo $t->NOME; ?> </td>
-                                    <td><?php if($t->ATIVO_ID_ATIVO == 1){echo "Ativo";}else{echo "Inativo";} ?> </td>
-                                    <td>Link/Botão</td>
-                                    <td>Link/Botão</td>
-                                </tr>   
-                                 <?php endforeach; ?>
+                                        <td><?php echo $t->ID_MATERIA_PRIMA_TIPO; ?> </td>
+                                        <td><?php echo $t->NOME; ?> </td>
+                                        <td><?php
+                                            if ($t->ATIVO_ID_ATIVO == 1) {
+                                                echo "Ativo";
+                                            } else {
+                                                echo "Inativo";
+                                            }
+                                            ?> </td>
+                                        <td>Link/Botão</td>      
+                                        <?php
+                                        if ($t->ATIVO_ID_ATIVO == 1) {
+                                            ?>
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/inativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Desativar  </a></td> 
+                                            <?php
+                                        } else {
+                                            ?>
+
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Ativar  </a></td> 
+                                            <?php
+                                        }
+                                        ?>
+                                    </tr>
+                                <?php endforeach;
+                                ?>
                             </tbody>
                         </table>
                     </div>

@@ -12,7 +12,7 @@ class Materia_tipo extends CI_Controller {
     public function index() {
         $this->load->view('admin/template/header');
         $data['tipo'] = $this->model->listarTipo();
-        $this->load->view('admin/materiaPrima/tipo',$data);
+        $this->load->view('admin/materiaPrima/tipo', $data);
         $this->load->view('admin/template/footer');
     }
 
@@ -20,13 +20,22 @@ class Materia_tipo extends CI_Controller {
         $data['NOME'] = $this->input->post('texto');
         $data['ATIVO_ID_ATIVO'] = $this->input->post('ativo');
         $this->model->inserir($data);
+        redirect('/Materia_tipo');
+    }
+
+    public function inativo($id) {
+        $this->model->inativo($id);
+        redirect('Materia_tipo');
+    }
+    
+     public function ativo($id) {
+        $this->model->ativo($id);
         redirect('Materia_tipo');
     }
 
-    public function listar() {
-        $this->load->view('admin/template/header');
-        $data[tipo] = $this->model->listarTipo();
-        $this->load->view('admin/template/footer');
+    function excluir($id) {
+        $this->model->deletar($id);
+        redirect('Materia_tipo');
     }
 
 }
