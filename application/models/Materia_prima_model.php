@@ -1,6 +1,6 @@
 <?php
 
-class Materia_tipo_model extends CI_Model {
+class Materia_prima_model extends CI_Model {
 
     function __construct() {
         parent::__construct();

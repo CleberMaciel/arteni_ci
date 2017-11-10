@@ -17,15 +17,22 @@ class Materia_tipo extends CI_Controller {
     }
 
     public function inserir() {
-        $data['NOME'] = $this->input->post('texto');
-        $data['ATIVO_ID_ATIVO'] = $this->input->post('ativo');
-        $result = $this->model->inserir($data);
-        if ($result == true) {
-            $this->session->set_flashdata('tipo_ok', 'msg');
-            redirect('/Materia_tipo');
+        $this->form_validation->set_rules('tipo', 'Tipo', 'required|is_unique[MATERIA_PRIMA_TIPO.NOME]');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('tipo_existe', 'msg');
+            redirect('Materia_tipo');
         } else {
-            $this->session->set_flashdata('tipo_fail', 'msg');
-            redirect('/Materia_tipo');
+            $data['NOME'] = $this->input->post('tipo');
+            $data['ATIVO_ID_ATIVO'] = $this->input->post('ativo');
+            $result = $this->model->inserir($data);
+            if ($result == true) {
+                $this->session->set_flashdata('tipo_ok', 'msg');
+                redirect('/Materia_tipo');
+            } else {
+                $this->session->set_flashdata('tipo_fail', 'msg');
+                redirect('/Materia_tipo');
+            }
         }
     }
 
@@ -41,8 +48,15 @@ class Materia_tipo extends CI_Controller {
     }
 
     public function ativo($id) {
-        $this->model->ativo($id);
-        redirect('Materia_tipo');
+        $result = $this->model->ativo($id);
+        if ($result == true) {
+            $this->session->set_flashdata('tipo_ativo_ok', 'msg');
+            redirect('/Materia_tipo');
+        } else {
+            $this->session->set_flashdata('tipo_ativo_fail', 'msg');
+            redirect('/Materia_tipo');
+        }
+        ;
     }
 
     function excluir($id) {

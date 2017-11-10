@@ -51,7 +51,7 @@
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Arteni</a>
+                    <a class="navbar-brand" href="<?php base_url(); ?>home">Arteni</a>
                 </div>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -112,26 +112,47 @@
 
                         <ul class="nav" id="side-menu">
 
+                            <!--materia prima-->
                             <li>
-                                <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i> Matéria-Prima<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Matéria-Prima<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">Tipo de Matéria-Prima</a>
+                                        <a href="#">Matéria-Prima</a>
                                     </li>
                                     <li>
-                                        <a href="#">Third Level <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level" >
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                        </ul>
+                                        <a href="<?php base_url(); ?>materia_tipo">Tipo de Matéria-Prima</a>
                                     </li>
                                 </ul>
                             </li>
-                        </ul>
+                            <!--materia-prima-->
+
+                            <!--estampa-->
+                            <li>
+                                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Estampa<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?php base_url(); ?>estampa">Estampa</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Tipo de Matéria-Prima</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--estampa-->
+                            <!--produto-->
+                            <li>
+                                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Produto<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">Matéria-Prima</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Tipo de Matéria-Prima</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--produto-->
+                        </ul> <!---fim do sidbar --->
 
                     </div>
                 </div>

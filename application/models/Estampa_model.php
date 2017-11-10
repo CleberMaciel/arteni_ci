@@ -1,23 +1,23 @@
 <?php
 
-class Materia_tipo_model extends CI_Model {
+class Estampa_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
     }
 
     function inserir($p) {
-        return $this->db->insert('MATERIA_PRIMA_TIPO', $p);
+        return $this->db->insert('ESTAMPA', $p);
     }
 
-    function listarTipo() {
-        $lista = $this->db->get('MATERIA_PRIMA_TIPO');
+    function listarEstampa() {
+        $lista = $this->db->get('ESTAMPA');
         return $lista->result();
     }
 
     function editar($id) {
-        $this->db->where('ID_MATERIA_PRIMA_TIPO', $id);
-        $result = $this->db->get('MATERIA_PRIMA_TIPO');
+        $this->db->where('ID_ESTAMPA', $id);
+        $result = $this->db->get('ESTAMPA');
         return $result->result();
     }
 
@@ -28,15 +28,15 @@ class Materia_tipo_model extends CI_Model {
     }
 
     function ativo($id) {
-        $this->db->where('ID_MATERIA_PRIMA_TIPO', $id);
+        $this->db->where('ID_ESTAMPA', $id);
         $this->db->set('ATIVO_ID_ATIVO', 1);
-        return $this->db->update('MATERIA_PRIMA_TIPO');
+        return $this->db->update('ESTAMPA');
     }
 
     function inativo($id) {
-        $this->db->where('ID_MATERIA_PRIMA_TIPO', $id);
+        $this->db->where('ID_ESTAMPA', $id);
         $this->db->set('ATIVO_ID_ATIVO', 2);
-        return $this->db->update('MATERIA_PRIMA_TIPO');
+        return $this->db->update('ESTAMPA');
     }
 
 }
