@@ -117,7 +117,7 @@
                                 <a href="#"><i class="fa fa-sitemap fa-fw"></i>Matéria-Prima<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">Matéria-Prima</a>
+                                        <a href="<?php base_url(); ?>materia_prima">Matéria-Prima</a>
                                     </li>
                                     <li>
                                         <a href="<?php base_url(); ?>materia_tipo">Tipo de Matéria-Prima</a>
