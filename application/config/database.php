@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '1234',
-	'database' => 'arteni',
+	'hostname' => 'arteni2.mysql.uhserver.com',
+	'username' => 'jubileu',
+	'password' => 'artemis2017@',
+	'database' => 'arteni2',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
