@@ -11,14 +11,14 @@ class Materia_prima_model extends CI_Model {
     }
 
     function listarMateria() {
+//        $this->db->select('MATERIA_PRIMA.ID_MATERIA_PRIMA,MATERIA_PRIMA.NOME,MATERIA_PRIMA.DESCRICAO,MATERIA_PRIMA.IMAGEM,MATERIA_PRIMA.QTD_TOTAL, DATE_FORMAT(MATERIA_PRIMA.DATA_ADICIONADO, "%d/%m/%Y") as  DATA, MATERIA_PRIMA_TIPO.NOME, ESTAMPA.NOME');
+//        $this->db->from('MATERIA_PRIMA');
+//        $this->db->join('MATERIA_PRIMA_TIPO', 'MATERIA_PRIMA.MATERIA_PRIMA_TIPO_ID_MATERIA_PRIMA_TIPO = MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO');
+//        $this->db->join('ESTAMPA', 'MATERIA_PRIMA.ESTAMPA_ID_ESTAMPA = ESTAMPA.ID_ESTAMPA');
+//        $result = $this->db->get();
+//        return $result->result();
         $lista = $this->db->get('MATERIA_PRIMA');
         return $lista->result();
-    }
-
-    function editar($id) {
-        $this->db->where('ID_MATERIA_PRIMA', $id);
-        $result = $this->db->get('MATERIA_PRIMA');
-        return $result->result();
     }
 
     function atualizar($data) {
@@ -36,7 +36,7 @@ class Materia_prima_model extends CI_Model {
     function inativo($id) {
         $this->db->where('ID_MATERIA_PRIMA', $id);
         $this->db->set('ATIVO_ID_ATIVO', 2);
-        return $this->db->update('MATERIA_PRIMA_TIPO');
+        return $this->db->update('MATERIA_PRIMA');
     }
 
 }

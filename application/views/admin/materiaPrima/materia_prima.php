@@ -11,9 +11,10 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-6">
-                    <?php echo form_open('Materia_tipo/inserir'); ?> 
+                    <?php echo form_open('Materia_prima/inserir'); ?> 
                     <div class="form-group">
                         <div class="form-group">
+                            <input type="hidden" name="ativo" value="1">
                             <label>Nome da matéria-prima</label>
                             <input class="form-control" placeholder="Texto aqui" name="nome" required="true">
                             <input type="hidden" name="ativo" value="1">
@@ -60,7 +61,9 @@
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
-                                    <th>Tipo de Matéria-prima</th>
+                                    <th>Matéria-prima</th>
+                                    <th>Quantidade Disp.</th>
+                                    <th>Data adicionada</th>
                                     <th>Estatus</th>
                                     <th>Editar</th>
                                     <th>Ativar/Desativar</th>
@@ -68,24 +71,26 @@
                             </thead>
                             <tbody>
                                 <tr class="odd gradeX">
-                                    <?php foreach ($tipo as $t): ?>
-                                        <td><?php echo $t->NOME; ?> </td>
+                                    <?php foreach ($materia as $m): ?>
+                                        <td><?php echo $m->NOME; ?> </td>
+                                        <td><?php echo $m->QTD_TOTAL; ?> </td>
+                                        <td><?php echo date_format(new DateTime($m->DATA_ADICIONADO), 'd/m/Y'); ?> </td>
                                         <td><?php
-                                            if ($t->ATIVO_ID_ATIVO == 1) {
+                                            if ($m->ATIVO_ID_ATIVO == 1) {
                                                 echo "Ativo";
                                             } else {
                                                 echo "Inativo";
                                             }
                                             ?> </td>
-                                        <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Editar</a></td>       
+                                        <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/editar/' . $m->ID_MATERIA_PRIMA; ?>">Editar</a></td>       
                                         <?php
-                                        if ($t->ATIVO_ID_ATIVO == 1) {
+                                        if ($m->ATIVO_ID_ATIVO == 1) {
                                             ?>
-                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/inativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Desativar</a></td> 
+                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/inativo/' . $m->ID_MATERIA_PRIMA; ?>">Desativar</a></td> 
                                             <?php
                                         } else {
                                             ?>
-                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Ativar</a></td> 
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/ativo/' . $m->ID_MATERIA_PRIMA; ?>">Ativar</a></td> 
                                             <?php
                                         }
                                         ?>
