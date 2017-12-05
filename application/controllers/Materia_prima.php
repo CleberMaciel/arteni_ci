@@ -74,8 +74,7 @@ class Materia_prima extends CI_Controller {
         }
     }
 
-    public
-            function ativo($id) {
+    public function ativo($id) {
         $result = $this->model_prima->ativo($id);
         if ($result == true) {
             $this->session->set_flashdata('prima_ativo_ok', 'msg');
@@ -84,7 +83,6 @@ class Materia_prima extends CI_Controller {
             $this->session->set_flashdata('prima_ativo_fail', 'msg');
             redirect('/Materia_prima');
         }
-        ;
     }
 
 }
