@@ -14,6 +14,12 @@ class Estampa_model extends CI_Model {
         $lista = $this->db->get('ESTAMPA');
         return $lista->result();
     }
+    
+       function listarEstampaCombo() {
+        $this->db->where('ATIVO_ID_ATIVO = 1');
+        $lista = $this->db->get('ESTAMPA');
+        return $lista->result();
+    }
 
     function editar($id) {
         $this->db->where('ID_ESTAMPA', $id);

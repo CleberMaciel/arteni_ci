@@ -11,7 +11,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-6">
-                    <?php echo form_open('Materia_prima/inserir'); ?> 
+                    <?php echo form_open_multipart('Materia_prima/inserir'); ?> 
                     <div class="form-group">
                         <div class="form-group">
                             <input type="hidden" name="ativo" value="1">
@@ -62,6 +62,7 @@
                             <thead>
                                 <tr>
                                     <th>Matéria-prima</th>
+                                    <th>IMG.</th>
                                     <th>Quantidade Disp.</th>
                                     <th>Data adicionada</th>
                                     <th>Estatus</th>
@@ -73,6 +74,7 @@
                                 <tr class="odd gradeX">
                                     <?php foreach ($materia as $m): ?>
                                         <td><?php echo $m->NOME; ?> </td>
+                                        <td> <img  class="img-thumbnail"  style="width: 100px;" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $m->IMAGEM; ?>"></td>
                                         <td><?php echo $m->QTD_TOTAL; ?> </td>
                                         <td><?php echo date_format(new DateTime($m->DATA_ADICIONADO), 'd/m/Y'); ?> </td>
                                         <td><?php
