@@ -92,7 +92,7 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
+                            <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('userlogado')->NOME; ?> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -100,7 +100,7 @@
                             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="<?php base_url(); ?>Painel/sair"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -114,7 +114,7 @@
 
                             <!--materia prima-->
                             <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Matéria-Prima<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Matéria-Prima<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="<?php base_url(); ?>materia_prima">Matéria-Prima</a>
@@ -128,26 +128,20 @@
 
                             <!--estampa-->
                             <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Estampa<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Estampa<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="<?php base_url(); ?>estampa">Estampa</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tipo de Matéria-Prima</a>
                                     </li>
                                 </ul>
                             </li>
                             <!--estampa-->
                             <!--produto-->
                             <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Produto<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Produto<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="#">Matéria-Prima</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tipo de Matéria-Prima</a>
                                     </li>
                                 </ul>
                             </li>

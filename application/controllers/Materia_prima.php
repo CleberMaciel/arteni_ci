@@ -9,6 +9,9 @@ class Materia_prima extends CI_Controller {
         $this->load->model('Materia_prima_model', 'model_prima');
         $this->load->model('Materia_tipo_model', 'model_tipo');
         $this->load->model('Estampa_model', 'model_estampa');
+        if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
     }
 
     public function index() {
@@ -28,26 +31,22 @@ class Materia_prima extends CI_Controller {
             $this->session->set_flashdata('prima_existe', 'msg');
             redirect('Materia_prima');
         } else {
-
-
             $config['upload_path'] = './img/materia_prima';
             $config['allowed_types'] = 'jpg|jpeg';
             $config['encrypt_name'] = TRUE;
 
             $this->load->library('upload', $config);
-
             if (!$this->upload->do_upload('img')) {
                 echo "error";
-                $img = "semimagem.jpeg";
+                $uploadData['file_name'] = "semimagem.jpeg";
             } else {
-
-                $uploadData = $this->upload->data('img');
-                $img = $_FILES['img']['name'];
+                $uploadData = $this->upload->data();
+                //$img = $_FILES['img']['name'];
             }
             $data['NOME'] = $this->input->post('nome');
             $data['DESCRICAO'] = $this->input->post('descricao');
             $data['QTD_TOTAL'] = $this->input->post('quantidade');
-            $data['IMAGEM'] = $img;
+            $data['IMAGEM'] = $uploadData['file_name'];
             $data['MATERIA_PRIMA_TIPO_ID_MATERIA_PRIMA_TIPO'] = $this->input->post('tipo');
             $data['ESTAMPA_ID_ESTAMPA'] = $this->input->post('estampa');
             $data['ATIVO_ID_ATIVO'] = $this->input->post('ativo');

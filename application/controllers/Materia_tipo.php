@@ -7,6 +7,9 @@ class Materia_tipo extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('Materia_tipo_model', 'model');
+        if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
     }
 
     public function index() {

@@ -41,7 +41,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Estampa</label>
+                            <label>Estampa/Cor</label>
                             <select class="form-control" name="estampa">
                                 <?php foreach ($estampa as $e): ?>
                                     <option value="<?php echo $e->ID_ESTAMPA; ?>"><?php echo $e->NOME; ?></option>
