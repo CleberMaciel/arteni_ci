@@ -41,7 +41,7 @@
                                     <?php foreach ($tipo as $t): ?>
                                         <td><?php echo $t->NOME; ?> </td>
                                         <td><?php
-                                            if ($t->ATIVO_ID_ATIVO == 1) {
+                                            if ($t->ID_ATIVO == 1) {
                                                 echo "Ativo";
                                             } else {
                                                 echo "Inativo";
@@ -49,7 +49,7 @@
                                             ?> </td>
                                         <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Editar</a></td>       
                                         <?php
-                                        if ($t->ATIVO_ID_ATIVO == 1) {
+                                        if ($t->ID_ATIVO == 1) {
                                             ?>
                                             <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/inativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Desativar</a></td> 
                                             <?php

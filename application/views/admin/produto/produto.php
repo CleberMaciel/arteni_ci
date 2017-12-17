@@ -4,36 +4,37 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Matéria-Prima</h1>
+                <h1 class="page-header">Criação de Produto</h1>
             </div>
         </div>
 
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-6">
-                    <?php echo form_open_multipart('Materia_prima/inserir'); ?> 
+                    <?php echo form_open_multipart('Produto/inserir'); ?> 
                     <div class="form-group">
                         <div class="form-group">
                             <input type="hidden" name="ativo" value="1">
-                            <label>Nome da matéria-prima</label>
+                            <label>Nome do produto</label>
                             <input class="form-control" placeholder="Texto aqui" name="nome" required="true">
                             <input type="hidden" name="ativo" value="1">
                         </div>                    
-                        <div class="form-group">
-                            <label>Descrição</label>
-                            <textarea class="form-control" placeholder="Descrição da matéria-prima" name="descricao" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Imagem (Tamanho máximo 2MB.)</label>
-                            <input type="file" name="img">
-                        </div>
-                        <div class="form-group">
-                            <label>Quantidade adicionada</label>
-                            <input class="form-control" placeholder="Quantidade" name="quantidade" required="true" type="number">                            
-                        </div>     
 
                         <div class="form-group">
-                            <label>Tipo da matéria-prima</label>
+                            <label>Largura (cm)</label>
+                            <input class="form-control" placeholder="Quantidade" name="quantidade" required="true" type="number">                            
+                        </div>
+                        <div class="form-group">
+                            <label>Altura (cm)</label>
+                            <input class="form-control" placeholder="Quantidade" name="quantidade" required="true" type="number">                            
+                        </div>
+                        <div class="form-group">
+                            <label>Profundidade (cm)</label>
+                            <input class="form-control" placeholder="Quantidade" name="quantidade" required="true" type="number">                            
+                        </div>
+
+                        <div class="form-group">
+                            <label>Materia-Prima</label>
                             <select class="form-control" name="tipo">
                                 <?php foreach ($tipo as $t): ?>
                                     <option value="<?php echo $t->ID_MATERIA_PRIMA_TIPO; ?>"><?php echo $t->NOME; ?></option>
@@ -41,13 +42,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Estampa/Cor</label>
-                            <select class="form-control" name="estampa">
-                                <?php foreach ($estampa as $e): ?>
-                                    <option value="<?php echo $e->ID_ESTAMPA; ?>"><?php echo $e->NOME; ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <label>PQuantidade</label>
+                            <input class="form-control" placeholder="Quantidade" name="quantidade" required="true" type="number">                            
                         </div>
+
 
                         <button type="submit" class="btn btn-default">Salvar</button>
                         <button type="reset" class="btn btn-default">Limpar campo</button>
@@ -56,7 +54,7 @@
                     <?php form_close(); ?>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
+<!--                <div class="panel-body">
                     <div class="dataTable_wrapper">
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
@@ -101,7 +99,7 @@
                                 ?>
                             </tbody>
                         </table>
-                    </div>
+                    </div>-->
                     <!-- /.table-responsive -->
                 </div>
 

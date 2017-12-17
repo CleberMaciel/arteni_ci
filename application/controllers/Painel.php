@@ -29,6 +29,7 @@ class Painel extends CI_Controller {
             $dados['userlogado'] = NULL;
             $dados['logado'] = FALSE;
             $this->session->set_userdata($dados);
+            $this->session->set_flashdata('login_fail', 'msg');
             redirect('Painel');
         }
     }

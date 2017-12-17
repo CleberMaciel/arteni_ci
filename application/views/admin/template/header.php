@@ -141,7 +141,7 @@
                                 <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Produto<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">Matéria-Prima</a>
+                                        <a href="<?php base_url(); ?>produto">Criar Produto</a>
                                     </li>
                                 </ul>
                             </li>

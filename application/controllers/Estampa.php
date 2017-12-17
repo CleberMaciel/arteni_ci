@@ -24,7 +24,7 @@ class Estampa extends CI_Controller {
             redirect('/Estampa');
         } else {
             $data['NOME'] = $this->input->post('estampa');
-            $data['ATIVO_ID_ATIVO'] = $this->input->post('ativo');
+            $data['ID_ATIVO'] = $this->input->post('ativo');
             $result = $this->model->inserir($data);
             if ($result == true) {
                 $this->session->set_flashdata('estampa_ok', 'msg');

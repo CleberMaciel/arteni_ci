@@ -16,7 +16,7 @@ class Estampa_model extends CI_Model {
     }
     
        function listarEstampaCombo() {
-        $this->db->where('ATIVO_ID_ATIVO = 1');
+        $this->db->where('ID_ATIVO = 1');
         $lista = $this->db->get('ESTAMPA');
         return $lista->result();
     }
@@ -35,13 +35,13 @@ class Estampa_model extends CI_Model {
 
     function ativo($id) {
         $this->db->where('ID_ESTAMPA', $id);
-        $this->db->set('ATIVO_ID_ATIVO', 1);
+        $this->db->set('ID_ATIVO', 1);
         return $this->db->update('ESTAMPA');
     }
 
     function inativo($id) {
         $this->db->where('ID_ESTAMPA', $id);
-        $this->db->set('ATIVO_ID_ATIVO', 2);
+        $this->db->set('ID_ATIVO', 2);
         return $this->db->update('ESTAMPA');
     }
 

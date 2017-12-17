@@ -23,13 +23,13 @@ class Materia_prima_model extends CI_Model {
 
     function ativo($id) {
         $this->db->where('ID_MATERIA_PRIMA', $id);
-        $this->db->set('ATIVO_ID_ATIVO', 1);
+        $this->db->set('ID_ATIVO', 1);
         return $this->db->update('MATERIA_PRIMA');
     }
 
     function inativo($id) {
         $this->db->where('ID_MATERIA_PRIMA', $id);
-        $this->db->set('ATIVO_ID_ATIVO', 2);
+        $this->db->set('ID_ATIVO', 2);
         return $this->db->update('MATERIA_PRIMA');
     }
 

@@ -41,7 +41,7 @@
                                     <?php foreach ($estampa as $e): ?>
                                         <td><?php echo $e->NOME; ?> </td>
                                         <td><?php
-                                            if ($e->ATIVO_ID_ATIVO == 1) {
+                                            if ($e->ID_ATIVO == 1) {
                                                 echo "Ativo";
                                             } else {
                                                 echo "Inativo";
@@ -49,7 +49,7 @@
                                             ?> </td>
                                         <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Estampa/ativo/' . $e->ID_ESTAMPA; ?>">Editar</a></td>       
                                         <?php
-                                        if ($e->ATIVO_ID_ATIVO == 1) {
+                                        if ($e->ID_ATIVO == 1) {
                                             ?>
                                             <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Estampa/inativo/' . $e->ID_ESTAMPA; ?>">Desativar</a></td> 
                                             <?php
