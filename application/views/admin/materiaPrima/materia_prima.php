@@ -24,7 +24,7 @@
                             <textarea class="form-control" placeholder="Descrição da matéria-prima" name="descricao" rows="3"></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Imagem (Tamanho máximo 2MB.)</label>
+                            <label>Imagem (Tamanho máximo 2MB).</label>
                             <input type="file" name="img">
                         </div>
                         <div class="form-group">
