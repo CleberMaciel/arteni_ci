@@ -9,7 +9,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-6">
-                    <?php echo form_open('Produto/inserir');?> 
+                    <?php echo form_open('Produto/inserir'); ?> 
                     <div class="form-group">
                         <div class="form-group">
                             <input type="hidden" name="ativo" value="1">
@@ -33,21 +33,23 @@
                             <input class="form-control" placeholder="Profundidade" name="profundidade" required="true" type="number">                            
                         </div>
                         <div class="form-group">
-                            <label>Materia-Prima</label>
-                            <select class="form-control" name="materia_prima">
-                                <?php foreach ($materia as $m): ?>
-                                    <option value="<?php echo $m->ID_MATERIA_PRIMA; ?>"><?php echo $m->NOME; ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <a class="btn btn-primary" href="javascript:void(0)" id="addSelect">
+                                Adicionar Matéria-Prima
+                            </a>
                         </div>
-                        <div class="form-group">
-                            <label>Unidades usadas de matéria-prima</label>
-                            <input class="form-control" placeholder="Unidades usadas de matéria-prima" name="quantidade" required="true" type="number">                            
+
+                        <div class="form-group" id="campoDinamico">
+
                         </div>
+
+
                         <button type="submit" class="btn btn-default">Salvar</button>
                         <button type="reset" class="btn btn-default">Limpar campo</button>
                     </div>
                     <?php form_close(); ?>
                 </div>
             </div>
+
+            <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
+
 

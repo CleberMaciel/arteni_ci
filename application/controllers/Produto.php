@@ -34,10 +34,15 @@ class Produto extends CI_Controller {
             $data['LARGURA'] = $this->input->post('largura');
             $data['ALTURA'] = $this->input->post('altura');
             $data['PROFUNDIDADE'] = $this->input->post('profundidade');
-            $data['ID_MATERIA_PRIMA'] = $this->input->post('materia_prima');
-            $data['QUANTIDADE'] = $this->input->post('quantidade');
+            foreach ($this->input->post('materia_prima') as $k => $m) {
+                $data['ID_MATERIA_PRIMA'] = $m;
+                $data['QUANTIDADE'] = $this->input->post('quantidade')[$k];
 
-            $result = $this->produto->inserir($data);
+                $this->produto->inserir($data);
+            }
+
+
+//            $result = $this->produto->inserir($data);
             if ($result == true) {
                 $this->session->set_flashdata('estampa_ok', 'msg');
                 redirect('/Produto');

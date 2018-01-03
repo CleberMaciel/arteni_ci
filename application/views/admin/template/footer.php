@@ -22,7 +22,38 @@
             responsive: true
         });
     });
+</script>
+<script>
+    $(function () {
+        var scntDiv = $('#campoDinamico');
+        $(document).on('click', '#addSelect', function () {
+            $('<span>' +
+                    '<div class="form-group">' +
+                    '<label>Materia-Prima</label>' +
+                    '<select class="form-control" name="materia_prima[]">' +
+                    "<?php foreach ($materia as $m): ?>" +
+                    '<option value="<?php echo $m->ID_MATERIA_PRIMA; ?>"><?php echo $m->NOME; ?></option>' +
+                    "<?php endforeach; ?>" +
+                    '</select>' +
+                    '</div>' +
+                    '</select>' +
+                    '<div class="form-group">' +
+                    '<label>Unidades usadas de matéria-prima</label>' +
+                    '<input class="form-control" placeholder="Unidades usadas de matéria-prima" name="quantidade[]" required="true" type="number">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<a class = "btn btn-danger" href="javascript:void(0)" id ="remSelect">' +
+                    'Remover campo' +
+                    '</a>' +
+                    '</span>').appendTo(scntDiv);
+            return false;
+        });
+        $(document).on('click', '#remSelect', function () {
+            $(this).parents('span').remove();
+            return false;
+        });
 
+    });
 </script>
 
 <!--matéria-prima-cadastro-->
