@@ -32,7 +32,7 @@
                     '<label>Materia-Prima</label>' +
                     '<select class="form-control" name="materia_prima[]">' +
                     "<?php foreach ($materia as $m): ?>" +
-                    '<option value="<?php echo $m->ID_MATERIA_PRIMA; ?>"><?php echo $m->NOME; ?></option>' +
+                    '<option value="<?php echo $m->ID_MATERIA_PRIMA; ?>"><?php echo $m->NOME . "-" . $m->QTD_TOTAL; ?></option>' +
                     "<?php endforeach; ?>" +
                     '</select>' +
                     '</div>' +
@@ -45,6 +45,8 @@
                     '<a class = "btn btn-danger" href="javascript:void(0)" id ="remSelect">' +
                     'Remover campo' +
                     '</a>' +
+                    '<br>' +
+                    '-----------------------------------------------------------' +
                     '</span>').appendTo(scntDiv);
             return false;
         });

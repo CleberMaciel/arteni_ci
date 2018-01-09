@@ -10,9 +10,16 @@ class Produto_model extends CI_Model {
         return $this->db->insert('PRODUTO_CRIACAO', $p);
     }
 
-    function listarEstampa() {
-        $lista = $this->db->get('PRODUTO_CRIACAO');
-        return $lista->result();
+    function listarProduto() {
+        $this->db->select('ID_PRODUTO_CRIACAO');
+        $this->db->select_max('CODIGO');
+        $this->db->select('NOME');
+        $this->db->select('ALTURA');
+        $this->db->select('LARGURA');
+        $this->db->select('PROFUNDIDADE');
+        $this->db->select('ID_ATIVO');
+        $this->db->group_by('CODIGO');
+        return $this->db->get('PRODUTO_CRIACAO')->result();
     }
 
     function listarEstampaCombo() {

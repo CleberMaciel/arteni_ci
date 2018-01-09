@@ -15,6 +15,12 @@ class Materia_prima_model extends CI_Model {
         return $lista->result();
     }
 
+    function listarMateriaCombo() {
+        $this->db->where('ID_ATIVO = 1');
+        $lista = $this->db->get('MATERIA_PRIMA');
+        return $lista->result();
+    }
+
     function atualizar($data) {
         $this->db->where('ID_MATERIA_PRIMA', $data['id']);
         $this->db->set($data);
@@ -30,6 +36,18 @@ class Materia_prima_model extends CI_Model {
     function inativo($id) {
         $this->db->where('ID_MATERIA_PRIMA', $id);
         $this->db->set('ID_ATIVO', 2);
+        return $this->db->update('MATERIA_PRIMA');
+    }
+
+    function retornaQuantidade($idM) {
+        return $this->db->query('select QTD_TOTAL from MATERIA_PRIMA where ID_MATERIA_PRIMA =' . $idM)->row()->QTD_TOTAL;
+    }
+
+    function reduzirMateriaPrima($idM, $valor) {
+        $this->db->select('QTD_TOTAL');
+        $this->db->from('MATERIA_PRIMA');
+        $this->db->where('ID_MATERIA_PRIMA', $idM);
+        $this->db->set('QTD_TOTAL', $valor);
         return $this->db->update('MATERIA_PRIMA');
     }
 

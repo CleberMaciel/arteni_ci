@@ -15,9 +15,16 @@ class Produto extends CI_Controller {
     }
 
     public function index() {
-        $data['materia'] = $this->model_prima->listarMateria();
+        $data['materia'] = $this->model_prima->listarMateriaCombo();
         $this->load->view('admin/template/header');
         $this->load->view('admin/produto/produto', $data);
+        $this->load->view('admin/template/footer');
+    }
+
+    public function listar() {
+        $data['produto'] = $this->produto->listarProduto();
+        $this->load->view('admin/template/header');
+        $this->load->view('admin/produto/listar', $data);
         $this->load->view('admin/template/footer');
     }
 
@@ -26,7 +33,7 @@ class Produto extends CI_Controller {
 
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('produto_existe', 'msg');
-            redirect('/Produto');
+            redirect('produto');
         } else {
             $data['ID_ATIVO'] = $this->input->post('ativo');
             $data['CODIGO'] = $this->input->post('codigo');
@@ -38,18 +45,16 @@ class Produto extends CI_Controller {
                 $data['ID_MATERIA_PRIMA'] = $m;
                 $data['QUANTIDADE'] = $this->input->post('quantidade')[$k];
 
-                $this->produto->inserir($data);
+                $qtd_total = $this->model_prima->retornaQuantidade($m);
+                $valor = $qtd_total - $this->input->post('quantidade')[$k];
+                if ($this->input->post('quantidade')[$k] > $qtd_total) {
+                    redirect('home');
+                } else {
+                    $this->produto->inserir($data);
+                    $this->model_prima->reduzirMateriaPrima($m, $valor);
+                }
             }
-
-
-//            $result = $this->produto->inserir($data);
-            if ($result == true) {
-                $this->session->set_flashdata('estampa_ok', 'msg');
-                redirect('/Produto');
-            } else {
-                $this->session->set_flashdata('estampa_fail', 'msg');
-                redirect('/Produto');
-            }
+            redirect('produto');
         }
     }
 

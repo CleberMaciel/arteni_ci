@@ -142,6 +142,7 @@
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="<?php base_url(); ?>produto">Criar Produto</a>
+                                        <a href="<?php base_url(); ?>produto_listar">Listar Produtos</a>
                                     </li>
                                 </ul>
                             </li>

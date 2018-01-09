@@ -37,12 +37,8 @@
                                 Adicionar Matéria-Prima
                             </a>
                         </div>
-
                         <div class="form-group" id="campoDinamico">
-
                         </div>
-
-
                         <button type="submit" class="btn btn-default">Salvar</button>
                         <button type="reset" class="btn btn-default">Limpar campo</button>
                     </div>
@@ -50,6 +46,6 @@
                 </div>
             </div>
 
-            <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
+
 
 
