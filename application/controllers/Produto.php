@@ -28,6 +28,8 @@ class Produto extends CI_Controller {
         $this->load->view('admin/template/footer');
     }
 
+
+
     public function inserir() {
         $this->form_validation->set_rules('codigo', 'PRODUTO_CRIACAO', 'required|is_unique[PRODUTO_CRIACAO.CODIGO]');
 
@@ -57,6 +59,8 @@ class Produto extends CI_Controller {
             redirect('produto');
         }
     }
+    
+    
 
     public function inativo($id) {
         $result = $this->model->inativo($id);

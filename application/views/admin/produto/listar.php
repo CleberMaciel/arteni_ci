@@ -32,7 +32,8 @@
                                 <td><?php echo $p->ALTURA; ?> cm</td>
                                 <td><?php echo $p->LARGURA; ?> cm</td>
                                 <td><?php echo $p->PROFUNDIDADE; ?> cm</td>
-                                <td> <a class="btn btn-success" href="#"><i class="fa fa-list-alt"></i> Ver</a></td>
+                                <td> <a data-toggle="modal" class="btn btn-success"  href="<?php echo base_url() . 'produto_listar/verInformacoes/' . $p->ID_PRODUTO_CRIACAO; ?>" data-target="#myModal"><i class="fa fa-list-alt"></i> Ver Informações</a>
+                                </td>
                                 <td><?php
                                     if ($p->ID_ATIVO == 1) {
                                         echo "Ativo";
@@ -60,3 +61,24 @@
             </div>
             <!-- /.table-responsive -->
         </div>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </div>
