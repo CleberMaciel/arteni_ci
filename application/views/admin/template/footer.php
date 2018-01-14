@@ -16,13 +16,12 @@
 <!-- Custom Theme JavaScript -->
 <script src="<?php echo base_url('assets/js/startmin.js') ?>"></script>
 <script>
-    $('#informacoes').on('click', function (e) {
-        e.preventDefault();
-        var url = $(this).attr('href');
-        $(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
-    });
+$('a.informacoes').on('click', function(e) {
+    e.preventDefault();
+    var url = $(this).attr('href');
+    $(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+});
 </script>
-
 <script>
     $(document).ready(function () {
         $('#dataTables-example').DataTable({

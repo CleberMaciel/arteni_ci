@@ -23,15 +23,24 @@ class Produto_model extends CI_Model {
     }
 
     function verInformacoes($idP) {
-//        $this->db->select('PRODUTO_CRIACAO.ID_PRODUTO_CRIACAO,PRODUTO_CRIACAO.QUANTIDADE, MATERIA_PRIMA.NOME');
-//        $this->db->from('PRODUTO_CRIACAO');
-//        $this->db->join('MATERIA_PRIMA', 'MATERIA_PRIMA.ID_MATERIA_PRIMA = PRODUTO_CRIACAO.ID_MATERIA_PRIMA');
-//        $this->db->where('ID_PRODUTO_CRICAO', $idP);
-//        return $this->db->get()->result();
-
-        $this->db->where('ID_PRODUTO_CRIACAO', $idP);
+        $this->db->where('CODIGO', $idP);
         $result = $this->db->get('PRODUTO_CRIACAO');
         return $result->result();
+    }
+
+    function carregarMateriaPrima($cod) {
+//        $this->db->select('MATERIA_PRIMA.NOME as NOME');
+//        $this->db->from('PRODUTO_CRIACAO');
+//        $this->db->join('MATERIA_PRIMA', 'PRODUTO_CRICAO.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA');
+//        $this->db->where('PRODUTO_CRIACAO.CODIGO', $cod);
+//        return $this->db->get()->result();
+        $this->db->select('ID_PRODUTO_CRIACAO');
+        $this->db->select('MATERIA_PRIMA.NOME');
+        $this->db->select('PRODUTO_CRIACAO.QUANTIDADE');
+        $this->db->from('PRODUTO_CRIACAO');
+        $this->db->join('MATERIA_PRIMA', 'MATERIA_PRIMA.ID_MATERIA_PRIMA = PRODUTO_CRIACAO.ID_MATERIA_PRIMA');
+        $this->db->where('PRODUTO_CRIACAO.CODIGO', $cod);
+        return $this->db->get()->result();
     }
 
     function listarEstampaCombo() {
