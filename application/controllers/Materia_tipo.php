@@ -40,7 +40,7 @@ class Materia_tipo extends CI_Controller {
     }
 
     public function inativo($id) {
-        $result = $this->model->inativo($id);
+        $result = $this->model->inativo($this->encryption->decrypt($id));
         if ($result == true) {
             $this->session->set_flashdata('tipo_inativo_ok', 'msg');
             redirect('/Materia_tipo');
@@ -51,7 +51,7 @@ class Materia_tipo extends CI_Controller {
     }
 
     public function ativo($id) {
-        $result = $this->model->ativo($id);
+        $result = $this->model->ativo($this->encryption->decrypt($id));
         if ($result == true) {
             $this->session->set_flashdata('tipo_ativo_ok', 'msg');
             redirect('/Materia_tipo');

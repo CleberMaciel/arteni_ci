@@ -88,11 +88,11 @@
                                         <?php
                                         if ($m->ID_ATIVO == 1) {
                                             ?>
-                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/inativo/' . $m->ID_MATERIA_PRIMA ?>">Desativar</a></td> 
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/inativo/' . $this->encryption->encrypt($m->ID_MATERIA_PRIMA); ?>">Desativar</a></td> 
                                             <?php
                                         } else {
                                             ?>
-                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/ativo/' . $m->ID_MATERIA_PRIMA ?>">Ativar</a></td> 
+                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/ativo/' . $this->encryption->encrypt($m->ID_MATERIA_PRIMA); ?>">Ativar</a></td> 
                                             <?php
                                         }
                                         ?>

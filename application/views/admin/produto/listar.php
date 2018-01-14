@@ -14,20 +14,22 @@
                     <thead>
                         <tr>
                             <th>Código</th>
+                            <th>Imagem</th>
                             <th>Nome</th>
                             <th>Altura</th>
                             <th>Largura</th>
                             <th>Profundidade</th>
                             <th>Matéria-prima</th>
-                            <th>Status</th>
-                            <th>Editar</th>
-                            <th>Ativar/Desativar</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="odd gradeX">
+
                             <?php foreach ($produto as $p): ?>
                                 <td><?php echo $p->CODIGO; ?> </td>
+                                <td>Imagem </td>
                                 <td><?php echo $p->NOME; ?> </td>
                                 <td><?php echo $p->ALTURA; ?> cm</td>
                                 <td><?php echo $p->LARGURA; ?> cm</td>
@@ -36,25 +38,8 @@
                                 <!--<td> <a data-toggle="modal" class="informacoes" href="localhost" data-target="#myModal">click me</a>-->
 
                                 </td>
-                                <td><?php
-                                    if ($p->ID_ATIVO == 1) {
-                                        echo "Ativo";
-                                    } else {
-                                        echo "Inativo";
-                                    }
-                                    ?> </td>
-                                <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $p->ID_PRODUTO_CRIACAO; ?>">Editar</a></td>       
-                                <?php
-                                if ($p->ID_ATIVO == 1) {
-                                    ?>
-                                    <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/inativo/' . $p->ID_PRODUTO_CRIACAO; ?>">Desativar</a></td> 
-                                    <?php
-                                } else {
-                                    ?>
-                                    <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $p->ID_PRODUTO_CRIACAO; ?>">Ativar</a></td> 
-                                    <?php
-                                }
-                                ?>
+
+
                             </tr>
                         <?php endforeach;
                         ?>
@@ -63,15 +48,16 @@
             </div>
             <!-- /.table-responsive -->
         </div>
-        
-        
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                     
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -80,4 +66,24 @@
                 </div>
             </div>
         </div>
-    </div>
+
+
+
+
+        <!--        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>                
+                            </div>
+                            <h3 id="myModalLabel">URL EXTERNA</h3>
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->

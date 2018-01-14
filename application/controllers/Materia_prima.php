@@ -61,7 +61,7 @@ class Materia_prima extends CI_Controller {
     }
 
     public function inativo($id) {
-        $result = $this->model_prima->inativo($id);
+        $result = $this->model_prima->inativo($this->encryption->decrypt($id));
         if ($result == true) {
             $this->session->set_flashdata('prima_inativo_ok', 'msg');
             redirect('/Materia_prima');
@@ -72,7 +72,7 @@ class Materia_prima extends CI_Controller {
     }
 
     public function ativo($id) {
-        $result = $this->model_prima->ativo($id);
+        $result = $this->model_prima->ativo($this->encryption->decrypt($id));
         if ($result == true) {
             $this->session->set_flashdata('prima_ativo_ok', 'msg');
             redirect('/Materia_prima');
