@@ -56,7 +56,7 @@ class Estampa extends CI_Controller {
             $this->session->set_flashdata('estampa_ativo_fail', 'msg');
             redirect('/Estampa');
         }
-        ;
+        
     }
 
 }

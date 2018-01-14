@@ -32,7 +32,7 @@
                                 <td><?php echo $p->ALTURA; ?> cm</td>
                                 <td><?php echo $p->LARGURA; ?> cm</td>
                                 <td><?php echo $p->PROFUNDIDADE; ?> cm</td>
-                                <td> <a data-toggle="modal" class="btn btn-success"  href="<?php echo base_url() . 'produto_listar/verInformacoes/' . $p->ID_PRODUTO_CRIACAO; ?>" data-target="#myModal"><i class="fa fa-list-alt"></i> Ver Informações</a>
+                                <td> <a id="informacoes" data-toggle="modal" class="btn btn-success"  href="<?php echo base_url() . 'produto_listar/verInformacoes/' . $p->ID_PRODUTO_CRIACAO; ?>" data-target="#myModal"><i class="fa fa-list-alt"></i> Ver Informações</a>
                                 </td>
                                 <td><?php
                                     if ($p->ID_ATIVO == 1) {
