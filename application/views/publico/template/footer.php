@@ -7,7 +7,7 @@
 <script src="<?php echo base_url('assets/js/move-top.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/easing.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/minicart.js') ?>"></script>
-    <script src="js/minicart.js"></script>
+
 <!-- Metis Menu Plugin JavaScript -->
 <script src="<?php echo base_url('assets/js/metisMenu.min.js') ?>"></script>
 
@@ -137,20 +137,20 @@
     </div>
     <!-- //footer -->
     <!-- Bootstrap Core JavaScript -->
-    
+
     <script>
-                        $(document).ready(function () {
-                            $(".dropdown").hover(
-                                    function () {
-                                        $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-                                        $(this).toggleClass('open');
-                                    },
-                                    function () {
-                                        $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-                                        $(this).toggleClass('open');
-                                    }
-                            );
-                        });
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                        $(this).toggleClass('open');
+                    },
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                        $(this).toggleClass('open');
+                    }
+            );
+        });
     </script>
     <!-- here stars scrolling icon -->
     <script type="text/javascript">
