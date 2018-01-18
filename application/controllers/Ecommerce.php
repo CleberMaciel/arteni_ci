@@ -10,7 +10,8 @@ class Ecommerce extends CI_Controller {
 
     public function index() {
         $this->load->view('publico/template/header');
-//        $this->load->view('admin/home');
+        $this->load->view('publico/produtos/produtos');
+
         $this->load->view('publico/template/footer');
     }
 

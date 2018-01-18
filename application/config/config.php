@@ -326,7 +326,7 @@ $config['cache_query_string'] = FALSE;
   |
  */
 
-$config['encryption_key'] = 'a';
+$config['encryption_key'] = '12';
 
 /*
   |--------------------------------------------------------------------------
