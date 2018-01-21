@@ -52,18 +52,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- header -->
         <div class="agileits_header">
             <div class="w3l_offers">
-                <a href="#">ArtêNí - Artesanato</a>
+                <a href="<?php echo base_url(); ?>Ecommerce">ArtêNí - Artesanato</a>
             </div>
-            <!--            <div class="w3l_search">
-                            <form action="#" method="post">
-                                <input type="text" name="Product" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {
-                                            this.value = 'Search a product...';
-                                        }" required="">
-                                <input type="submit" value=" ">
-                            </form>
-                        </div>-->
-
-
             <div class="w3l_search">
             </div>
             <div class="product_list_header">  
@@ -75,7 +65,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </fieldset>
                 </form>
             </div>
-            
+
             <div class="w3l_header_right">
                 <ul>
                     <li class="dropdown profile_details_drop">
@@ -91,9 +81,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </li>
                 </ul>
             </div>
-            
+
             <div class="w3l_header_right1">
-                <!--<h2><a href="mail.html">Contact Us</a></h2>-->
+                <h2><a href="<?php echo base_url(); ?>contato">Entre em contato</a></h2>
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -137,45 +127,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
-                            <li><a href="products.html">Branded Foods</a></li>
-                            <li><a href="household.html">Households</a></li>
+
                             <li class="dropdown mega-dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>				
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matéria-Prima<span class="caret"></span></a>				
                                 <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
                                     <div class="w3ls_vegetables">
                                         <ul>	
-                                            <li><a href="vegetables.html">Vegetables</a></li>
-                                            <li><a href="vegetables.html">Fruits</a></li>
+                                            <?php foreach ($tipo as $tipos): ?>
+                                                <li><a href="<?php echo base_url('materia_tipo/listar_materia/') . $tipos->ID_MATERIA_PRIMA_TIPO; ?>"><?php echo $tipos->NOME; ?></a></li>
+                                            <?php endforeach; ?>
                                         </ul>
                                     </div>                  
                                 </div>				
                             </li>
-                            <li><a href="kitchen.html">Kitchen</a></li>
-                            <li><a href="short-codes.html">Short Codes</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beverages<span class="caret"></span></a>
-                                <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-                                    <div class="w3ls_vegetables">
-                                        <ul>
-                                            <li><a href="drinks.html">Soft Drinks</a></li>
-                                            <li><a href="drinks.html">Juices</a></li>
-                                        </ul>
-                                    </div>                  
-                                </div>	
-                            </li>
-                            <li><a href="pet.html">Pet Food</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frozen Foods<span class="caret"></span></a>
-                                <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-                                    <div class="w3ls_vegetables">
-                                        <ul>
-                                            <li><a href="frozen.html">Frozen Snacks</a></li>
-                                            <li><a href="frozen.html">Frozen Nonveg</a></li>
-                                        </ul>
-                                    </div>                  
-                                </div>	
-                            </li>
-                            <li><a href="bread.html">Bread & Bakery</a></li>
+
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>

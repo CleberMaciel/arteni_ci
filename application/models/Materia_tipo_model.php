@@ -15,6 +15,27 @@ class Materia_tipo_model extends CI_Model {
         return $lista->result();
     }
 
+    function listar_tipo_materia($idi) {
+        $this->db->select('MATERIA_PRIMA.ID_MATERIA_PRIMA');
+        $this->db->select('MATERIA_PRIMA.NOME');
+        $this->db->select('MATERIA_PRIMA.IMAGEM');
+        $this->db->from('MATERIA_PRIMA');
+        $this->db->join('MATERIA_PRIMA_TIPO', 'MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO = MATERIA_PRIMA.ID_MATERIA_PRIMA_TIPO');
+        $this->db->where('MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO', $idi);
+        return $this->db->get()->result();
+    }
+
+    function detalhes($idi) {
+        $this->db->select('MATERIA_PRIMA.ID_MATERIA_PRIMA');
+        $this->db->select('MATERIA_PRIMA.NOME');
+        $this->db->select('MATERIA_PRIMA.IMAGEM');
+        $this->db->select('MATERIA_PRIMA.DESCRICAO');
+        $this->db->from('MATERIA_PRIMA');
+        $this->db->join('MATERIA_PRIMA_TIPO', 'MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO = MATERIA_PRIMA.ID_MATERIA_PRIMA_TIPO');
+        $this->db->where('MATERIA_PRIMA.ID_MATERIA_PRIMA', $idi);
+        return $this->db->get()->result();
+    }
+
     function editar($id) {
         $this->db->where('ID_MATERIA_PRIMA_TIPO', $id);
         $result = $this->db->get('MATERIA_PRIMA_TIPO');

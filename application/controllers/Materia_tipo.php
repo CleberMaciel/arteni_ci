@@ -6,6 +6,7 @@ class Materia_tipo extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+
         $this->load->model('Materia_tipo_model', 'model');
         if (!$this->session->userdata('logado')) {
             redirect('Painel');
@@ -18,6 +19,24 @@ class Materia_tipo extends CI_Controller {
         $this->load->view('admin/materiaPrima/tipo', $data);
         $this->load->view('admin/template/footer');
     }
+
+    public function listar_materia($idi) {
+        $data['materia'] = $this->model->listar_tipo_materia($idi);
+        $data['tipo'] = $this->model->listarTipo();
+        $this->load->view('publico/template/header', $data);
+        $this->load->view('publico/materia_prima/materia', $data);
+        $this->load->view('publico/template/footer');
+    }
+    
+    public function detalhes($idi) {
+        $data['materia'] = $this->model->detalhes($idi);
+        $data['tipo'] = $this->model->listarTipo();
+        $this->load->view('publico/template/header', $data);
+        $this->load->view('publico/materia_prima/detalhes', $data);
+        $this->load->view('publico/template/footer');
+    }
+    
+    
 
     public function inserir() {
         $this->form_validation->set_rules('tipo', 'Tipo', 'required|is_unique[MATERIA_PRIMA_TIPO.NOME]');
