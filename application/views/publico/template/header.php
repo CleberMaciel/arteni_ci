@@ -134,7 +134,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <div class="w3ls_vegetables">
                                         <ul>	
                                             <?php foreach ($tipo as $tipos): ?>
-                                                <li><a href="<?php echo base_url('materia_tipo/listar_materia/') . $tipos->ID_MATERIA_PRIMA_TIPO; ?>"><?php echo $tipos->NOME; ?></a></li>
+                                                <li><a href="<?php echo base_url('listar_materia/listar_materia/') . $tipos->ID_MATERIA_PRIMA_TIPO; ?>"><?php echo $tipos->NOME; ?></a></li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>                  

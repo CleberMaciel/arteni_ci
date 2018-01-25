@@ -12,7 +12,7 @@
                                 <figure>
                                     <div class="snipcart-item block">
                                         <div class="snipcart-thumb">
-                                            <a href="<?php echo base_url() . 'materia_tipo/detalhes/' . $mat->ID_MATERIA_PRIMA ?>"><img src="<?php echo base_url(); ?>img/materia_prima/<?php echo $mat->IMAGEM; ?>" alt="<?php echo $mat->NOME; ?>" class="img-responsive" /></a>
+                                            <a href="<?php echo base_url() . 'listar_materia/detalhes/' . $mat->ID_MATERIA_PRIMA ?>"><img src="<?php echo base_url(); ?>img/materia_prima/<?php echo $mat->IMAGEM; ?>" alt="<?php echo $mat->NOME; ?>" class="img-responsive" /></a>
                                             <p><?php echo $mat->NOME; ?></p>
                                             <h4>R$<?php echo $mat->VALOR; ?></h4>
                                         </div>
