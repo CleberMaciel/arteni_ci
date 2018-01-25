@@ -21,10 +21,18 @@ class Produto_listar extends CI_Controller {
         $this->load->view('admin/template/footer');
     }
 
+//    public function verInformacoes($idP) {
+//        $data['informacoes'] = $this->produto->verInformacoes($idP);
+//        $data['materia'] = $this->produto->carregarMateriaPrima($idP);
+//        $this->load->view('admin/produto/informacoes', $data);
+//    }
+
     public function verInformacoes($idP) {
+        $this->load->view('admin/template/header');
         $data['informacoes'] = $this->produto->verInformacoes($idP);
         $data['materia'] = $this->produto->carregarMateriaPrima($idP);
         $this->load->view('admin/produto/informacoes', $data);
+        $this->load->view('admin/template/footer');
     }
 
 }

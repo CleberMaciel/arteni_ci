@@ -51,11 +51,11 @@
                                         <?php
                                         if ($e->ID_ATIVO == 1) {
                                             ?>
-                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Estampa/inativo/' . $this->encryption->encrypt($e->ID_ESTAMPA); ?>">Desativar</a></td> 
+                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Estampa/inativo/' . $e->ID_ESTAMPA; ?>">Desativar</a></td> 
                                             <?php
                                         } else {
                                             ?>
-                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Estampa/ativo/' . $this->encryption->encrypt($e->ID_ESTAMPA); ?>">Ativar</a></td> 
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Estampa/ativo/' . $e->ID_ESTAMPA; ?>">Ativar</a></td> 
                                             <?php
                                         }
                                         ?>

@@ -44,6 +44,7 @@ class Materia_prima extends CI_Controller {
             $data['NOME'] = $this->input->post('nome');
             $data['DESCRICAO'] = $this->input->post('descricao');
             $data['QTD_TOTAL'] = $this->input->post('quantidade');
+            $data['VALOR'] = $this->input->post('valor');
             $data['IMAGEM'] = $uploadData['file_name'];
             $data['ID_MATERIA_PRIMA_TIPO'] = $this->input->post('tipo');
             $data['ID_ESTAMPA'] = $this->input->post('estampa');

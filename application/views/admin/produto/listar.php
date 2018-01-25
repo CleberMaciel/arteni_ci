@@ -34,7 +34,7 @@
                                 <td><?php echo $p->ALTURA; ?> cm</td>
                                 <td><?php echo $p->LARGURA; ?> cm</td>
                                 <td><?php echo $p->PROFUNDIDADE; ?> cm</td>
-                                <td> <a id="informacoes" data-toggle="modal"   data-target="#myModal" class="btn btn-success"  href="<?php echo base_url() . 'produto_listar/verInformacoes/' . $p->CODIGO; ?>"><i class="fa fa-list-alt"></i> Ver Informações</a>
+                                <td> <a id="informacoes" class="btn btn-success"  href="<?php echo base_url() . 'produto_listar/verInformacoes/' . $p->CODIGO; ?>"><i class="fa fa-list-alt"></i> Ver Informações</a>
                                 <!--<td> <a data-toggle="modal" class="informacoes" href="localhost" data-target="#myModal">click me</a>-->
 
                                 </td>
@@ -57,7 +57,7 @@
                         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                     </div>
                     <div class="modal-body">
-                     
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

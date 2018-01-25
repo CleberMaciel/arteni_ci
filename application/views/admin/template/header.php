@@ -14,7 +14,7 @@
         <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
 <!--        <link href="<?php echo base_url('assets/css/bootstrap-theme.min.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/bootstrap-social.css') ?>" rel="stylesheet">-->
-       
+
 
         <!-- MetisMenu CSS -->
         <link href="<?php echo base_url('assets/css/metisMenu.min.css') ?>" rel="stylesheet">
@@ -118,10 +118,10 @@
                                 <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Matéria-Prima<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php base_url(); ?>materia_prima">Matéria-Prima</a>
+                                        <a href="<?php echo base_url(); ?>materia_prima">Matéria-Prima</a>
                                     </li>
                                     <li>
-                                        <a href="<?php base_url(); ?>materia_tipo">Tipo de Matéria-Prima</a>
+                                        <a href="<?php echo base_url(); ?>materia_tipo">Tipo de Matéria-Prima</a>
                                     </li>
                                 </ul>
                             </li>
@@ -132,7 +132,7 @@
                                 <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Estampa<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php base_url(); ?>estampa">Estampa</a>
+                                        <a href="<?php echo base_url(); ?>estampa">Estampa</a>
                                     </li>
                                 </ul>
                             </li>
@@ -142,8 +142,8 @@
                                 <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Produto<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php base_url(); ?>produto">Criar Produto</a>
-                                        <a href="<?php base_url(); ?>produto_listar">Listar Produtos</a>
+                                        <a href="<?php echo base_url(); ?>produto">Criar Produto</a>
+                                        <a href="<?php echo base_url(); ?>produto_listar">Listar Produtos</a>
                                     </li>
                                 </ul>
                             </li>

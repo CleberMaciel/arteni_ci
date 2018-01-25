@@ -14,7 +14,7 @@
                                         <div class="snipcart-thumb">
                                             <a href="<?php echo base_url() . 'materia_tipo/detalhes/' . $mat->ID_MATERIA_PRIMA ?>"><img src="<?php echo base_url(); ?>img/materia_prima/<?php echo $mat->IMAGEM; ?>" alt="<?php echo $mat->NOME; ?>" class="img-responsive" /></a>
                                             <p><?php echo $mat->NOME; ?></p>
-                                            <!--<h4>R$3.00 <span>R$5.00</span></h4>-->
+                                            <h4>R$<?php echo $mat->VALOR; ?></h4>
                                         </div>
                                         <div class="snipcart-details">
                                             <form action="#" method="post">
@@ -23,8 +23,7 @@
                                                     <input type="hidden" name="add" value="1" />
                                                     <input type="hidden" name="business" value=" " />
                                                     <input type="hidden" name="item_name" value="<?php echo $mat->NOME; ?>" />
-                                                    <input type="hidden" name="amount" value="3.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
+                                                    <input type="hidden" name="amount" value="<?php echo $mat->VALOR; ?>" />                                  
                                                     <input type="hidden" name="currency_code" value="BRL" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />

@@ -31,6 +31,10 @@
                             <label>Quantidade adicionada</label>
                             <input class="form-control" placeholder="Quantidade" name="quantidade" required="true" type="number">                            
                         </div>     
+                        <div class="form-group">
+                            <label>Valor</label>
+                            <input class="form-control" placeholder="Valor" name="valor" required="true" type="number" step="0.01">                            
+                        </div>     
 
                         <div class="form-group">
                             <label>Tipo da matéria-prima</label>
@@ -64,6 +68,7 @@
                                     <th>Matéria-prima</th>
                                     <th>IMG.</th>
                                     <th>Quantidade Disp.</th>
+                                    <th>Valor.</th>
                                     <th>Data adicionada</th>
                                     <th>Estatus</th>
                                     <th>Editar</th>
@@ -76,6 +81,7 @@
                                         <td><?php echo $m->NOME; ?> </td>
                                         <td> <img  class="img-thumbnail"  style="width: 100px;" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $m->IMAGEM; ?>"></td>
                                         <td><?php echo $m->QTD_TOTAL; ?> </td>
+                                        <td><?php echo $m->VALOR; ?> </td>
                                         <td><?php echo date_format(new DateTime($m->DATA_ADICIONADO), 'd/m/Y'); ?> </td>
                                         <td><?php
                                             if ($m->ID_ATIVO == 1) {
