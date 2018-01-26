@@ -15,6 +15,7 @@
                     <div class="form-group">
                         <div class="form-group">
                             <input type="hidden" name="ativo" value="1">
+                            <input type="hidden" name="venda" value="1">
                             <label>Nome da matéria-prima</label>
                             <input class="form-control" placeholder="Texto aqui" name="nome" required="true">
                             <input type="hidden" name="ativo" value="1">
@@ -70,8 +71,10 @@
                                     <th>Quantidade Disp.</th>
                                     <th>Valor.</th>
                                     <th>Data adicionada</th>
-                                    <th>Estatus</th>
+                                    <th>Venda</th>
+
                                     <th>Editar</th>
+                                    <th>Estatus</th>
                                     <th>Ativar/Desativar</th>
                                 </tr>
                             </thead>
@@ -83,6 +86,22 @@
                                         <td><?php echo $m->QTD_TOTAL; ?> </td>
                                         <td><?php echo $m->VALOR; ?> </td>
                                         <td><?php echo date_format(new DateTime($m->DATA_ADICIONADO), 'd/m/Y'); ?> </td>
+
+
+                                        <?php
+                                        if ($m->ID_VENDA == 1) {
+                                            ?>
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/inativoVenda/' . $m->ID_MATERIA_PRIMA ?>">Desativar Venda</a></td> 
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/ativoVenda/' . $m->ID_MATERIA_PRIMA ?>">Ativar Venda</a></td> 
+                                            <?php
+                                        }
+                                        ?>
+
+                                        <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/editar/' . $m->ID_MATERIA_PRIMA ?>">Editar</a></td>       
+
                                         <td><?php
                                             if ($m->ID_ATIVO == 1) {
                                                 echo "Ativo";
@@ -90,7 +109,7 @@
                                                 echo "Inativo";
                                             }
                                             ?> </td>
-                                        <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/editar/' . $m->ID_MATERIA_PRIMA ?>">Editar</a></td>       
+
                                         <?php
                                         if ($m->ID_ATIVO == 1) {
                                             ?>

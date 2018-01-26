@@ -49,6 +49,7 @@ class Materia_prima extends CI_Controller {
             $data['ID_MATERIA_PRIMA_TIPO'] = $this->input->post('tipo');
             $data['ID_ESTAMPA'] = $this->input->post('estampa');
             $data['ID_ATIVO'] = $this->input->post('ativo');
+            $data['ID_VENDA'] = $this->input->post('venda');
             $result = $this->model_prima->inserir($data);
             if ($result == true) {
                 $this->session->set_flashdata('prima_ok', 'msg');
@@ -62,7 +63,7 @@ class Materia_prima extends CI_Controller {
     }
 
     public function inativo($id) {
-        $result = $this->model_prima->inativo($this->encryption->decrypt($id));
+        $result = $this->model_prima->inativo($id);
         if ($result == true) {
             $this->session->set_flashdata('prima_inativo_ok', 'msg');
             redirect('/Materia_prima');
@@ -73,7 +74,29 @@ class Materia_prima extends CI_Controller {
     }
 
     public function ativo($id) {
-        $result = $this->model_prima->ativo($this->encryption->decrypt($id));
+        $result = $this->model_prima->ativo($id);
+        if ($result == true) {
+            $this->session->set_flashdata('prima_ativo_ok', 'msg');
+            redirect('/Materia_prima');
+        } else {
+            $this->session->set_flashdata('prima_ativo_fail', 'msg');
+            redirect('/Materia_prima');
+        }
+    }
+
+    public function inativoVenda($id) {
+        $result = $this->model_prima->inativoVenda($id);
+        if ($result == true) {
+            $this->session->set_flashdata('prima_inativo_ok', 'msg');
+            redirect('/Materia_prima');
+        } else {
+            $this->session->set_flashdata('prima_inativo_fail', 'msg');
+            redirect('/Materia_prima');
+        }
+    }
+
+    public function ativoVenda($id) {
+        $result = $this->model_prima->ativoVenda($id);
         if ($result == true) {
             $this->session->set_flashdata('prima_ativo_ok', 'msg');
             redirect('/Materia_prima');

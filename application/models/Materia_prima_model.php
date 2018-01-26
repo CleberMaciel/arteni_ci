@@ -38,6 +38,18 @@ class Materia_prima_model extends CI_Model {
         $this->db->set('ID_ATIVO', 2);
         return $this->db->update('MATERIA_PRIMA');
     }
+    
+        function ativoVenda($id) {
+        $this->db->where('ID_MATERIA_PRIMA', $id);
+        $this->db->set('ID_VendA', 1);
+        return $this->db->update('MATERIA_PRIMA');
+    }
+
+    function inativoVenda($id) {
+        $this->db->where('ID_MATERIA_PRIMA', $id);
+        $this->db->set('ID_VENDA', 2);
+        return $this->db->update('MATERIA_PRIMA');
+    }
 
     function retornaQuantidade($idM) {
         return $this->db->query('select QTD_TOTAL from MATERIA_PRIMA where ID_MATERIA_PRIMA =' . $idM)->row()->QTD_TOTAL;
