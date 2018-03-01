@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ArtêNí</title>
+        <title>ArtêNí - Artesanato feito à mão!</title>
         <!-- for-mobile-apps -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,7 +16,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+        <link rel="shortcut icon" href="<?php echo base_url() ?>assets/images/favicon.ico" />
+
         <!-- start-smoth-scrolling -->
+
+
 
         <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
 
@@ -73,8 +78,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="mega-dropdown-menu">
                             <div class="w3ls_vegetables">
                                 <ul class="dropdown-menu drp-mnu">
-                                    <li><a href="login.html">Login</a></li> 
-                                    <li><a href="login.html">Sign Up</a></li>
+                                    <li><a href="login.html">Entrar</a></li> 
+                                    <li><a href="<?php echo base_url(); ?>cliente">Cadastre-se</a></li>
                                 </ul>
                             </div>                  
                         </div>	
@@ -82,7 +87,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </ul>
             </div>
 
-            <div class="w3l_header_right1">
+            <div class="w3l_header_right4">
                 <h2><a href="<?php echo base_url(); ?>contato">Entre em contato</a></h2>
             </div>
             <div class="clearfix"> </div>
@@ -127,7 +132,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
+                            <li><a href="kitchen.html">Faça seu pedido!</a></li>
 
+                            <li class="dropdown mega-dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<span class="caret"></span></a>				
+                                <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                                    <div class="w3ls_vegetables">
+                                        <ul>	
+                                            <?php foreach ($tipo as $tipos): ?>
+                                                <li><a href="<?php echo base_url('listar_materia/listar_materia/') . $tipos->ID_MATERIA_PRIMA_TIPO; ?>"><?php echo $tipos->NOME; ?></a></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>                  
+                                </div>				
+                            </li>
                             <li class="dropdown mega-dropdown active">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matéria-Prima<span class="caret"></span></a>				
                                 <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
@@ -140,6 +158,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>                  
                                 </div>				
                             </li>
+
+
+
 
                         </ul>
                     </div><!-- /.navbar-collapse -->

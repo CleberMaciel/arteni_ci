@@ -142,6 +142,25 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
     display: block;
     text-decoration:none;
 }
+.w3l_header_right4{
+    float:right;
+}
+.w3l_header_right4 h2 a{
+    font-size: .74em;
+    color: #fff;
+    padding: .5em 1.5em;
+    background: #FA1818;
+    display: block;
+    text-decoration:none;
+}
+.w3l_header_right4 h2 a{
+    font-size: .74em;
+    color: #fff;
+    padding: .5em 1.5em;
+    background: #ab3dad;
+    display: block;
+    text-decoration:none;
+}
 ul.dropdown-menu.drp-mnu {
     right: 0;
     min-width: 130px;
