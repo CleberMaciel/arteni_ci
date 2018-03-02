@@ -60,7 +60,7 @@ var barcode = function() {
 	function init() {
 
 		window.URL = window.URL || window.webkitURL;
-		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+		navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
 		elements.video = document.querySelector(config.video);
 		elements.canvas = document.querySelector(config.canvas);
@@ -68,8 +68,8 @@ var barcode = function() {
 		elements.canvasg = document.querySelector(config.canvasg);
 		elements.ctxg = elements.canvasg.getContext('2d');
 
-		if (navigator.getUserMedia) {
-			navigator.getUserMedia({audio: false, video: true}, function(stream) {
+		if (navigator.mediaDevices.getUserMedia) {
+			navigator.mediaDevices.getUserMedia({audio: false, video: true}, function(stream) {
 				elements.video.src = window.URL.createObjectURL(stream);
 			}, function(error) {
 				console.log(error);
