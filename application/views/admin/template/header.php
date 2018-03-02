@@ -17,6 +17,7 @@
 
 
         <!-- MetisMenu CSS -->
+        <link href="<?php echo base_url('assets/bar/style.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/metisMenu.min.css') ?>" rel="stylesheet">
 
         <!-- Timeline CSS -->
@@ -113,8 +114,22 @@
 
                         <ul class="nav" id="side-menu">
 
+                            <!--scan-->
+                            <li>
+
+                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Scanner<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?php echo base_url(); ?>scan">Matéria-Prima</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url(); ?>scan">Produtos</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <!--materia prima-->
                             <li>
+
                                 <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Matéria-Prima<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>

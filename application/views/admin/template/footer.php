@@ -1,6 +1,7 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/bar/barcode.js') ?>"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
@@ -15,12 +16,14 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<?php echo base_url('assets/js/startmin.js') ?>"></script>
+
+
 <script>
-$('a.informacoes').on('click', function(e) {
-    e.preventDefault();
-    var url = $(this).attr('href');
-    $(".modal-body").html('<iframe width="100%" height="100%" frameborder="1" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
-});
+    $('a.informacoes').on('click', function (e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $(".modal-body").html('<iframe width="100%" height="100%" frameborder="1" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
+    });
 </script>
 <script>
     $(document).ready(function () {
@@ -311,5 +314,39 @@ if ($this->session->flashdata('tipo_ok')) {
     </script>
 
 <?php } ?>    
+
+
+
+
+<script type="text/javascript">
+
+    var sound = new Audio("<?php echo base_url('assets/bar/') ?>barcode.wav");
+
+    $(document).ready(function () {
+
+        barcode.config.start = 0.1;
+        barcode.config.end = 0.9;
+        barcode.config.video = '#barcodevideo';
+        barcode.config.canvas = '#barcodecanvas';
+        barcode.config.canvasg = '#barcodecanvasg';
+        barcode.setHandler(function (barcode) {
+            $('.result').html(barcode);
+        });
+        barcode.init();
+
+        $('.result').bind('DOMSubtreeModified', function (e) {
+            sound.play();
+
+            $(function () {
+                var valorDaDiv = $('.result').text();
+                $('#orcamentoAssuntoForm').val(valorDaDiv);
+            });
+        });
+
+
+
+    });
+
+</script>
 </body>
 </html>
