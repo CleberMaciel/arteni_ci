@@ -30,10 +30,10 @@
     $(document).ready(function () {
         $('#cpf').mask('000.000.000-00', {reverse: true});
         $('#cep').mask('00000-000', {reverse: true});
-        
-       
+
+
         $('#datanascimento').mask('00/00/0000', {reverse: true});
-                $("#cep").blur(function () {
+        $("#cep").blur(function () {
             $.getJSON("https://viacep.com.br/ws/" + $("#cep").val() + "/json", function (dados) {
                 if (!("erro" in dados)) {
                     $("#rua").val(dados.logradouro);
@@ -222,5 +222,24 @@
     });
 
 </script>
+
+
+
+<?php
+if ($this->session->flashdata('cadastro_concluido')) {
+    ?>
+    <script type="text/javascript">
+        $.bootstrapGrowl("Cadastro efetuado com sucesso! Verifique sua caixa de entrada do seu email para confirmar o seu cadastro.", {
+            ele: 'body', // which element to append to
+            type: 'success', // (null, 'info', 'error', 'success')
+            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+            align: 'right', // ('left', 'right', or 'center')
+            width: 250, // (integer, or 'auto')
+            delay: 4000,
+            allow_dismiss: true,
+            stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });</script>
+<?php } ?>
 </body>
 </html>
+

@@ -70,19 +70,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </fieldset>
                 </form>
             </div>
-
             <div class="w3l_header_right">
                 <ul>
                     <li class="dropdown profile_details_drop">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
-                        <div class="mega-dropdown-menu">
-                            <div class="w3ls_vegetables">
-                                <ul class="dropdown-menu drp-mnu">
-                                    <li><a href="login.html">Entrar</a></li> 
-                                    <li><a href="<?php echo base_url(); ?>cliente">Cadastre-se</a></li>
-                                </ul>
-                            </div>                  
-                        </div>	
+                        <?php if (!$this->session->userdata('userlogado')) { ?>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+                            <div class="mega-dropdown-menu">
+                                <div class="w3ls_vegetables">
+                                    <ul class="dropdown-menu drp-mnu">
+                                        <li><a href="<?php echo base_url(); ?>cliente/login">Entrar</a></li> 
+                                        <li><a href="<?php echo base_url(); ?>cliente">Cadastre-se</a></li>
+                                    </ul>
+                                </div>                  
+                            </div>
+                        <?php } else { ?>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('userlogado')->NOME;?><span class="caret"></span></a>
+                            <div class="mega-dropdown-menu">
+                                <div class="w3ls_vegetables">
+                                    <ul class="dropdown-menu drp-mnu">
+                                        <li><a href="<?php echo base_url(); ?>cliente">Conta</a></li>
+                                        <li><a href="<?php echo base_url(); ?>cliente/sair">Sair</a></li> 
+                                    </ul>
+                                </div>                  
+                            </div>	
+                        <?php } ?>
                     </li>
                 </ul>
             </div>
@@ -108,7 +119,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="w3ls_logo_products_left1">
                     <ul class="phone_email">
-                        <li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234 567</li>
+                        <!--<li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234 567</li>-->
                         <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">store@grocery.com</a></li>
                     </ul>
                 </div>
@@ -158,10 +169,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>                  
                                 </div>				
                             </li>
-
-
-
-
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>

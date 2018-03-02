@@ -18,23 +18,52 @@ class Cliente extends CI_Controller {
     }
 
     public function login() {
-        
+        $data['tipo'] = $this->materia_tipo->listarTipo();
+        $this->load->view('publico/template/header', $data);
+        $this->load->view('publico/cliente/login');
+        $this->load->view('publico/template/footer');
+    }
+
+    public function autenticar() {
+        //validações de email e senha ========
+        $usuario = $this->input->post('email');
+        $senha = $this->input->post('password');
+        $this->db->where('EMAIL', $usuario);
+        $this->db->where('SENHA', $senha);
+        $this->db->where('STATUS', 1);
+        $userlogado = $this->db->get('CLIENTE')->result();
+        if (count($userlogado) == 1) {
+            $dados['userlogado'] = $userlogado[0];
+            $dados['logado'] = TRUE;
+            $this->session->set_userdata($dados);
+            redirect('/Ecommerce');
+        } else {
+            $dados['userlogado'] = NULL;
+            $dados['logado'] = FALSE;
+            $this->session->set_userdata($dados);
+            redirect('cliente/login');
+        }
     }
 
     public function sair() {
-        
+        $dados['userlogado'] = NULL;
+        $dados['logado'] = FALSE;
+        $this->session->set_userdata($dados);
+        redirect('/Ecommerce');
     }
 
     public function enviar_email($data) {
         $this->load->library('email');
+        $mensagem = $this->load->view('publico/emails/confirmar_cadastro', $data, TRUE);
         $this->email->from("admin@clebermaciel.online", 'ArtêNí');
         $this->email->subject("Confirmação de cadastro");
         $this->email->reply_to("admin@clebermaciel.online");
         $this->email->to($data['EMAIL']);
         $this->email->cc('admin@clebermaciel.online');
         $this->email->bcc('admin@clebermaciel.online');
-        $this->email->message("Cadastro Efetuado com sucesso, obrigado! :)");
+        $this->email->message($mensagem);
         if ($this->email->send()) {
+            $this->session->set_flashdata('cadastro_concluido', 'msg');
             redirect('/Ecommerce');
         } else {
             print_r($this->email->print_debugger());
@@ -57,17 +86,20 @@ class Cliente extends CI_Controller {
         $data['DATANASCIMENTO'] = $this->input->post('datanascimento');
         if ($this->cliente->inserir($data)) {
             $this->enviar_email($data);
-            //redirect('/Ecommerce');
         } else {
             redirect('/Ecommerce');
         }
     }
 
-    public
-            function cadastro() {
-        $this->load->view('template/header');
-        $this->load->view('cad_user');
-        $this->load->view('template/footer');
+    public function confirmar($email) {
+        $data['STATUS'] = 1;
+        $this->db->where('md5(EMAIL)', $email);
+        if ($this->db->update('CLIENTE', $data)) {
+            $data['tipo'] = $this->materia_tipo->listarTipo();
+            $this->load->view('publico/template/header', $data);
+            $this->load->view('publico/emails/confirma');
+            $this->load->view('publico/template/footer');
+        }
     }
 
 }

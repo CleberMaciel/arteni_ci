@@ -2868,7 +2868,7 @@ input.checkbox:checked:after {
 }
 @media (max-width:1440px){
     .w3l_header_right {
-        padding-left: 4em;
+        padding-left: 2em;
     }
     .w3l_banner_nav_right_banner3 h3, .w3l_banner_nav_right_banner4 h3, .w3l_banner_nav_right_banner5 h3, .w3l_banner_nav_right_banner6 h3, .w3l_banner_nav_right_banner7 h3, .w3l_banner_nav_right_banner8 h3, .w3l_banner_nav_right_banner9 h3, .w3l_banner_nav_right_banner10 h3 {
         width: 45%;

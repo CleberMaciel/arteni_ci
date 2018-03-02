@@ -64,7 +64,7 @@
 
                 <!-- Top Navigation: Left Menu -->
                 <ul class="nav navbar-nav navbar-left navbar-top-links">
-                    <li><a href="<?php base_url()?>ecommerce"><i class="fa fa-home fa-fw"></i> Website</a></li>
+                    <li><a href="<?php base_url() ?>ecommerce"><i class="fa fa-home fa-fw"></i> Website</a></li>
                 </ul>
 
                 <!-- Top Navigation: Right Menu -->
