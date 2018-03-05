@@ -40,22 +40,24 @@
                                 <tr class="odd gradeX">
                                     <?php foreach ($tipo as $t): ?>
                                         <td><?php echo $t->NOME; ?> </td>
-                                        <td><?php
-                                            if ($t->ID_ATIVO == 1) {
-                                                echo "Ativo";
+                                        <td><?php if ($t->ID_ATIVO == 1) { ?>
+                                                <span class="label label-success">Ativo</span>
+                                                <?php
                                             } else {
-                                                echo "Inativo";
+                                                ?> 
+                                                <span class="label label-danger">Inativo</span>
+                                                <?php
                                             }
                                             ?> </td>
                                         <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Editar</a></td>       
                                         <?php
                                         if ($t->ID_ATIVO == 1) {
                                             ?>
-                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/inativo/' . $this->encryption->encrypt($t->ID_MATERIA_PRIMA_TIPO); ?>">Desativar</a></td> 
+                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/inativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Desativar</a></td> 
                                             <?php
                                         } else {
                                             ?>
-                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $this->encryption->encrypt($t->ID_MATERIA_PRIMA_TIPO); ?>">Ativar</a></td> 
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Ativar</a></td> 
                                             <?php
                                         }
                                         ?>

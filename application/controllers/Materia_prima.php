@@ -62,6 +62,41 @@ class Materia_prima extends CI_Controller {
         }
     }
 
+    public function editar($id) {
+        $data['tipo'] = $this->model_tipo->listarTipo();
+        $data['estampa'] = $this->model_estampa->listarEstampaCombo();
+        $data['materia'] = $this->model_prima->editar($id);
+        $this->load->view('admin/template/header');
+        $this->load->view('admin/materiaPrima/editar', $data);
+        $this->load->view('admin/template/footer');
+    }
+
+    public function atualizar() {
+        $this->form_validation->set_rules('nome', 'NOME', 'required|is_unique[MATERIA_PRIMA.NOME]');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('prima_existe', 'msg');
+            redirect('Materia_prima');
+        } else {
+
+            $data['ID_MATERIA_PRIMA'] = $this->input->post('id');
+            $data['NOME'] = $this->input->post('nome');
+            $data['DESCRICAO'] = $this->input->post('descricao');
+            $data['QTD_TOTAL'] = $this->input->post('quantidade');
+            $data['VALOR'] = $this->input->post('valor');
+            $data['ID_MATERIA_PRIMA_TIPO'] = $this->input->post('tipo');
+            $data['ID_ESTAMPA'] = $this->input->post('estampa');
+
+            $result = $this->model_prima->atualizar($data);
+            if ($result == true) {
+                $this->session->set_flashdata('prima_ok', 'msg');
+                redirect('/Materia_prima');
+            } else {
+                $this->session->set_flashdata('prima_fail', 'msg');
+                redirect('/Materia_prima');
+            }
+        }
+    }
+
     public function inativo($id) {
         $result = $this->model_prima->inativo($id);
         if ($result == true) {

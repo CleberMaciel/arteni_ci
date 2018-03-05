@@ -67,15 +67,15 @@
                             <thead>
                                 <tr>
                                     <th>Matéria-prima</th>
-                                    <th>IMG.</th>
+                                    <th>Img.</th>
                                     <th>Quantidade Disp.</th>
                                     <th>Valor.</th>
                                     <th>Data adicionada</th>
+                                    <th>Funções</th>
                                     <th>Venda</th>
+                                    <th>Estatus Visualização</th>
+                                    <th>Visualização</th>
 
-                                    <th>Editar</th>
-                                    <th>Estatus</th>
-                                    <th>Ativar/Desativar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,11 +83,25 @@
                                     <?php foreach ($materia as $m): ?>
                                         <td><?php echo $m->NOME; ?> </td>
                                         <td> <img  class="img-thumbnail"  style="width: 100px;" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $m->IMAGEM; ?>"></td>
+
                                         <td><?php echo $m->QTD_TOTAL; ?> </td>
-                                        <td><?php echo $m->VALOR; ?> </td>
+                                        <td>R$ <?php echo $m->VALOR; ?> </td>
                                         <td><?php echo date_format(new DateTime($m->DATA_ADICIONADO), 'd/m/Y'); ?> </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
+                                                        data-toggle="dropdown">
+                                                    <i class="fa fa-gear"></i> <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href=" href="<?php echo base_url() . 'Materia_prima/editarImg/' . $m->ID_MATERIA_PRIMA ?>">Alterar Imagem</a>
+                                                    <li><a href="<?php echo base_url() . 'Materia_prima/editar/' . $m->ID_MATERIA_PRIMA ?>">Editar</a>
+                                                    </li>
 
+                                                </ul>
+                                            </div>
 
+                                        </td>
                                         <?php
                                         if ($m->ID_VENDA == 1) {
                                             ?>
@@ -99,28 +113,26 @@
                                             <?php
                                         }
                                         ?>
-
-                                        <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/editar/' . $m->ID_MATERIA_PRIMA ?>">Editar</a></td>       
-
                                         <td><?php
                                             if ($m->ID_ATIVO == 1) {
-                                                echo "Ativo";
+                                                ?> <span class="label label-success">Ativo</span><?php
                                             } else {
-                                                echo "Inativo";
+                                                ?> <span class="label label-danger">Inativo</span><?php
                                             }
                                             ?> </td>
 
                                         <?php
                                         if ($m->ID_ATIVO == 1) {
                                             ?>
-                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/inativo/' . $this->encryption->encrypt($m->ID_MATERIA_PRIMA); ?>">Desativar</a></td> 
+                                            <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/inativo/' . $m->ID_MATERIA_PRIMA; ?>">Desativar</a></td> 
                                             <?php
                                         } else {
                                             ?>
-                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/ativo/' . $this->encryption->encrypt($m->ID_MATERIA_PRIMA); ?>">Ativar</a></td> 
+                                            <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/ativo/' . $m->ID_MATERIA_PRIMA; ?>">Ativar</a></td> 
                                             <?php
                                         }
                                         ?>
+
                                     </tr>
                                 <?php endforeach;
                                 ?>
@@ -129,4 +141,6 @@
                     </div>
                     <!-- /.table-responsive -->
                 </div>
+
+
 

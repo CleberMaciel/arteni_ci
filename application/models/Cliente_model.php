@@ -10,8 +10,8 @@ class Cliente_model extends CI_Model {
         return $this->db->insert('CLIENTE', $p);
     }
 
-    function listarEstampa() {
-        $lista = $this->db->get('ESTAMPA');
+    function listarCliente() {
+        $lista = $this->db->get('CLIENTE');
         return $lista->result();
     }
 

@@ -27,7 +27,7 @@ class Materia_tipo extends CI_Controller {
         $this->load->view('publico/materia_prima/materia', $data);
         $this->load->view('publico/template/footer');
     }
-    
+
     public function detalhes($idi) {
         $data['materia'] = $this->model->detalhes($idi);
         $data['tipo'] = $this->model->listarTipo();
@@ -35,8 +35,6 @@ class Materia_tipo extends CI_Controller {
         $this->load->view('publico/materia_prima/detalhes', $data);
         $this->load->view('publico/template/footer');
     }
-    
-    
 
     public function inserir() {
         $this->form_validation->set_rules('tipo', 'Tipo', 'required|is_unique[MATERIA_PRIMA_TIPO.NOME]');
@@ -59,7 +57,7 @@ class Materia_tipo extends CI_Controller {
     }
 
     public function inativo($id) {
-        $result = $this->model->inativo($this->encryption->decrypt($id));
+        $result = $this->model->inativo($id);
         if ($result == true) {
             $this->session->set_flashdata('tipo_inativo_ok', 'msg');
             redirect('/Materia_tipo');
@@ -70,7 +68,7 @@ class Materia_tipo extends CI_Controller {
     }
 
     public function ativo($id) {
-        $result = $this->model->ativo($this->encryption->decrypt($id));
+        $result = $this->model->ativo($id);
         if ($result == true) {
             $this->session->set_flashdata('tipo_ativo_ok', 'msg');
             redirect('/Materia_tipo');

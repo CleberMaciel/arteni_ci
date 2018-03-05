@@ -53,7 +53,7 @@
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php base_url(); ?>home">Arteni</a>
+                    <a class="navbar-brand" href="<?php echo base_url(); ?>home">Arteni</a>
                 </div>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -65,7 +65,7 @@
 
                 <!-- Top Navigation: Left Menu -->
                 <ul class="nav navbar-nav navbar-left navbar-top-links">
-                    <li><a href="<?php base_url() ?>ecommerce"><i class="fa fa-home fa-fw"></i> Website</a></li>
+                    <li><a href="<?php echo base_url() ?>ecommerce"><i class="fa fa-home fa-fw"></i> Website</a></li>
                 </ul>
 
                 <!-- Top Navigation: Right Menu -->
@@ -102,7 +102,7 @@
                             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="<?php base_url(); ?>Painel/sair"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="<?php echo base_url(); ?>Painel/sair"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -117,13 +117,13 @@
                             <!--scan-->
                             <li>
 
-                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Scanner<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-user fa-fw"></i>Clientes<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php echo base_url(); ?>scan">Matéria-Prima</a>
+                                        <a href="<?php echo base_url(); ?>Cliente/listarCliente/"><i class="fa fa-list fa-fw"></i> Ver Clientes</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url(); ?>scan">Produtos</a>
+
                                     </li>
                                 </ul>
                             </li>
@@ -163,15 +163,7 @@
                                 </ul>
                             </li>
                             <!--produto-->
-                            <li>
-                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Clientes<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="<?php echo base_url(); ?>produto">Criar Produto</a>
-                                        <a href="<?php echo base_url(); ?>produto_listar">Listar Produtos</a>
-                                    </li>
-                                </ul>
-                            </li>
+
                         </ul> <!---fim do sidbar --->
 
                     </div>

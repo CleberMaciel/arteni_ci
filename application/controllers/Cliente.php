@@ -17,6 +17,13 @@ class Cliente extends CI_Controller {
         $this->load->view('publico/template/footer');
     }
 
+    public function listarCliente() {
+        $data['cliente'] = $this->cliente->listarCliente();
+        $this->load->view('admin/template/header');
+        $this->load->view('admin/cliente/cliente', $data);
+        $this->load->view('admin/template/footer');
+    }
+
     public function login() {
         $data['tipo'] = $this->materia_tipo->listarTipo();
         $this->load->view('publico/template/header', $data);

@@ -28,8 +28,6 @@ class Produto extends CI_Controller {
         $this->load->view('admin/template/footer');
     }
 
-
-
     public function inserir() {
         $this->form_validation->set_rules('codigo', 'PRODUTO_CRIACAO', 'required|is_unique[PRODUTO_CRIACAO.CODIGO]');
 
@@ -50,7 +48,8 @@ class Produto extends CI_Controller {
                 $qtd_total = $this->model_prima->retornaQuantidade($m);
                 $valor = $qtd_total - $this->input->post('quantidade')[$k];
                 if ($this->input->post('quantidade')[$k] > $qtd_total) {
-                    redirect('home');
+                    $this->session->set_flashdata('materia_insuficiente', 'msg');
+                    redirect('produto');
                 } else {
                     $this->produto->inserir($data);
                     $this->model_prima->reduzirMateriaPrima($m, $valor);
@@ -59,8 +58,6 @@ class Produto extends CI_Controller {
             redirect('produto');
         }
     }
-    
-    
 
     public function inativo($id) {
         $result = $this->model->inativo($id);

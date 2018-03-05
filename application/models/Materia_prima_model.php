@@ -21,8 +21,16 @@ class Materia_prima_model extends CI_Model {
         return $lista->result();
     }
 
+    
+    function editar($id) {
+        $this->db->where('ID_MATERIA_PRIMA', $id);
+        $result = $this->db->get('MATERIA_PRIMA');
+        return $result->result();
+    }
+    
+    
     function atualizar($data) {
-        $this->db->where('ID_MATERIA_PRIMA', $data['id']);
+        $this->db->where('ID_MATERIA_PRIMA', $data['ID_MATERIA_PRIMA']);
         $this->db->set($data);
         return $this->db->update('MATERIA_PRIMA');
     }
