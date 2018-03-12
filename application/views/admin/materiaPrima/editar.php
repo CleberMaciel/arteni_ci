@@ -10,7 +10,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-6">
-                    <?php echo form_open('Materia_prima/atualizar'); ?> 
+                    <?php echo form_open_multipart('Materia_prima/atualizar'); ?> 
                     <input type="hidden" id="id" name="id" value="<?php echo $materia[0]->ID_MATERIA_PRIMA; ?>"/>
                     <div class="form-group">
                         <div class="form-group">
@@ -24,7 +24,17 @@
                             <textarea class="form-control" placeholder="Descrição da matéria-prima" name="descricao" rows="3"><?php echo $materia[0]->DESCRICAO ?></textarea>
 
                         </div>
+                        <div class="form-group">
+                            <label>Imagem</label>
+                            <img  class="form-control img-thumbnail"  style="width: 100px; height: 100px;" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $materia[0]->IMAGEM; ?>">
 
+                        </div>
+                        <div class="form-group">
+
+                            <input type="checkbox" name="img_check" onclick="document.getElementById('img_alterar').disabled = !this.checked;">
+                            <label>Marque aqui caso queira alterar a imagem.</label>
+                            <input type="file" name="img_alterar" id="img_alterar" disabled="disabled">
+                        </div>
                         <div class="form-group">
                             <label>Quantidade adicionada</label>
                             <input class="form-control" placeholder="Quantidade" name="quantidade" required="true" type="number" value="<?php echo $materia[0]->QTD_TOTAL; ?>">                            

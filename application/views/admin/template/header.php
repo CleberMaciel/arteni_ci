@@ -7,10 +7,10 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Arteni - Painel Administrativo</title>
+        <title>ArtêNí - Painel Administrativo</title>
 
         <!-- Bootstrap Core CSS -->
-
+        <link rel="shortcut icon" href="<?php echo base_url() ?>assets/images/favicon.ico" />
         <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
 <!--        <link href="<?php echo base_url('assets/css/bootstrap-theme.min.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/bootstrap-social.css') ?>" rel="stylesheet">-->

@@ -7,14 +7,32 @@
         </div>
         <div class="form">
             <h2>Área de login</h2>
-            <?php echo form_open('Cliente/autenticar'); ?>
+            <?php
+            echo form_open('Cliente/autenticar');
+            if ($this->session->flashdata('publico_cliente_fail')) {
+                ?> 
+                <div style="margin-top: 51px">
+                    <?php
+                    echo '<p class="alert alert-danger">' . $this->session->flashdata('publico_cliente_fail') . '</p>';
+                    ?></div><?php
+            }
+            ?>
+
+
             <input type="email" name="email" placeholder="Email" required=" ">
             <input type="password" name="password" placeholder="Password" required=" ">
             <input type="submit" value="Entrar">
             <?php echo form_close(); ?>
+
         </div>
         <div class="cta"><a href="#">Esqueceu sua senha?</a></div>
     </div>
+</div>
+
+
+
+</div>
+</div>
 </div>
 
 <div class="clearfix"></div>

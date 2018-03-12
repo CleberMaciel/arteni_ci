@@ -32,29 +32,31 @@ class Cliente extends CI_Controller {
     }
 
     public function autenticar() {
-        //validações de email e senha ========
+        //validações de email e senha
         $usuario = $this->input->post('email');
         $senha = $this->input->post('password');
         $this->db->where('EMAIL', $usuario);
         $this->db->where('SENHA', $senha);
         $this->db->where('STATUS', 1);
-        $userlogado = $this->db->get('CLIENTE')->result();
-        if (count($userlogado) == 1) {
-            $dados['userlogado'] = $userlogado[0];
-            $dados['logado'] = TRUE;
+        $clienteLogado = $this->db->get('CLIENTE')->result();
+        if (count($clienteLogado) == 1) {
+            $dados['user_clientelogado'] = $clienteLogado[0];
+            $dados['Clientelogado'] = TRUE;
             $this->session->set_userdata($dados);
             redirect('/Ecommerce');
         } else {
-            $dados['userlogado'] = NULL;
-            $dados['logado'] = FALSE;
+            $dados['user_clientelogado'] = NULL;
+            $dados['Clientelogado'] = FALSE;
             $this->session->set_userdata($dados);
+            $this->session->set_flashdata('publico_cliente_fail', 'Usuário ou senha inválidos.');
+
             redirect('cliente/login');
         }
     }
 
     public function sair() {
-        $dados['userlogado'] = NULL;
-        $dados['logado'] = FALSE;
+        $dados['user_clientelogado'] = NULL;
+        $dados['Clientelogado'] = FALSE;
         $this->session->set_userdata($dados);
         redirect('/Ecommerce');
     }

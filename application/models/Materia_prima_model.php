@@ -21,14 +21,12 @@ class Materia_prima_model extends CI_Model {
         return $lista->result();
     }
 
-    
     function editar($id) {
         $this->db->where('ID_MATERIA_PRIMA', $id);
         $result = $this->db->get('MATERIA_PRIMA');
         return $result->result();
     }
-    
-    
+
     function atualizar($data) {
         $this->db->where('ID_MATERIA_PRIMA', $data['ID_MATERIA_PRIMA']);
         $this->db->set($data);
@@ -46,8 +44,8 @@ class Materia_prima_model extends CI_Model {
         $this->db->set('ID_ATIVO', 2);
         return $this->db->update('MATERIA_PRIMA');
     }
-    
-        function ativoVenda($id) {
+
+    function ativoVenda($id) {
         $this->db->where('ID_MATERIA_PRIMA', $id);
         $this->db->set('ID_VendA', 1);
         return $this->db->update('MATERIA_PRIMA');

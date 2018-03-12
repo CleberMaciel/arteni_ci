@@ -72,28 +72,42 @@ class Materia_prima extends CI_Controller {
     }
 
     public function atualizar() {
-        $this->form_validation->set_rules('nome', 'NOME', 'required|is_unique[MATERIA_PRIMA.NOME]');
-        if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('prima_existe', 'msg');
-            redirect('Materia_prima');
-        } else {
 
-            $data['ID_MATERIA_PRIMA'] = $this->input->post('id');
-            $data['NOME'] = $this->input->post('nome');
-            $data['DESCRICAO'] = $this->input->post('descricao');
-            $data['QTD_TOTAL'] = $this->input->post('quantidade');
-            $data['VALOR'] = $this->input->post('valor');
-            $data['ID_MATERIA_PRIMA_TIPO'] = $this->input->post('tipo');
-            $data['ID_ESTAMPA'] = $this->input->post('estampa');
+        $checked = $this->input->post('img_check');
 
-            $result = $this->model_prima->atualizar($data);
-            if ($result == true) {
-                $this->session->set_flashdata('prima_ok', 'msg');
-                redirect('/Materia_prima');
+        if ($checked == true) {
+            $config1['upload_path'] = './img/materia_prima';
+            $config1['allowed_types'] = 'jpg|jpeg|png';
+            $config1['encrypt_name'] = TRUE;
+            $config1['max_size'] = 2048;
+
+            $this->load->library('upload', $config1);
+            $this->upload->initialize($config1);
+
+            if (!$this->upload->do_upload('img_alterar')) {
+                echo "error";
+                $uploadData['file_name'] = "semimagem.jpeg";
             } else {
-                $this->session->set_flashdata('prima_fail', 'msg');
-                redirect('/Materia_prima');
+                $uploadData = $this->upload->data();
             }
+        }
+
+        $data['ID_MATERIA_PRIMA'] = $this->input->post('id');
+        $data['NOME'] = $this->input->post('nome');
+        $data['DESCRICAO'] = $this->input->post('descricao');
+        $data['QTD_TOTAL'] = $this->input->post('quantidade');
+        $data['VALOR'] = $this->input->post('valor');
+        $data['ID_MATERIA_PRIMA_TIPO'] = $this->input->post('tipo');
+        $data['ID_ESTAMPA'] = $this->input->post('estampa');
+        $data['IMAGEM'] = $uploadData['file_name'];
+
+        $result = $this->model_prima->atualizar($data);
+        if ($result == true) {
+            $this->session->set_flashdata('prima_atualizada', 'msg');
+            redirect('/home');
+        } else {
+            $this->session->set_flashdata('prima_fail', 'msg');
+            redirect('/Materia_prima');
         }
     }
 

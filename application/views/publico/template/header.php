@@ -28,6 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         <link href="<?php echo base_url('assets/css/font-awesome.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/style.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/sweetalert.css') ?>" rel="stylesheet">
 
         <!-- MetisMenu CSS -->
         <link href="<?php echo base_url('assets/css/metisMenu.min.css') ?>" rel="stylesheet">
@@ -73,7 +74,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="w3l_header_right">
                 <ul>
                     <li class="dropdown profile_details_drop">
-                        <?php if (!$this->session->userdata('userlogado')) { ?>
+                        <?php if (!$this->session->userdata('user_clientelogado')) { ?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
                             <div class="mega-dropdown-menu">
                                 <div class="w3ls_vegetables">
@@ -84,7 +85,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>                  
                             </div>
                         <?php } else { ?>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('userlogado')->NOME;?><span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('user_clientelogado')->NOME;?><span class="caret"></span></a>
                             <div class="mega-dropdown-menu">
                                 <div class="w3ls_vegetables">
                                     <ul class="dropdown-menu drp-mnu">

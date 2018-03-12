@@ -63,7 +63,7 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
-                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <table class="table table-striped table-bordered  table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
                                     <th>Matéria-prima</th>
@@ -94,7 +94,7 @@
                                                     <i class="fa fa-gear"></i> <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a href=" href="<?php echo base_url() . 'Materia_prima/editarImg/' . $m->ID_MATERIA_PRIMA ?>">Alterar Imagem</a>
+                                                    <!--<li><a href=" href="<?php echo base_url() . 'Materia_prima/editarImg/' . $m->ID_MATERIA_PRIMA ?>">Alterar Imagem</a>-->
                                                     <li><a href="<?php echo base_url() . 'Materia_prima/editar/' . $m->ID_MATERIA_PRIMA ?>">Editar</a>
                                                     </li>
 

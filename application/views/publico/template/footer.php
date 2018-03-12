@@ -9,6 +9,7 @@
 <script src="<?php echo base_url('assets/js/easing.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/minicart.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/jquery.mask.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/sweetalert.min.js') ?>"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
 <script src="<?php echo base_url('assets/js/metisMenu.min.js') ?>"></script>
@@ -225,21 +226,7 @@
 
 
 
-<?php
-if ($this->session->flashdata('cadastro_concluido')) {
-    ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Cadastro efetuado com sucesso! Verifique sua caixa de entrada do seu email para confirmar o seu cadastro.", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });</script>
-<?php } ?>
+
 </body>
 </html>
 
