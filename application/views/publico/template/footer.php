@@ -2,9 +2,16 @@
 <div class="clearfix"> </div>
 <!-- jQuery -->
 <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery-validation.js') ?>"></script>
+<!--<script src="<?php echo base_url('assets/js/jquery.validate.min.js') ?>"></script>-->
+<script src="<?php echo base_url('assets/js/cpf.js') ?>"></script>
+<!--<script src="<?php echo base_url('assets/js/valida_form.js') ?>"></script>-->
+<!--<script src="<?php echo base_url('assets/js/jquery.validate.unobtrusive.min.js') ?>"></script>-->
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
+
 <script src="<?php echo base_url('assets/js/move-top.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/easing.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/minicart.js') ?>"></script>
@@ -21,6 +28,8 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<?php echo base_url('assets/js/startmin.js') ?>"></script> 
+
+
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
     function hideURLbar(){ window.scrollTo(0,1); } </script>

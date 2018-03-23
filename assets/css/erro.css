@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 18, 2018, 2:41:17 PM
+    Author     : dell
+*/
+
+/* Show validation results in red */
+.field-validation-error {
+    color: red;
+}
+/* Change background color of invalid text inputs to light red */
+input[type="text"].input-validation-error
+{
+    background-color: #fcc;
+}
+#legenda{
+    /*font-size: 19px;*/
+}
