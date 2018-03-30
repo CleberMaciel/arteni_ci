@@ -1903,7 +1903,9 @@ var defaults = module.exports = {
 
     parent: (typeof document !== 'undefined') ? document.body : null,
 
-    action: 'checkout.html',
+
+//controller vai aqi :)
+    action: 'Checkout',
 
     target: '',
 

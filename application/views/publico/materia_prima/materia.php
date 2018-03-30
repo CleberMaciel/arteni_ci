@@ -12,24 +12,23 @@
                                 <figure>
                                     <div class="snipcart-item block">
                                         <div class="snipcart-thumb">
-                                            <a href="<?php echo base_url() . 'listar_materia/detalhes/' . $mat->ID_MATERIA_PRIMA ?>"><img src="<?php echo base_url(); ?>img/materia_prima/<?php echo $mat->IMAGEM; ?>" alt="<?php echo $mat->NOME; ?>" class="img-responsive" /></a>
+                                            <a href="<?php echo base_url() . 'listar_materia/detalhes/' . $mat->ID_MATERIA_PRIMA ?>"><img style="width:140px" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $mat->IMAGEM; ?>" alt="<?php echo $mat->NOME; ?>" /></a>
                                             <p><?php echo $mat->NOME; ?></p>
                                             <h4>R$<?php echo $mat->VALOR; ?></h4>
                                         </div>
                                         <div class="snipcart-details">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="<?php echo $mat->NOME; ?>" />
-                                                    <input type="hidden" name="amount" value="<?php echo $mat->VALOR; ?>" />                                  
-                                                    <input type="hidden" name="currency_code" value="BRL" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Adicionar ao carrinho" class="button" />
-                                                </fieldset>
-                                            </form>
+                                            <?php echo form_open("Checkout/adicionar"); ?>
+                                            <fieldset>
+                                                <input type="hidden" name="id" value="<?php echo $mat->ID_MATERIA_PRIMA; ?>" />
+                                                <input type="hidden" name="descricao" value="<?php echo $mat->DESCRICAO; ?>" />
+                                                <input type="hidden" name="nome" value="<?php echo $mat->NOME; ?>" />
+                                                <input type="hidden" name="preco" value="<?php echo $mat->VALOR ?>" />
+                                                <input type="hidden" name="foto" value="<?php echo $mat->IMAGEM; ?>" />
+                                                <input type="hidden" name="quantidade" value="1" />
+                                                <input type="submit" name="submit" value="Adicionar ao carrinho" class="button" />
+                                            </fieldset>
+                                            
+                                            <?php echo form_close(); ?>
                                         </div>
                                     </div>
                                 </figure>
@@ -37,6 +36,7 @@
                         </div>
                     </div>
                 </div>
+                
             <?php endforeach; ?>
         </div>
         <div class="clearfix"> </div>

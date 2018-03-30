@@ -12,6 +12,7 @@ html, body{
     font-family: 'Open Sans', sans-serif;
     background:#ffffff;
 }
+
 ul li,ol li{
     font-size:14px;
 }
@@ -2970,6 +2971,7 @@ input.checkbox:checked:after {
     }
     .w3ls_w3l_banner_left {
         padding-left: 0;
+
     }
     .w3l_banner_nav_right_banner7 {
         background-position:-130px 0px;
