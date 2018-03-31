@@ -123,9 +123,66 @@ class Checkout extends CI_Controller {
             $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/" . $code . "?email=macielcleberjr@gmail.com&token=FE6AB1C36B5E4280A72402402126892E";
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
-            if ($xml->status > 3) {
-//    $db->query("UPDATE pedido SET status = 2 WHERE token = '{$xml->reference}'");
-            }
+            $this->enviarStatus($xml->status);
+//            if ($xml->status > 3) {
+////    $db->query("UPDATE pedido SET status = 2 WHERE token = '{$xml->reference}'");
+//            }
+        }
+    }
+
+    public function enviarStatus($status) {
+        //1 - Aguardando pagamento
+        //2 - En analise
+        //3 - Paga
+        //4 - Disponivel
+        //5 - Em disputa
+        //6 - Devolvida
+        //7 - Cancelada
+        //8 - Debitado
+        //9 - Retenção temporaria
+        if ($status == 1) {
+            $subject = "Aguardando Pagamento";
+            $mensagem = "Estamos aguardando pagamento.";
+        } elseif ($status == 2) {
+            $subject = "Em analise";
+            $mensagem = "Seu pagamento está em analise.";
+        } elseif ($status == 3) {
+            $subject = "Pago";
+            $mensagem = "Recebemos seu pagamento.Obrigado!";
+        } elseif ($status == 4) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 5) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 6) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 7) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 8) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 9) {
+            $subject = "";
+            $mensagem = "";
+        }
+
+        $this->load->library('email');
+//        $mensagem = $this->load->view('publico/emails/confirmar_cadastro', $data, TRUE);
+        $this->email->from("admin@clebermaciel.online", 'ArtêNí');
+        $this->email->subject($subject);
+        $this->email->reply_to("admin@clebermaciel.online");
+        $this->email->to('macielcleberjr@gmail.com');
+        $this->email->cc('admin@clebermaciel.online');
+        $this->email->bcc('admin@clebermaciel.online');
+        $this->email->message($mensagem);
+        if ($this->email->send()) {
+            $this->session->set_flashdata('cadastro_concluido', 'msg');
+            redirect('/Ecommerce');
+        } else {
+            print_r($this->email->print_debugger());
         }
     }
 
