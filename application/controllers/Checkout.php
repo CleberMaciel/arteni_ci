@@ -12,6 +12,58 @@ class Checkout extends CI_Controller {
         $this->load->model('Cliente_model', 'cliente');
     }
 
+    public function foi() {
+        $valor = 200.00;
+        // URL DE SANDBOX
+        $url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout/';
+        $data['email'] = 'macielcleberjr@gmail.com';
+        $data['token'] = 'FE6AB1C36B5E4280A72402402126892E';
+        $data['currency'] = 'BRL';
+        $data['itemId1'] = "1";
+        $data['itemDescription1'] = "Descrição do item/produto";
+        $data['itemAmount1'] = number_format($valor, 2, '.', '');
+        $data['itemQuantity1'] = 1;
+        $data['itemWeight1'] = 0;
+        $data['reference'] = 153; //aqui vai o código que será usado para receber os retornos das notificações
+        $data['senderName'] = "Nome do comprador";
+// $data['senderAreaCode'] = "";
+// $data['senderPhone'] = "";
+        $data['senderEmail'] = "macielcleberjr@gmail.com";
+// $data['shippingType'] = "";
+// $data['shippingAddressStreet'] = "";
+// $data['shippingAddressNumber'] = "";
+// $data['shippingAddressComplement'] = "";
+// $data['shippingAddressDistrict'] = "";
+// $data['shippingAddressPostalCode'] = "";
+// $data['shippingAddressCity'] = "";
+// $data['shippingAddressState'] = "";
+// $data['shippingAddressCountry'] = "";
+        $data['redirectURL'] = 'http://localhost/arteni_ci/checkout/finalizado/';
+        $data = http_build_query($data);
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        $xml = curl_exec($curl);
+        if ($xml == 'Unauthorized') {
+            echo "Unauthorized";
+            exit();
+        }
+        curl_close($curl);
+        $xml = simplexml_load_string($xml);
+        if (count($xml->error) > 0) {
+            echo "XML ERRO";
+            var_dump($xml);
+            exit();
+        }
+// Utilize sua lógica para atualizar o pedido com o código da transação, para ser atualizado depois
+//        $db->query("UPDATE pedido SET token = '{$xml->code}' WHERE id = $pedido_id");
+// Redireciona o comprador para a página de pagamento
+        header('Location: https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=' . $xml->code);
+    }
+
     public function index() {
         $data['tipo'] = $this->materia_tipo->listarTipo();
 
@@ -57,9 +109,24 @@ class Checkout extends CI_Controller {
         $botao['botao'] = $this->pagseguro->get_button($config);
 
 
+
         $this->load->view('publico/template/header', $data);
         $this->load->view('publico/checkout/checkout', $botao);
         $this->load->view('publico/template/footer');
+    }
+
+    public function finalizado() {
+        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
+        $code = $_POST['notificationCode'];
+        $type = $_POST['notificationType'];
+        if ($type == 'transaction') {
+            $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/" . $code . "?email=macielcleberjr@gmail.com&token=FE6AB1C36B5E4280A72402402126892E";
+            $content = file_get_contents($url);
+            $xml = simplexml_load_string($content);
+            if ($xml->status > 3) {
+//    $db->query("UPDATE pedido SET status = 2 WHERE token = '{$xml->reference}'");
+            }
+        }
     }
 
     public function adicionar() {
@@ -73,7 +140,6 @@ class Checkout extends CI_Controller {
     }
 
     public function retorno_pagseguro() {
-        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
 
         if (count($_POST) > 0) {
 
@@ -95,22 +161,28 @@ class Checkout extends CI_Controller {
 
             // É uma notificação de status. Passa a ação para o método que vai 
             // atualizar o status do pedido.
-//            if ($notificationType && $notificationCode) {
-//
-//                $not = $this->pagseguro->get_notification($notificationCode);
-//                
-//            }
+            if ($notificationType && $notificationCode) {
+
+                $this->pagseguro->get_notification($notificationCode);
+                /*
+                 * FAZ AS ATUALIZAÇÕES COM A NOTIFICAÇÃO DE STATUS
+                 */
+            }
+
             // informação quando é enviado um POST completo
-            $transacaoID = (isset($_POST['TransacaoID'])) ? $_POST['TransacaoID'] : '';
+            $transacaoID = (isset($_POST['TransacaoID'])) ? $_POST['TransacaoID'] : FALSE;
 
             // Se existe $transacaoID é uma notificação via POST logo após a
             // solicitação de pagamento, neste momento
-//            if ($transacaoID) {
-//
-//                /*
-//                 * FAZ AS ATUALIZAÇÕES COM A NOTIFICAÇÃO DE STATUS
-//                 */
-//            }
+            if ($transacaoID) {
+
+                /*
+                 * FAZ AS ATUALIZAÇÕES COM A NOTIFICAÇÃO DE STATUS
+                 */
+            }
+
+
+
             //O post foi validado pelo PagSeguro.
             if ($retorno == "VERIFICADO") {
 
@@ -137,11 +209,7 @@ class Checkout extends CI_Controller {
             // No término do checkout o usuário é redirecionado para este bloco.
             // redirecionar para página de OBRIGADO e aguarde...
             // redirect('loja');
-            redirect('Painel');
         }
-        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
-
-        $this->view->load('notificacao', $informacao);
     }
 
     // -------------------------------------------------------------------------

@@ -117,33 +117,35 @@ class Pagseguro {
      * @return array
      */
     public function get_notification($code = NULL) {
-
+//        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
         // se não for passado um código, usará o $_POST que o PS envia
         if ($code === NULL) {
             $code = $_POST['notificationCode'];
+//        }
+
+            $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/" . $code . "?email=" . $this->ps_email . "&token=" . $this->token;
+
+
+            // faz conexão
+            $transaction = $this->curl_connection($url);
+
+            // algo deu errado na autenticação
+            if ($transaction == 'Unauthorized') {
+                log_message('erro', 'Notificação PagSeguro com problemas.');
+                return FALSE;
+//            exit;
+            }
+
+            // converte para objeto
+            $xml = simplexml_load_string($transaction);
+
+            // retorna
+            return array(
+                'code' => (int) $xml->status,
+                'status' => $this->ps_stats((int) $xml->status),
+                'reference' => (int) $xml->reference
+            );
         }
-
-        $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/";
-        $url .= $code . "?email=" . $this->ps_email . "&token=" . $this->token;
-
-        // faz conexão
-        $transaction = $this->curl_connection($url);
-
-        // algo deu errado na autenticação
-        if ($transaction == 'Unauthorized') {
-            log_message('erro', 'Notificação PagSeguro com problemas.');
-            return FALSE;
-        }
-
-        // converte para objeto
-        $xml = simplexml_load_string($transaction);
-
-        // retorna
-        return array(
-            'code' => (int) $xml->status,
-            'status' => $this->ps_stats((int) $xml->status),
-            'reference' => (int) $xml->reference
-        );
     }
 
     // -------------------------------------------------------------------------
@@ -194,27 +196,35 @@ class Pagseguro {
             );
         }
 
-        $options = Array(
-            CURLOPT_HTTPHEADER => Array(
-                "Content-Type: application/x-www-form-urlencoded; charset=" . $charset,
-                $contentLength
-            ),
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HEADER => false,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_CONNECTTIMEOUT => $timeout,
-                //CURLOPT_TIMEOUT => $timeout
-        );
-        $options = ($options + $methodOptions);
+//        $options = Array(
+//            CURLOPT_HTTPHEADER => Array(
+//                "Content-Type: application/x-www-form-urlencoded; charset=" . $charset,
+//                $contentLength
+//            ),
+//            CURLOPT_URL => $url,
+//            CURLOPT_RETURNTRANSFER => true,
+//            CURLOPT_HEADER => false,
+//            CURLOPT_SSL_VERIFYPEER => false,
+//            CURLOPT_CONNECTTIMEOUT => $timeout,
+//                //CURLOPT_TIMEOUT => $timeout
+//        );
+//        $options = ($options + $methodOptions);
 
-        $curl = curl_init();
-        curl_setopt_array($curl, $options);
-        $resp = curl_exec($curl);
-        $info = curl_getinfo($curl); // para debug
-        $error = curl_errno($curl);
-        $errorMessage = curl_error($curl);
+        $retorno = 'htt://localhost/arteni_ci/checkout/retorno_pagseguro/';
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $retorno);
+        $transaction = curl_exec($curl);
         curl_close($curl);
+
+//        $curl = curl_init();
+//        curl_setopt_array($curl, $options);
+//        $resp = curl_exec($curl);
+//        $info = curl_getinfo($curl); // para debug
+//        $error = curl_errno($curl);
+//        $errorMessage = curl_error($curl);
+//        curl_close($curl);
 
         if ($error) {
             log_message('error', $errorMessage);
