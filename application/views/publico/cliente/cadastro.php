@@ -50,7 +50,7 @@
 
             </fieldset>
             <fieldset class="form-group">
-                <legend id="legenda">Endereço</legend>
+                <legend id="legenda">Endereço de Entrega</legend>
 
 
                 <label for="cep" class="control-label required">CEP</label>

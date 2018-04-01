@@ -43,7 +43,7 @@ body a:hover{
 .img_logo{
     height: 90px;
     width: 150px;
-    margin-left: -23px;
+    margin-left: -47px;
 }
 span.glyphicon.glyphicon-shopping-cart.my-cart-icon.my-cart-icon-affix {
     position: relative !important;
@@ -183,7 +183,7 @@ ul.dropdown-menu.drp-mnu li a i {
     padding-left: 1em;
 }
 .logo_products{
-    padding:4em 0 1em;
+    padding:6em 0 1em;
 }
 .w3ls_logo_products_left{
     float:left;
