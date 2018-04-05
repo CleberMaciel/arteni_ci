@@ -126,12 +126,11 @@ class Checkout extends CI_Controller {
             $xml = simplexml_load_string($content);
             foreach ($xml as $elemento) {
                 $dados['PEDIDO'] = 111;
-                $dados['ITEM'] = $elemento->items->item->id;
-                $dados['QUANTIDADE'] = $elemento->items->item->quantity;
-                $dados['PRECO'] = $elemento->items->item->amount;
+                $dados['ITEM'] = $elemento->itemCount->items->item->id;
+                $dados['QUANTIDADE'] = $elemento->itemCount->items->item->quantity;
+                $dados['PRECO'] = $elemento->itemCount->items->item->amount;
                 $this->itens->inserir($dados);
             }
-
             $this->enviarStatus($xml->status);
 //            if ($xml->status > 3) {
 //            
