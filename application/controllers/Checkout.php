@@ -126,9 +126,9 @@ class Checkout extends CI_Controller {
             $xml = simplexml_load_string($content);
             foreach ($xml as $elemento) {
                 $dados['PEDIDO'] = 111;
-                $dados['ITEM'] = $elemento->id;
-                $dados['QUANTIDADE'] = $elemento->quantity;
-                $dados['PRECO'] = $elemento->amount;
+                $dados['ITEM'] = $elemento->items->item->id;
+                $dados['QUANTIDADE'] = $elemento->items->item->quantity;
+                $dados['PRECO'] = $elemento->items->item->amount;
                 $this->itens->inserir($dados);
             }
 
