@@ -4,7 +4,7 @@ $contador1 = 0;
 ?>
 <div class="w3l_banner_nav_right">
     <div class="checkout-right">
-        <h4>Carrinho de Compras </h4>
+        <h4>Carrinho de Compras1 </h4>
         <!--<a class="btn btn-default btn-sm" role="button" href="#">Atualizar Quantidades</a>-->
 
         <table class="timetable_sub">
@@ -73,8 +73,8 @@ $contador1 = 0;
         <button type="submit" class="btn btn-default btn-sm">Atualizar Quantidades</button>
         <?php echo form_close(); ?>
         <div class="checkout-right-basket">
+            <?php echo $botao; ?>
 
-            <strong><a href="<?php echo base_url() . 'Checkout/pedidos/'; ?>">Finalizar e Pagar</a></strong>
         </div>
     </div>
 
