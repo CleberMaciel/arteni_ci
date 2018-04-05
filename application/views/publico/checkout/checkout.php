@@ -59,6 +59,8 @@ $contador1 = 0;
                         <td class="invert">
                             <div class="rem">
                                 <div class="">
+                                    
+                                    <?php echo $this->session->userdata('user_clientelogado')->EMAIL;?>
                                     <strong><a href="<?php echo base_url() . 'Checkout/remover/' . $item['rowid']; ?>">Remover</a></strong>
                                 </div>
                             </div>

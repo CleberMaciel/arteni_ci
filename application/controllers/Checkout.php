@@ -63,53 +63,6 @@ class Checkout extends CI_Controller {
         $this->load->view('publico/template/footer');
     }
 
-    public function finalizar() {
-
-//        $usuario = array(
-//            'id' => $this->session->userdata('user_clientelogado')->ID_CLIENTE,
-//            'nome' => $this->session->userdata('user_clientelogado')->NOME,
-//            'ddd' => '21', // só números
-//            'telefone' => '99887766', // só números
-//            'email' => $this->session->userdata('user_clientelogado')->EMAIL,
-//            'shippingType' => 3, //1=Encomenda normal (PAC), 2=SEDEX, 3=Tipo de frete não especificado.
-//            'cep' => $this->session->userdata('user_clientelogado')->CEP, // só números
-//            'logradouro' => $this->session->userdata('user_clientelogado')->RUA,
-//            'numero' => $this->session->userdata('user_clientelogado')->NUMERO,
-//            'compl' => $this->session->userdata('user_clientelogado')->COMPLEMENTO,
-//            'bairro' => $this->session->userdata('user_clientelogado')->BAIRRO,
-//            'cidade' => $this->session->userdata('user_clientelogado')->CIDADE,
-//            'uf' => $this->session->userdata('user_clientelogado')->ESTADO,
-//            'pais' => 'BRA'
-//        );
-//
-//        $this->pagseguro->set_user($usuario);
-//
-//        // insere produtos para botão PagSeguro
-//        foreach ($this->cart->contents() as $p) {
-//
-//            $produtos['id'] = $p['id'];
-//            $produtos['name'] = $p['name'];
-//            $produtos['valor'] = number_format($p['price'], 2, '.', '');
-//            $produtos['descricao'] = "teste";
-//            $produtos['quantidade'] = $p['qty'];
-//            $produtos['peso'] = 0;
-//            if ($produtos != NULL) {
-//                $dados[] = $produtos;
-//                $this->pagseguro->set_products($dados);
-//            }
-//        }
-//        // ID do pedido
-//        $config['reference'] = rand(999, 9999);
-//        // gera botão
-//        $botao['botao'] = $this->pagseguro->get_button($config);
-//
-//
-//        $data['tipo'] = $this->materia_tipo->listarTipo();
-//        $this->load->view('publico/template/header', $data);
-//        $this->load->view('publico/checkout/checkout', $botao);
-//        $this->load->view('publico/template/footer');
-    }
-
     public function pedidos() {
         $dados['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
         $dados['PRODUTOS'] = $this->cart->total();
@@ -163,9 +116,17 @@ class Checkout extends CI_Controller {
             $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/" . $code . "?email=macielcleberjr@gmail.com&token=FE6AB1C36B5E4280A72402402126892E";
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
+
+            $dados['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
+            $dados['PRODUTOS'] = $this->cart->total();
+            $dados['STATUS'] = 0;
+            $this->pedidos->inserir($dados);
+            $pedido = $this->db->insert_id();
+
+
             foreach ($xml->items as $item) {
 
-                $dados['PEDIDO'] = 111;
+                $dados['PEDIDO'] = $pedido;
                 $dados['ITEM'] = $item['id'];
                 $dados['QUANTIDADE'] = $item['quantity'];
                 $dados['PRECO'] = $item['amount'];
