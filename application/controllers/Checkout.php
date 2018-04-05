@@ -13,12 +13,21 @@ class Checkout extends CI_Controller {
         $this->load->library('cart');
         $this->load->model('Materia_tipo_model', 'materia_tipo');
         $this->load->model('Cliente_model', 'cliente');
+        $this->load->model('Pedidos_model', 'pedidos');
+        $this->load->model('Itens_model', 'itens');
     }
 
     public function index() {
         $data['tipo'] = $this->materia_tipo->listarTipo();
+        $this->load->view('publico/template/header', $data);
+        $this->load->view('publico/checkout/checkout');
+        $this->load->view('publico/template/footer');
+    }
+
+    public function finalizar() {
+
         $usuario = array(
-            'id' => 1,
+            'id' => $this->session->userdata('user_clientelogado')->ID_CLIENTE,
             'nome' => $this->session->userdata('user_clientelogado')->NOME,
             'ddd' => '21', // só números
             'telefone' => '99887766', // só números
@@ -52,12 +61,33 @@ class Checkout extends CI_Controller {
         }
         // ID do pedido
         $config['reference'] = rand(999, 9999);
-
         // gera botão
         $botao['botao'] = $this->pagseguro->get_button($config);
+
+
+        $data['tipo'] = $this->materia_tipo->listarTipo();
         $this->load->view('publico/template/header', $data);
-        $this->load->view('publico/checkout/checkout', $botao);
+        $this->load->view('publico/checkout/finalizar', $botao);
         $this->load->view('publico/template/footer');
+    }
+
+    public function pedidos() {
+        $dados['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
+        $dados['PRODUTOS'] = $this->cart->total();
+        $dados['STATUS'] = 0;
+        $this->pedidos->inserir($dados);
+        $pedido = $this->db->insert_id();
+
+        foreach ($this->cart->contents() as $p) {
+            $dados_item['PEDIDO'] = $pedido;
+            $dados_item['ITEM'] = $p['id'];
+            $dados_item['QUANTIDADE'] = $p['qty'];
+            $dados_item['PRECO'] = number_format($p['price'], 2, '.', '');
+            if ($dados_item != NULL) {
+                $this->itens->inserir($dados_item);
+            }
+        }
+        redirect('checkout/finalizar');
     }
 
     public function adicionar() {
@@ -94,23 +124,32 @@ class Checkout extends CI_Controller {
             $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/" . $code . "?email=macielcleberjr@gmail.com&token=FE6AB1C36B5E4280A72402402126892E";
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
+            foreach ($xml as $elemento) {
+                $dados_item['PEDIDO'] = 111;
+                $dados['ITEM'] = $elemento->id;
+                $dados['QUANTIDADE'] = $elemento->quantity;
+                $dados['PRECO'] = $elemento->amount;
+                $this->itens->inserir($dados);
+            }
+
             $this->enviarStatus($xml->status);
 //            if ($xml->status > 3) {
+//            
 ////    $db->query("UPDATE pedido SET status = 2 WHERE token = '{$xml->reference}'");
 //            }
         }
     }
 
     public function enviarStatus($status) {
-        //1 - Aguardando pagamento
-        //2 - Em analise
-        //3 - Paga
-        //4 - Disponivel
-        //5 - Em disputa
-        //6 - Devolvida
-        //7 - Cancelada
-        //8 - Debitado
-        //9 - Retenção temporaria
+//1 - Aguardando pagamento
+//2 - Em analise
+//3 - Paga
+//4 - Disponivel
+//5 - Em disputa
+//6 - Devolvida
+//7 - Cancelada
+//8 - Debitado
+//9 - Retenção temporaria
         if ($status == 1) {
             $subject = "Aguardando Pagamento";
             $mensagem = "Estamos aguardando pagamento.";
@@ -145,7 +184,7 @@ class Checkout extends CI_Controller {
         $this->email->from("admin@clebermaciel.online", 'ArtêNí');
         $this->email->subject($subject);
         $this->email->reply_to("admin@clebermaciel.online");
-        $this->email->to('macielcleberjr@gmail.com');
+        $this->email->to($this->session->userdata('user_clientelogado')->EMAIL);
         $this->email->cc('admin@clebermaciel.online');
         $this->email->bcc('admin@clebermaciel.online');
         $this->email->message($mensagem);
@@ -172,7 +211,7 @@ class Checkout extends CI_Controller {
         var_dump($string);
     }
 
-    // -------------------------------------------------------------------------
+// -------------------------------------------------------------------------
     /**
      * Salva um array no arquivo pagseguro...php em cache/
      * @param type $array

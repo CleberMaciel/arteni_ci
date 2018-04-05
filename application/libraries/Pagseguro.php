@@ -467,6 +467,7 @@ class Pagseguro {
      * @return string
      */
     private function get_form_open() {
+
         $f = array();
         $f[] = '<form target="pagseguro" method="post" action="https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html">';
         // '<!-- Campos obrigatórios -->';
@@ -489,6 +490,7 @@ class Pagseguro {
         //<!-- submit do form (obrigatório) -->  
         $f[] = '<input type="image" class="btn-pagseuro" name="submit" src="' . $this->button . '" alt="Pague com PagSeguro">';
         $f[] = '</form>';
+
         return implode("\n", $f);
     }
 

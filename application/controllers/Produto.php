@@ -42,6 +42,7 @@ class Produto extends CI_Controller {
             $data['ALTURA'] = $this->input->post('altura');
             $data['PROFUNDIDADE'] = $this->input->post('profundidade');
             foreach ($this->input->post('materia_prima') as $k => $m) {
+
                 $data['ID_MATERIA_PRIMA'] = $m;
                 $data['QUANTIDADE'] = $this->input->post('quantidade')[$k];
 

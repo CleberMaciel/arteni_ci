@@ -14,7 +14,8 @@ $contador1 = 0;
                     <th>Produto</th>
                     <th>Quantidade</th>
                     <th>Nome do Produto</th>
-                    <th>Valor</th>
+                    <th>Valor unitario</th>
+                    <th>Subtotal</th>
                     <th>Remover</th>
                 </tr>
             </thead>
@@ -46,9 +47,15 @@ $contador1 = 0;
                         <td class="invert"><?php echo $item['name']; ?></td>
 
                         <td class="invert">R$ <?php
-                                    echo number_format($item['price'], 2, ",", ".");
-                                    ;
-                                    ?></td>
+                            echo number_format($item['price'], 2, ",", ".");
+                            ;
+                            ?></td>
+                        <td class="invert">R$ <?php
+                            $valor_item = $item['price'];
+                            $total_item = $valor_item * $item['qty'];
+                            echo number_format($total_item, 2, ",", ".");
+                            ;
+                            ?></td>
                         <td class="invert">
                             <div class="rem">
                                 <div class="">
@@ -65,7 +72,9 @@ $contador1 = 0;
         <div class="clearfix"> </div>
         <button type="submit" class="btn btn-default btn-sm">Atualizar Quantidades</button>
         <?php echo form_close(); ?>
-        <div class="checkout-right-basket"><?php echo $botao ?>
+        <div class="checkout-right-basket">
+
+            <strong><a href="<?php echo base_url() . 'Checkout/pedidos/'; ?>">Finalizar e Pagar</a></strong>
         </div>
     </div>
 
