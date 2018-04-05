@@ -125,7 +125,7 @@ class Checkout extends CI_Controller {
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
             foreach ($xml as $elemento) {
-                $dados_item['PEDIDO'] = 111;
+                $dados['PEDIDO'] = 111;
                 $dados['ITEM'] = $elemento->id;
                 $dados['QUANTIDADE'] = $elemento->quantity;
                 $dados['PRECO'] = $elemento->amount;
