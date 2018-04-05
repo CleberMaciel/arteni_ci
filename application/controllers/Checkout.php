@@ -124,11 +124,11 @@ class Checkout extends CI_Controller {
             $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/" . $code . "?email=macielcleberjr@gmail.com&token=FE6AB1C36B5E4280A72402402126892E";
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
-            foreach ($xml as $elemento) {
+            foreach ($xml->items as $item) {
                 $dados['PEDIDO'] = 111;
-                $dados['ITEM'] = $elemento->itemCount->items->item->id;
-                $dados['QUANTIDADE'] = $elemento->itemCount->items->item->quantity;
-                $dados['PRECO'] = $elemento->itemCount->items->item->amount;
+                $dados['ITEM'] = $item['id'];
+                $dados['QUANTIDADE'] = $item['quantity'];
+                $dados['PRECO'] = $item['amount'];
                 $this->itens->inserir($dados);
             }
             $this->enviarStatus($xml->status);
