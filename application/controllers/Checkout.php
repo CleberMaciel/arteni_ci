@@ -57,30 +57,32 @@ class Checkout extends CI_Controller {
         $botao['botao'] = $this->pagseguro->get_button($config);
 
 
+
+
         $data['tipo'] = $this->materia_tipo->listarTipo();
         $this->load->view('publico/template/header', $data);
         $this->load->view('publico/checkout/checkout', $botao);
         $this->load->view('publico/template/footer');
     }
 
-    public function pedidos() {
-        $dados['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
-        $dados['PRODUTOS'] = $this->cart->total();
-        $dados['STATUS'] = 0;
-        $this->pedidos->inserir($dados);
-        $pedido = $this->db->insert_id();
-
-        foreach ($this->cart->contents() as $p) {
-            $dados_item['PEDIDO'] = $pedido;
-            $dados_item['ITEM'] = $p['id'];
-            $dados_item['QUANTIDADE'] = $p['qty'];
-            $dados_item['PRECO'] = number_format($p['price'], 2, '.', '');
-            if ($dados_item != NULL) {
-                $this->itens->inserir($dados_item);
-            }
-        }
-        redirect('checkout/finalizar');
-    }
+//    public function pedidos() {
+//        $dados['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
+//        $dados['PRODUTOS'] = $this->cart->total();
+//        $dados['STATUS'] = 0;
+//        $this->pedidos->inserir($dados);
+//        $pedido = $this->db->insert_id();
+//
+//        foreach ($this->cart->contents() as $p) {
+//            $dados_item['PEDIDO'] = $pedido;
+//            $dados_item['ITEM'] = $p['id'];
+//            $dados_item['QUANTIDADE'] = $p['qty'];
+//            $dados_item['PRECO'] = number_format($p['price'], 2, '.', '');
+//            if ($dados_item != NULL) {
+//                $this->itens->inserir($dados_item);
+//            }
+//        }
+//        redirect('checkout/finalizar');
+//    }
 
     public function adicionar() {
         $dados['id'] = $this->input->post('id');
@@ -117,16 +119,17 @@ class Checkout extends CI_Controller {
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
 
-            $dados['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
-            $dados['PRODUTOS'] = $this->cart->total();
+
+            $id = $xml->sender->id;
+            $dados['CLIENTE'] = $id;
+            $dados['PRODUTOS'] = $xml->grossAmount;
             $dados['STATUS'] = 0;
             $this->pedidos->inserir($dados);
-            $pedido = $this->db->insert_id();
 
 
             foreach ($xml->items as $item) {
 
-                $dados['PEDIDO'] = $pedido;
+                $dados['PEDIDO'] = 100;
                 $dados['ITEM'] = $item['id'];
                 $dados['QUANTIDADE'] = $item['quantity'];
                 $dados['PRECO'] = $item['amount'];
