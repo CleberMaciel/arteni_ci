@@ -64,6 +64,11 @@ class Checkout extends CI_Controller {
         $dados1['STATUS_VALIDO'] = 0;
         $this->pedidos->inserir($dados1);
 
+
+
+
+
+
         $data['tipo'] = $this->materia_tipo->listarTipo();
         $this->load->view('publico/template/header', $data);
         $this->load->view('publico/checkout/checkout', $botao);
@@ -105,10 +110,10 @@ class Checkout extends CI_Controller {
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
 
-
-
+            $pedido = $xml->reference;
+            $dados['PEDIDO'] = $pedido;
             foreach ($xml->items as $item) {
-                $dados['PEDIDO'] = $xml->reference;
+
                 $dados['ITEM'] = $item['id'];
                 $dados['QUANTIDADE'] = $item['quantity'];
                 $dados['PRECO'] = $item['amount'];
