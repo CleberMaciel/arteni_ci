@@ -113,7 +113,7 @@ class Checkout extends CI_Controller {
             $pedido = $xml->$reference;
             
             foreach ($xml->items as $item) {
-                $dados['PEDIDO'] = $pedido;
+                $dados['PEDIDO'] = $xml->status;
                 $dados['ITEM'] = $item['id'];
                 $dados['QUANTIDADE'] = $item['quantity'];
                 $dados['PRECO'] = $item['amount'];
