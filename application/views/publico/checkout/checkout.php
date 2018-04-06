@@ -4,7 +4,7 @@ $contador1 = 0;
 ?>
 <div class="w3l_banner_nav_right">
     <div class="checkout-right">
-        <h4>Carrinho de Compras1 </h4>
+        <h4>Carrinho de Compras </h4>
         <!--<a class="btn btn-default btn-sm" role="button" href="#">Atualizar Quantidades</a>-->
 
         <table class="timetable_sub">
@@ -59,8 +59,8 @@ $contador1 = 0;
                         <td class="invert">
                             <div class="rem">
                                 <div class="">
-                                    
-                                    <?php echo $this->session->userdata('user_clientelogado')->EMAIL;?>
+
+                                    <?php echo $this->session->userdata('user_clientelogado')->EMAIL; ?>
                                     <strong><a href="<?php echo base_url() . 'Checkout/remover/' . $item['rowid']; ?>">Remover</a></strong>
                                 </div>
                             </div>

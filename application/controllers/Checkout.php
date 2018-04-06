@@ -52,37 +52,23 @@ class Checkout extends CI_Controller {
             }
         }
         // ID do pedido
-        $config['reference'] = rand(999, 9999);
+        $teste = $config['reference'] = rand(999, 9999);
         // gera botão
         $botao['botao'] = $this->pagseguro->get_button($config);
 
 
-
+        $dados1['ID_PEDIDOS'] = $config['reference'];
+        $dados1['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
+        $dados1['PRODUTOS'] = $this->cart->total();
+        $dados1['STATUS_COMPRA'] = 0;
+        $dados1['STATUS_VALIDO'] = 0;
+        $this->pedidos->inserir($dados1);
 
         $data['tipo'] = $this->materia_tipo->listarTipo();
         $this->load->view('publico/template/header', $data);
         $this->load->view('publico/checkout/checkout', $botao);
         $this->load->view('publico/template/footer');
     }
-
-//    public function pedidos() {
-//        $dados['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
-//        $dados['PRODUTOS'] = $this->cart->total();
-//        $dados['STATUS'] = 0;
-//        $this->pedidos->inserir($dados);
-//        $pedido = $this->db->insert_id();
-//
-//        foreach ($this->cart->contents() as $p) {
-//            $dados_item['PEDIDO'] = $pedido;
-//            $dados_item['ITEM'] = $p['id'];
-//            $dados_item['QUANTIDADE'] = $p['qty'];
-//            $dados_item['PRECO'] = number_format($p['price'], 2, '.', '');
-//            if ($dados_item != NULL) {
-//                $this->itens->inserir($dados_item);
-//            }
-//        }
-//        redirect('checkout/finalizar');
-//    }
 
     public function adicionar() {
         $dados['id'] = $this->input->post('id');
@@ -120,16 +106,11 @@ class Checkout extends CI_Controller {
             $xml = simplexml_load_string($content);
 
 
-            $id = $xml->sender->id;
-            $dados['CLIENTE'] = $id;
-            $dados['PRODUTOS'] = $xml->grossAmount;
-            $dados['STATUS'] = 0;
-            $this->pedidos->inserir($dados);
+//            receber a referencia $pedidonumero
 
-
+            $referencia = $xml->reference;
             foreach ($xml->items as $item) {
-
-                $dados['PEDIDO'] = 100;
+                $dados['PEDIDO'] = $referencia;
                 $dados['ITEM'] = $item['id'];
                 $dados['QUANTIDADE'] = $item['quantity'];
                 $dados['PRECO'] = $item['amount'];
