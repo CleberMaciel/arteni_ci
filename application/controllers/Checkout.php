@@ -52,7 +52,7 @@ class Checkout extends CI_Controller {
             }
         }
         // ID do pedido
-        $teste = $config['reference'] = rand(999, 9999);
+        $config['reference'] = rand(999, 9999);
         // gera botão
         $botao['botao'] = $this->pagseguro->get_button($config);
 
@@ -111,9 +111,9 @@ class Checkout extends CI_Controller {
             $xml = simplexml_load_string($content);
 
             $pedido = $xml->$reference;
-            
+
             foreach ($xml->items as $item) {
-                $dados['PEDIDO'] = $xml->status;
+                $dados['PEDIDO'] = (int)$xml->status;
                 $dados['ITEM'] = $item['id'];
                 $dados['QUANTIDADE'] = $item['quantity'];
                 $dados['PRECO'] = $item['amount'];
