@@ -105,12 +105,10 @@ class Checkout extends CI_Controller {
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
 
+            
 
-//            receber a referencia $pedidonumero
-
-            $referencia = $xml->reference;
             foreach ($xml->items as $item) {
-                $dados['PEDIDO'] = $referencia;
+                $dados['PEDIDO'] = $xml['reference'];
                 $dados['ITEM'] = $item['id'];
                 $dados['QUANTIDADE'] = $item['quantity'];
                 $dados['PRECO'] = $item['amount'];
