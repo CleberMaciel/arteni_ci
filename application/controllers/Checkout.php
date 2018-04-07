@@ -64,8 +64,13 @@ class Checkout extends CI_Controller {
         $dados1['STATUS_VALIDO'] = 0;
         $this->pedidos->inserir($dados1);
 
-
-
+        foreach ($dados as $d) {
+            $itens['PEDIDO'] = $config['reference'];
+            $itens['ITEM'] = $d['name'];
+            $itens['QUANTIDADE'] = $d['quantidade'];
+            $itens['PRECO'] = number_format($p['valor'], 2, '.', '');
+            $this->itens->inserir($dados);
+        }
 
 
 
@@ -110,15 +115,7 @@ class Checkout extends CI_Controller {
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
 
-            $pedido = $xml['reference'];
-            $dados['PEDIDO'] = $pedido;
-            foreach ($xml->items as $item) {
 
-                $dados['ITEM'] = $item['id'];
-                $dados['QUANTIDADE'] = $item['quantity'];
-                $dados['PRECO'] = $item['amount'];
-                $this->itens->inserir($dados);
-            }
             $this->enviarStatus($xml->status);
 //            if ($xml->status > 3) {
 //            
