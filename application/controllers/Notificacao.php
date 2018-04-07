@@ -19,9 +19,13 @@ class Notificacao extends CI_Controller {
             $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/" . $code . "?email=macielcleberjr@gmail.com&token=FE6AB1C36B5E4280A72402402126892E";
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
+            $this->atualizarPedido($xml->reference, $xml->status);
             $this->enviarStatus($xml->status);
-            $this->check->atualizarPedido($xml->reference, $xml->status);
         }
+    }
+
+    public function atualizarPedido($referencia, $status) {
+        $this->check->atualizarPedido($referencia, $status);
     }
 
     public function enviarStatus($status) {
