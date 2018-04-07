@@ -27,10 +27,11 @@ class Checkout_model extends CI_Model {
         return $result->result();
     }
 
-    function atualizar($data) {
-        $this->db->where('ID_MATERIA_PRIMA_TIPO', $data['id']);
-        $this->db->set($data);
-        return $this->db->update('MATERIA_PRIMA_TIPO');
+    function atualizarPedido($id, $n) {
+        $this->db->where('ID_PEDIDO', $id);
+        $this->db->set('STATUS_COMPRA', $n);
+        $this->db->set('STATUS_VALIDO', 1);
+        return $this->db->update('PEDIDOS');
     }
 
     function ativo($id) {

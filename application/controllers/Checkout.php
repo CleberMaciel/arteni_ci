@@ -15,6 +15,7 @@ class Checkout extends CI_Controller {
         $this->load->model('Cliente_model', 'cliente');
         $this->load->model('Pedidos_model', 'pedidos');
         $this->load->model('Itens_model', 'itens');
+        $this->load->model('Checkout_model', 'check');
     }
 
     public function index() {
@@ -68,8 +69,8 @@ class Checkout extends CI_Controller {
             $itens['PEDIDO'] = $config['reference'];
             $itens['ITEM'] = $d['name'];
             $itens['QUANTIDADE'] = $d['quantidade'];
-            $itens['PRECO'] = number_format($p['valor'], 2, '.', '');
-            $this->itens->inserir($dados);
+            $itens['PRECO'] = number_format($d['valor'], 2, '.', '');
+            $this->itens->inserir($itens);
         }
 
 
@@ -117,10 +118,10 @@ class Checkout extends CI_Controller {
 
 
             $this->enviarStatus($xml->status);
-//            if ($xml->status > 3) {
-//            
+            if ($xml->status > 3) {
+                $this->check->atualizarPedido($xml->reference, $xml->status);
 ////    $db->query("UPDATE pedido SET status = 2 WHERE token = '{$xml->reference}'");
-//            }
+            }
         }
     }
 
