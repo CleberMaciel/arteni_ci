@@ -119,7 +119,11 @@ class Checkout extends CI_Controller {
 
             $this->enviarStatus($xml->status);
             if ($xml->status > 3) {
-                $this->check->atualizarPedido($xml->reference, $xml->status);
+//                $this->check->atualizarPedido($xml->reference, $xml->status);
+                $this->db->where('ID_PEDIDO', $xml->reference);
+                $this->db->set('STATUS_COMPRA', $xml->status);
+                $this->db->set('STATUS_VALIDO', 1);
+                return $this->db->update('PEDIDOS');
 ////    $db->query("UPDATE pedido SET status = 2 WHERE token = '{$xml->reference}'");
             }
         }
