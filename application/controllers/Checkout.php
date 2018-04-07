@@ -107,28 +107,6 @@ class Checkout extends CI_Controller {
         redirect('checkout');
     }
 
-    public function finalizado() {
-        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
-        $code = $_POST['notificationCode'];
-        $type = $_POST['notificationType'];
-        if ($type == 'transaction') {
-            $url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/" . $code . "?email=macielcleberjr@gmail.com&token=FE6AB1C36B5E4280A72402402126892E";
-            $content = file_get_contents($url);
-            $xml = simplexml_load_string($content);
-
-
-            $this->enviarStatus($xml->status);
-            if ($xml->status > 3) {
-//                $this->check->atualizarPedido($xml->reference, $xml->status);
-                $this->db->where('ID_PEDIDOS', $xml->reference);
-                $this->db->set('STATUS_COMPRA', $xml->status);
-                $this->db->set('STATUS_VALIDO', 1);
-                return $this->db->update('PEDIDOS');
-////    $db->query("UPDATE pedido SET status = 2 WHERE token = '{$xml->reference}'");
-            }
-        }
-    }
-
     public function enviarStatus($status) {
 //1 - Aguardando pagamento
 //2 - Em analise

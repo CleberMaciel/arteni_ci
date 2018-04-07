@@ -6,6 +6,7 @@ class Notificacao extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->load->model('Checkout_model', 'check');
 
         $this->load->library('pagseguro');
     }
@@ -19,13 +20,7 @@ class Notificacao extends CI_Controller {
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
             $this->enviarStatus($xml->status);
-            //if ($xml->status > 3) {
-//                $this->check->atualizarPedido($xml->reference, $xml->status);
-            $this->db->where('ID_PEDIDOS', $xml->reference);
-            $this->db->set('STATUS_COMPRA', $xml->status);
-            $this->db->set('STATUS_VALIDO', 1);
-            return $this->db->update('PEDIDOS');
-            //}
+            $this->check->atualizarPedido($xml->reference, $xml->status);
         }
     }
 
