@@ -19,22 +19,27 @@ class Notificacao extends CI_Controller {
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
             $this->enviarStatus($xml->status);
-//            if ($xml->status > 3) {
-////    $db->query("UPDATE pedido SET status = 2 WHERE token = '{$xml->reference}'");
-//            }
+            if ($xml->status > 3) {
+//                $this->check->atualizarPedido($xml->reference, $xml->status);
+                $this->db->where('ID_PEDIDOS', $xml->reference);
+                $this->db->set('STATUS_COMPRA', $xml->status);
+                $this->db->set('STATUS_VALIDO', 1);
+                return $this->db->update('PEDIDOS');
+////    $db-
+            }
         }
     }
 
     public function enviarStatus($status) {
-        //1 - Aguardando pagamento
-        //2 - Em analise
-        //3 - Paga
-        //4 - Disponivel
-        //5 - Em disputa
-        //6 - Devolvida
-        //7 - Cancelada
-        //8 - Debitado
-        //9 - Retenção temporaria
+//1 - Aguardando pagamento
+//2 - Em analise
+//3 - Paga
+//4 - Disponivel
+//5 - Em disputa
+//6 - Devolvida
+//7 - Cancelada
+//8 - Debitado
+//9 - Retenção temporaria
         if ($status == 1) {
             $subject = "Aguardando Pagamento";
             $mensagem = "Estamos aguardando pagamento.";
@@ -96,7 +101,7 @@ class Notificacao extends CI_Controller {
         var_dump($string);
     }
 
-    // -------------------------------------------------------------------------
+// -------------------------------------------------------------------------
     /**
      * Salva um array no arquivo pagseguro...php em cache/
      * @param type $array
