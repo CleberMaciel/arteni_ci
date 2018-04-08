@@ -22,6 +22,7 @@ class Notificacao extends CI_Controller {
             $xml = simplexml_load_string($content);
             $this->atualizarPedido($xml->reference, $xml->status);
             $this->enviarStatus($xml->status);
+            $this->enviarNotificacaoCliente($xml->reference, $xml->status);
         }
     }
 
