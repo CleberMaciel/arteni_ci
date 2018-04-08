@@ -108,7 +108,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             <a href="<?php echo base_url(); ?>cliente">Minha Conta</a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>cliente">Meus Pedidos</a>
+                                            <a href="<?php echo base_url(); ?>pedidos/meusPedidos/<?php echo $this->session->userdata('user_clientelogado')->ID_CLIENTE; ?>">Meus Pedidos</a>
                                         </li>
                                         <li>
                                             <a href="<?php echo base_url(); ?>cliente/sair">Sair</a>

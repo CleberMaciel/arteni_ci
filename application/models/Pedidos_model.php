@@ -10,39 +10,36 @@ class Pedidos_model extends CI_Model {
         return $this->db->insert('PEDIDOS', $p);
     }
 
-    function listarCliente() {
-        $lista = $this->db->get('CLIENTE');
-        return $lista->result();
+    function listarPedidos($id) {
+        $this->db->select('PEDIDOS.ID_PEDIDOS');
+        $this->db->select('PEDIDOS.CLIENTE');
+        $this->db->select('PEDIDOS.DATA');
+        $this->db->select('PEDIDOS.PRODUTOS');
+        $this->db->select('PEDIDOS.STATUS_COMPRA');
+
+        $this->db->from('PEDIDOS');
+        $this->db->where('CLIENTE', $id);
+        $this->db->where('STATUS_VALIDO', 1);
+
+        return $this->db->get()->result();
     }
 
-    function listarEstampaCombo() {
-        $this->db->where('ID_ATIVO = 1');
-        $lista = $this->db->get('ESTAMPA');
-        return $lista->result();
+    function notificarCliente($referencia, $status) {
+        $this->db->select('CLIENTE.EMAIL');
+        $this->db->from('CLIENTE');
+        $this->db->where('CLIENTE.ID_CLIENTE = PEDIDOS.CLIENTE');
+        $this->db->where('ID_PEDIDOS', $referencia);
+        $this->db->where('PEDIDOS', $status);
+        $this->db->where('STATUS_VALIDO', 1);
+        return $this->db->get()->result();
     }
 
-    function editar($id) {
-        $this->db->where('ID_ESTAMPA', $id);
-        $result = $this->db->get('ESTAMPA');
-        return $result->result();
-    }
-
-    function atualizar($data) {
-        $this->db->where('ID_MATERIA_PRIMA_TIPO', $data['id']);
-        $this->db->set($data);
-        return $this->db->update('MATERIA_PRIMA_TIPO');
-    }
-
-    function ativo($id) {
-        $this->db->where('ID_ESTAMPA', $id);
-        $this->db->set('ID_ATIVO', 1);
-        return $this->db->update('ESTAMPA');
-    }
-
-    function inativo($id) {
-        $this->db->where('ID_ESTAMPA', $id);
-        $this->db->set('ID_ATIVO', 2);
-        return $this->db->update('ESTAMPA');
+    function listar_tipo_materia($idi) {
+        $this->db->select('MATERIA_PRIMA.ID_MATERIA_PRIMA');
+        $this->db->select('MATERIA_PRIMA.NOME');
+        $this->db->select('MATERIA_PRIMA.IMAGEM');
+        $this->db->select('MATERIA_PRIMA.VALOR');
+        $this->db->select('MATERIA_PRIMA.DESCRICAO');
     }
 
 }

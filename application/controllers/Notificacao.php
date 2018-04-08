@@ -7,6 +7,7 @@ class Notificacao extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('Checkout_model', 'check');
+        $this->load->model('Pedidos_model', 'pedidos');
 
         $this->load->library('pagseguro');
     }
@@ -26,6 +27,55 @@ class Notificacao extends CI_Controller {
 
     public function atualizarPedido($referencia, $status) {
         $this->check->atualizarPedido($referencia, $status);
+    }
+
+    public function enviarNotificacaoCliente($ref, $status) {
+        $email = $this->pedidos->notificarCliente($ref, $status);
+
+        if ($status == 1) {
+            $subject = "Aguardando Pagamento";
+            $mensagem = "Estamos aguardando pagamento.";
+        } elseif ($status == 2) {
+            $subject = "Em analise";
+            $mensagem = "Seu pagamento está em analise.";
+        } elseif ($status == 3) {
+            $subject = "Pago";
+            $mensagem = "Recebemos seu pagamento.Obrigado!";
+        } elseif ($status == 4) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 5) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 6) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 7) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 8) {
+            $subject = "";
+            $mensagem = "";
+        } elseif ($status == 9) {
+            $subject = "";
+            $mensagem = "";
+        }
+
+        $this->load->library('email');
+//        $mensagem = $this->load->view('publico/emails/confirmar_cadastro', $data, TRUE);
+        $this->email->from("admin@clebermaciel.online", 'ArtêNí');
+        $this->email->subject($subject);
+        $this->email->reply_to("admin@clebermaciel.online");
+        $this->email->to($email);
+        $this->email->cc('admin@clebermaciel.online');
+        $this->email->bcc('admin@clebermaciel.online');
+        $this->email->message($mensagem);
+        if ($this->email->send()) {
+            $this->session->set_flashdata('cadastro_concluido', 'msg');
+            redirect('/Ecommerce');
+        } else {
+            print_r($this->email->print_debugger());
+        }
     }
 
     public function enviarStatus($status) {
