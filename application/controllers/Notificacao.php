@@ -31,39 +31,46 @@ class Notificacao extends CI_Controller {
     }
 
     public function enviarNotificacaoCliente($ref, $status) {
-        $email = $this->pedidos->notificarCliente($ref);
 
         if ($status == 1) {
+            $email = $this->pedidos->notificarCliente($ref);
             $subject = "Aguardando Pagamento";
             $mensagem = "Estamos aguardando pagamento.";
         } elseif ($status == 2) {
+            $email = $this->pedidos->notificarCliente($ref);
             $subject = "Em analise";
             $mensagem = "Seu pagamento está em analise.";
         } elseif ($status == 3) {
+            $email = $this->pedidos->notificarCliente($ref);
             $subject = "Pago";
             $mensagem = "Recebemos seu pagamento.Obrigado!";
         } elseif ($status == 4) {
+            $email = $this->pedidos->notificarCliente($ref);
             $subject = "";
             $mensagem = "";
         } elseif ($status == 5) {
+            $email = $this->pedidos->notificarCliente($ref);
             $subject = "";
             $mensagem = "";
         } elseif ($status == 6) {
+            $email = $this->pedidos->notificarCliente($ref);
             $subject = "";
             $mensagem = "";
         } elseif ($status == 7) {
+            $email = $this->pedidos->notificarCliente($ref);
             $subject = "";
             $mensagem = "";
         } elseif ($status == 8) {
+            $email = $this->pedidos->notificarCliente($ref);
             $subject = "";
             $mensagem = "";
         } elseif ($status == 9) {
+            $email = $this->pedidos->notificarCliente($ref);
             $subject = "";
             $mensagem = "";
         }
 
         $this->load->library('email');
-//        $mensagem = $this->load->view('publico/emails/confirmar_cadastro', $data, TRUE);
         $this->email->from("admin@clebermaciel.online", 'ArtêNí');
         $this->email->subject($subject);
         $this->email->reply_to("admin@clebermaciel.online");
