@@ -37,7 +37,7 @@ class Notificacao extends CI_Controller {
     }
 
     public function enviarStatus($referencia, $status) {
-        $email = $this->pedidos->notificarCliente($referencia);
+        $var['email'] = $this->pedidos->notificarCliente($referencia);
 //1 - Aguardando pagamento
 //2 - Em analise
 //3 - Paga
@@ -81,7 +81,7 @@ class Notificacao extends CI_Controller {
         $this->email->from("admin@clebermaciel.online", 'ArtêNí');
         $this->email->subject($subject);
         $this->email->reply_to("admin@clebermaciel.online");
-        $this->email->to($email);
+        $this->email->to($var->EMAIL);
         $this->email->cc('admin@clebermaciel.online');
         $this->email->bcc('admin@clebermaciel.online');
         $this->email->message($mensagem);
