@@ -19,6 +19,7 @@ class Checkout extends CI_Controller {
     }
 
     public function index() {
+        $dados = NULL;
         $usuario = array(
             'id' => $this->session->userdata('user_clientelogado')->ID_CLIENTE,
             'nome' => $this->session->userdata('user_clientelogado')->NOME,
@@ -52,28 +53,32 @@ class Checkout extends CI_Controller {
                 $this->pagseguro->set_products($dados);
             }
         }
+
         // ID do pedido
         $config['reference'] = rand(999, 9999);
         // gera botão
-        $botao['botao'] = $this->pagseguro->get_button($config);
+
+        if ($dados != null) {
+            $botao['botao'] = $this->pagseguro->get_button($config);
 
 
-        $dados1['ID_PEDIDOS'] = $config['reference'];
-        $dados1['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
-        $dados1['PRODUTOS'] = $this->cart->total();
-        $dados1['STATUS_COMPRA'] = 0;
-        $dados1['STATUS_VALIDO'] = 0;
-        $this->pedidos->inserir($dados1);
+            $dados1['ID_PEDIDOS'] = $config['reference'];
+            $dados1['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
+            $dados1['PRODUTOS'] = $this->cart->total();
+            $dados1['STATUS_COMPRA'] = 0;
+            $dados1['STATUS_VALIDO'] = 0;
+            $this->pedidos->inserir($dados1);
 
-        foreach ($dados as $d) {
-            $itens['PEDIDO'] = $config['reference'];
-            $itens['ITEM'] = $d['name'];
-            $itens['QUANTIDADE'] = $d['quantidade'];
-            $itens['PRECO'] = number_format($d['valor'], 2, '.', '');
-            $this->itens->inserir($itens);
+            foreach ($dados as $d) {
+                $itens['PEDIDO'] = $config['reference'];
+                $itens['ITEM'] = $d['name'];
+                $itens['QUANTIDADE'] = $d['quantidade'];
+                $itens['PRECO'] = number_format($d['valor'], 2, '.', '');
+                $this->itens->inserir($itens);
+            }
+        } else {
+            $botao['botao'] = "Sem itens no carrinho";
         }
-
-
 
         $data['tipo'] = $this->materia_tipo->listarTipo();
         $this->load->view('publico/template/header', $data);
