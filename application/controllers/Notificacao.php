@@ -28,7 +28,6 @@ class Notificacao extends CI_Controller {
             $xml = simplexml_load_string($content);
             $this->atualizarPedido($xml->reference, $xml->status);
             $this->enviarStatus($xml->reference, $xml->status);
-            // $this->enviarNotificacaoCliente($xml->reference, $xml->status);
         }
     }
 
@@ -38,15 +37,7 @@ class Notificacao extends CI_Controller {
 
     public function enviarStatus($referencia, $status) {
         $email = $this->pedidos->notificarCliente($referencia);
-//1 - Aguardando pagamento
-//2 - Em analise
-//3 - Paga
-//4 - Disponivel
-//5 - Em disputa
-//6 - Devolvida
-//7 - Cancelada
-//8 - Debitado
-//9 - Retenção temporaria
+
         if ($status == 1) {
             $subject = "Aguardando Pagamento";
             $mensagem = "Estamos aguardando pagamento.";
@@ -57,23 +48,23 @@ class Notificacao extends CI_Controller {
             $subject = "Pago";
             $mensagem = "Recebemos seu pagamento.Obrigado!";
         } elseif ($status == 4) {
-            $subject = "";
-            $mensagem = "";
+            $subject = "Disponivel";
+            $mensagem = "Sua compra ficou disponivel";
         } elseif ($status == 5) {
-            $subject = "";
-            $mensagem = "";
+            $subject = "Em disputa";
+            $mensagem = "Sua compra entrou em disputa.";
         } elseif ($status == 6) {
-            $subject = "";
-            $mensagem = "";
+            $subject = "Devolvida";
+            $mensagem = "Sua compra foi devolvida.";
         } elseif ($status == 7) {
-            $subject = "";
-            $mensagem = "";
+            $subject = "Cancelado";
+            $mensagem = "Sua compra foi Cancelada.";
         } elseif ($status == 8) {
-            $subject = "";
-            $mensagem = "";
+            $subject = "Debidado";
+            $mensagem = "Sua compra foi debitada.";
         } elseif ($status == 9) {
-            $subject = "";
-            $mensagem = "";
+            $subject = "Em retenção temporaria";
+            $mensagem = "Sua compra entrou em retenção temporaria.";
         }
 
         $this->load->library('email');
@@ -81,7 +72,7 @@ class Notificacao extends CI_Controller {
         $this->email->from("admin@clebermaciel.online", 'ArtêNí');
         $this->email->subject($subject);
         $this->email->reply_to("admin@clebermaciel.online");
-        $this->email->to('macielcleberjr@gmail.com',$email[0]->EMAIL);
+        $this->email->to($email[0]->EMAIL);
         $this->email->cc('admin@clebermaciel.online');
         $this->email->bcc('admin@clebermaciel.online');
         $this->email->message($mensagem);
