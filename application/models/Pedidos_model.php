@@ -33,7 +33,7 @@ class Pedidos_model extends CI_Model {
         $this->db->join('PEDIDOS', 'CLIENTE.ID_CLIENTE = PEDIDOS.CLIENTE');
         $this->db->where('PEDIDOS.ID_PEDIDOS', $referencia);
         $this->db->where('STATUS_VALIDO', 1);
-        return $this->db->get()->result();
+        return $this->db->get()->row();
     }
 
     function listar_tipo_materia($idi) {
