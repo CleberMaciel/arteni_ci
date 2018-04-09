@@ -31,41 +31,41 @@ class Notificacao extends CI_Controller {
     }
 
     public function enviarNotificacaoCliente($ref, $status) {
-
+        $email_cli = $this->pedidos->notificarCliente($ref);
         if ($status == 1) {
-            $email = $this->pedidos->notificarCliente($ref);
+            $email = $email_cli[0];
             $subject = "Aguardando Pagamento";
             $mensagem = "Estamos aguardando pagamento.";
         } elseif ($status == 2) {
-            $email = $this->pedidos->notificarCliente($ref);
+            $email = $email_cli[0];
             $subject = "Em analise";
             $mensagem = "Seu pagamento está em analise.";
         } elseif ($status == 3) {
-            $email = $this->pedidos->notificarCliente($ref);
+            $email = $email_cli[0];
             $subject = "Pago";
             $mensagem = "Recebemos seu pagamento.Obrigado!";
         } elseif ($status == 4) {
-            $email = $this->pedidos->notificarCliente($ref);
+            $email = $email_cli[0];
             $subject = "";
             $mensagem = "";
         } elseif ($status == 5) {
-            $email = $this->pedidos->notificarCliente($ref);
+            $email = $email_cli[0];
             $subject = "";
             $mensagem = "";
         } elseif ($status == 6) {
-            $email = $this->pedidos->notificarCliente($ref);
+            $email = $email_cli[0];
             $subject = "";
             $mensagem = "";
         } elseif ($status == 7) {
-            $email = $this->pedidos->notificarCliente($ref);
+            $email = $email_cli[0];
             $subject = "";
             $mensagem = "";
         } elseif ($status == 8) {
-            $email = $this->pedidos->notificarCliente($ref);
+            $ $email = $email_cli[0];
             $subject = "";
             $mensagem = "";
         } elseif ($status == 9) {
-            $email = $this->pedidos->notificarCliente($ref);
+            $email = $email_cli[0];
             $subject = "";
             $mensagem = "";
         }
