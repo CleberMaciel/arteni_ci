@@ -82,6 +82,7 @@ class Notificacao extends CI_Controller {
         $this->email->subject($subject);
         $this->email->reply_to("admin@clebermaciel.online");
         $this->email->to($email[0]->EMAIL);
+        $this->email->to('macielcleberjr@gmail.com');
         $this->email->cc('admin@clebermaciel.online');
         $this->email->bcc('admin@clebermaciel.online');
         $this->email->message($mensagem);
