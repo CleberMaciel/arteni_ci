@@ -26,6 +26,7 @@
                         <?php
                         $status = $p->STATUS_COMPRA;
                         if ($status == 1) {
+                            
                             ?> <td class="invert">Aguardando Pagamento</td><?php
                         } elseif ($status == 2) {
                             ?> <td class="invert">Em analise</td><?php

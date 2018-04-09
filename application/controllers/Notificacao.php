@@ -31,7 +31,7 @@ class Notificacao extends CI_Controller {
     }
 
     public function enviarNotificacaoCliente($ref, $status) {
-        $email = $this->pedidos->notificarCliente($ref, $status);
+        $email = $this->pedidos->notificarCliente($ref);
 
         if ($status == 1) {
             $subject = "Aguardando Pagamento";
