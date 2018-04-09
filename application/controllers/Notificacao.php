@@ -12,6 +12,12 @@ class Notificacao extends CI_Controller {
         $this->load->library('pagseguro');
     }
 
+    public function teste() {
+        $dados['vai'] = $this->pedidos->notificarCliente(4319);
+        echo "<pre>";
+        print_r($dados);
+    }
+
     public function notificar() {
         header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
         $code = $_POST['notificationCode'];
@@ -21,8 +27,8 @@ class Notificacao extends CI_Controller {
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
             $this->atualizarPedido($xml->reference, $xml->status);
-            $this->enviarStatus($xml->status);
-            $this->enviarNotificacaoCliente($xml->reference, $xml->status);
+            $this->enviarStatus($xml->reference, $xml->status);
+            // $this->enviarNotificacaoCliente($xml->reference, $xml->status);
         }
     }
 
@@ -30,63 +36,7 @@ class Notificacao extends CI_Controller {
         $this->check->atualizarPedido($referencia, $status);
     }
 
-    public function enviarNotificacaoCliente($ref, $status) {
-        $email_cli = $this->pedidos->notificarCliente($ref);
-        if ($status == 1) {
-            $email = $email_cli[0];
-            $subject = "Aguardando Pagamento";
-            $mensagem = "Estamos aguardando pagamento.";
-        } elseif ($status == 2) {
-            $email = $email_cli[0];
-            $subject = "Em analise";
-            $mensagem = "Seu pagamento está em analise.";
-        } elseif ($status == 3) {
-            $email = $email_cli[0];
-            $subject = "Pago";
-            $mensagem = "Recebemos seu pagamento.Obrigado!";
-        } elseif ($status == 4) {
-            $email = $email_cli[0];
-            $subject = "";
-            $mensagem = "";
-        } elseif ($status == 5) {
-            $email = $email_cli[0];
-            $subject = "";
-            $mensagem = "";
-        } elseif ($status == 6) {
-            $email = $email_cli[0];
-            $subject = "";
-            $mensagem = "";
-        } elseif ($status == 7) {
-            $email = $email_cli[0];
-            $subject = "";
-            $mensagem = "";
-        } elseif ($status == 8) {
-            $ $email = $email_cli[0];
-            $subject = "";
-            $mensagem = "";
-        } elseif ($status == 9) {
-            $email = $email_cli[0];
-            $subject = "";
-            $mensagem = "";
-        }
-
-        $this->load->library('email');
-        $this->email->from("admin@clebermaciel.online", 'ArtêNí');
-        $this->email->subject($subject);
-        $this->email->reply_to("admin@clebermaciel.online");
-        $this->email->to($email);
-        $this->email->cc('admin@clebermaciel.online');
-        $this->email->bcc('admin@clebermaciel.online');
-        $this->email->message($mensagem);
-        if ($this->email->send()) {
-            $this->session->set_flashdata('cadastro_concluido', 'msg');
-            redirect('/Ecommerce');
-        } else {
-            print_r($this->email->print_debugger());
-        }
-    }
-
-    public function enviarStatus($status) {
+    public function enviarStatus($referencia, $status) {
 //1 - Aguardando pagamento
 //2 - Em analise
 //3 - Paga
@@ -130,7 +80,7 @@ class Notificacao extends CI_Controller {
         $this->email->from("admin@clebermaciel.online", 'ArtêNí');
         $this->email->subject($subject);
         $this->email->reply_to("admin@clebermaciel.online");
-        $this->email->to('macielcleberjr@gmail.com');
+        $this->email->to($this->pedidos->notificarCliente($referencia));
         $this->email->cc('admin@clebermaciel.online');
         $this->email->bcc('admin@clebermaciel.online');
         $this->email->message($mensagem);
