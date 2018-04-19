@@ -10,9 +10,10 @@ class Ecommerce extends CI_Controller {
     }
 
     public function index() {
+        $data['materia'] = $this->materia_tipo->listar_tipo_materia(49);
         $data['tipo'] = $this->materia_tipo->listarTipo();
         $this->load->view('publico/template/header', $data);
-        $this->load->view('publico/produtos/produtos');
+        $this->load->view('publico//materia_prima/materia', $data);
         $this->load->view('publico/template/footer');
     }
 

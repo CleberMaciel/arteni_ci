@@ -11,6 +11,7 @@ class Materia_prima extends CI_Controller {
         $this->load->model('Estampa_model', 'model_estampa');
         if (!$this->session->userdata('logado')) {
             redirect('Painel');
+            
         }
     }
 

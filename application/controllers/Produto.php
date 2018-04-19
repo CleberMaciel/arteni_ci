@@ -8,7 +8,6 @@ class Produto extends CI_Controller {
         parent::__construct();
         $this->load->model('Materia_prima_model', 'model_prima');
         $this->load->model('Produto_model', 'produto');
-
         if (!$this->session->userdata('logado')) {
             redirect('Painel');
         }

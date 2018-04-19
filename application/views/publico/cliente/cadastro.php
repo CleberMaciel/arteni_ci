@@ -43,6 +43,8 @@
                 <label for="cpf" class="control-label required">CPF</label>
                 <input type="text" name="cpf" id="cpf" placeholder="CPF" value="" required>
 
+                <label for="cpf" class="control-label required">Telefone</label>
+                <input type="text" name="cpf" id="cpf" placeholder="Telefone" value="" required>
 
                 <label for="datanascimento" class="control-label required">Data de nascimento</label>
                 <input type="text" name="datanascimento" id="datanascimento" placeholder="Data de nascimento" required> 
