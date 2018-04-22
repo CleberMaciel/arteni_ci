@@ -11,7 +11,6 @@ class Materia_prima extends CI_Controller {
         $this->load->model('Estampa_model', 'model_estampa');
         if (!$this->session->userdata('logado')) {
             redirect('Painel');
-            
         }
     }
 
@@ -90,6 +89,7 @@ class Materia_prima extends CI_Controller {
                 $uploadData['file_name'] = "semimagem.jpeg";
             } else {
                 $uploadData = $this->upload->data();
+                $data['IMAGEM'] = $uploadData['file_name'];
             }
         }
 
@@ -100,7 +100,7 @@ class Materia_prima extends CI_Controller {
         $data['VALOR'] = $this->input->post('valor');
         $data['ID_MATERIA_PRIMA_TIPO'] = $this->input->post('tipo');
         $data['ID_ESTAMPA'] = $this->input->post('estampa');
-        $data['IMAGEM'] = $uploadData['file_name'];
+
 
         $result = $this->model_prima->atualizar($data);
         if ($result == true) {
