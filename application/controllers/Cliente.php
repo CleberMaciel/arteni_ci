@@ -86,6 +86,7 @@ class Cliente extends CI_Controller {
         $data['SENHA'] = $this->input->post('password');
         $data['CEP'] = str_replace("-", "", $this->input->post('cep'));
         $data['ESTADO'] = $this->input->post('estado');
+        $data['TELEFONE'] = $this->input->post('telefone');
         $data['CIDADE'] = $this->input->post('cidade');
         $data['RUA'] = $this->input->post('rua');
         $data['BAIRRO'] = $this->input->post('bairro');

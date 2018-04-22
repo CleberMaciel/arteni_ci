@@ -1,7 +1,6 @@
 <div class="w3l_banner_nav_right">
     <div class="w3ls_w3l_banner_nav_right_grid">
         <div class="w3ls_w3l_banner_nav_right_grid1">
-
             <?php foreach ($materia as $mat) : ?>
                 <div class="col-md-3 w3ls_w3l_banner_left">
                     <div class="hover14 column">
@@ -27,7 +26,6 @@
                                                 <input type="hidden" name="quantidade" value="1" />
                                                 <input type="submit" name="submit" value="Adicionar ao carrinho" class="button" />
                                             </fieldset>
-                                            
                                             <?php echo form_close(); ?>
                                         </div>
                                     </div>
@@ -36,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             <?php endforeach; ?>
         </div>
         <div class="clearfix"> </div>

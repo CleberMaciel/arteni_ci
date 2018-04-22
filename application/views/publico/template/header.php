@@ -156,7 +156,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <!--<li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234 567</li>-->
                         <li>
                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                            <a href="mailto:store@grocery.com">store@grocery.com</a>
+                            <a href="mailto:admin@clebermaciel.online">admin@clebermaciel.online</a>
                         </li>
                     </ul>
                 </div>

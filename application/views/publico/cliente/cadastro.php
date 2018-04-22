@@ -31,22 +31,32 @@
                     <span data-valmsg-for="sobrenome" data-valmsg-replace="true" />
                 </div>
 
+                <div class="form-group">
+                    <label for="sobrenome">E-mail(*)</label>
+                    <input class="form-control" type="email" name="email" placeholder="email" maxLength="255"  data-val="true"
+                           data-val-required="Digite seu e-mail." 
+                           data-val-length="Deve ser no formato de e-mail." data-val-length-min="2" required>
+                    <span data-valmsg-for="email" data-valmsg-replace="true" />
+                </div>
 
-                <label for="email" class="control-label required">E-mail</label>
-                <input type="email" name="email" placeholder="Email" required>
+
+                     <div class="form-group">
+                    <label for="sobrenome">Senha(*)</label>
+                    <input class="form-control" type="password" name="password" placeholder="sua senha" maxLength="255"  data-val="true"
+                           data-val-required="Digite sua senha." 
+                           data-val-length="Deve conter no minimo 6 digitos." data-val-length-min="6" required>
+                    <span data-valmsg-for="password" data-valmsg-replace="true" />
+                </div>
 
 
-                <label for="password" class="control-label required">Senha</label>
-                <input type="password" name="password" placeholder="Senha" required>
 
-
-                <label for="cpf" class="control-label required">CPF</label>
+                <label for="cpf" class="control-label required">CPF(*)</label>
                 <input type="text" name="cpf" id="cpf" placeholder="CPF" value="" required>
 
-                <label for="cpf" class="control-label required">Telefone</label>
-                <input type="text" name="cpf" id="cpf" placeholder="Telefone" value="" required>
+                <label for="cpf" class="control-label required">Telefone(*)</label>
+                <input type="text" name="telefone" id="telefone" placeholder="Telefone" value="" required>
 
-                <label for="datanascimento" class="control-label required">Data de nascimento</label>
+                <label for="datanascimento" class="control-label required">Data de nascimento(*)</label>
                 <input type="text" name="datanascimento" id="datanascimento" placeholder="Data de nascimento" required> 
 
 
@@ -55,27 +65,27 @@
                 <legend id="legenda">Endereço de Entrega</legend>
 
 
-                <label for="cep" class="control-label required">CEP</label>
+                <label for="cep" class="control-label required">CEP(*)</label>
                 <input type="text" name="cep" id="cep" placeholder="CEP" required>
 
 
-                <label for="estado" class="control-label required">Estado</label>
+                <label for="estado" class="control-label required">Estado(*)</label>
                 <input type="text" name="estado" id="estado" placeholder="Estado" required>
 
 
-                <label for="cidade" class="control-label required">Cidade</label>
+                <label for="cidade" class="control-label required">Cidade(*)</label>
                 <input type="text" name="cidade" id="cidade" placeholder="Cidade" required>
 
 
-                <label for="bairro" class="control-label required">Bairro</label>
+                <label for="bairro" class="control-label required">Bairro(*)</label>
                 <input type="text" name="bairro" id="bairro" placeholder="Bairro" required>
 
 
-                <label for="rua" class="control-label required">Rua</label>
+                <label for="rua" class="control-label required">Rua(*)</label>
                 <input type="text" name="rua" id="rua" placeholder="Rua" required>
 
 
-                <label for="numero" class="control-label required">Número</label>
+                <label for="numero" class="control-label required">Número(*)</label>
                 <input type="text" name="numero" id="numero" placeholder="Número" required>
 
 

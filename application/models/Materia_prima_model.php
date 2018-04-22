@@ -47,7 +47,7 @@ class Materia_prima_model extends CI_Model {
 
     function ativoVenda($id) {
         $this->db->where('ID_MATERIA_PRIMA', $id);
-        $this->db->set('ID_VendA', 1);
+        $this->db->set('ID_VENDA', 1);
         return $this->db->update('MATERIA_PRIMA');
     }
 
