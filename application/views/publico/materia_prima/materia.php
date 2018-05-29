@@ -11,14 +11,15 @@
                                 <figure>
                                     <div class="snipcart-item block">
                                         <div class="snipcart-thumb">
-                                            <a href="<?php echo base_url() . 'listar_materia/detalhes/' . $mat->ID_MATERIA_PRIMA ?>"><img style="width:140px" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $mat->IMAGEM; ?>" alt="<?php echo $mat->NOME; ?>" /></a>
+                                            <a href="<?php echo base_url() . 'materia_prima/detalhes/' . $mat->ID_MATERIA_PRIMA ?>"><img style="width:140px" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $mat->IMAGEM; ?>" alt="<?php echo $mat->NOME; ?>" /></a>
                                             <p><?php echo $mat->NOME; ?></p>
+                                            <p>Quantidade em estoque:<?php echo $mat->QTD_TOTAL; ?></p>
                                             <h4>R$<?php echo $mat->VALOR; ?></h4>
                                         </div>
                                         <div class="snipcart-details">
                                             <?php echo form_open("Checkout/adicionar"); ?>
                                             <fieldset>
-                                                <input type="hidden" name="id" value="<?php echo $mat->ID_MATERIA_PRIMA; ?>" />
+                                                <input type="hidden" name="idmateria" value="<?php echo $mat->ID_MATERIA_PRIMA; ?>" />
                                                 <input type="hidden" name="descricao" value="<?php echo $mat->DESCRICAO; ?>" />
                                                 <input type="hidden" name="nome" value="<?php echo $mat->NOME; ?>" />
                                                 <input type="hidden" name="preco" value="<?php echo $mat->VALOR ?>" />

@@ -25,12 +25,4 @@ class Listar_materia extends CI_Controller {
         $this->load->view('publico/template/footer');
     }
 
-    public function detalhes($idi) {
-        $data['materia'] = $this->model->detalhes($idi);
-        $data['tipo'] = $this->model->listarTipo();
-        $this->load->view('publico/template/header', $data);
-        $this->load->view('publico/materia_prima/detalhes', $data);
-        $this->load->view('publico/template/footer');
-    }
-
 }

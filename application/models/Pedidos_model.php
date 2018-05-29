@@ -14,11 +14,26 @@ class Pedidos_model extends CI_Model {
         $this->db->select('PEDIDOS.ID_PEDIDOS');
         $this->db->select('PEDIDOS.CLIENTE');
         $this->db->select('PEDIDOS.DATA');
-        $this->db->select('PEDIDOS.PRODUTOS');
+        $this->db->select('PEDIDOS.VALOR_PEDIDO');
         $this->db->select('PEDIDOS.STATUS_COMPRA');
-
         $this->db->from('PEDIDOS');
-        $this->db->where('CLIENTE', $id);
+        $this->db->join('CLIENTE', 'CLIENTE.ID_CLIENTE= PEDIDOS.CLIENTE');
+        $this->db->where('CLIENTE.ID_CLIENTE', $id);
+        $this->db->where('STATUS_VALIDO', 1);
+
+        return $this->db->get()->result();
+    }
+
+    function listarPedidosClientes() {
+        $this->db->select('PEDIDOS.ID_PEDIDOS');
+        $this->db->select('CLIENTE.NOME');
+        $this->db->select('CLIENTE.EMAIL');
+        $this->db->select('PEDIDOS.DATA');
+        $this->db->select('PEDIDOS.RASTREIO');
+        $this->db->select('PEDIDOS.VALOR_PEDIDO');
+        $this->db->select('PEDIDOS.STATUS_COMPRA');
+        $this->db->from('PEDIDOS');
+        $this->db->join('CLIENTE', 'CLIENTE.ID_CLIENTE= PEDIDOS.CLIENTE');
         $this->db->where('STATUS_VALIDO', 1);
 
         return $this->db->get()->result();

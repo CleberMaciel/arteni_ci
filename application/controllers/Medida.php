@@ -6,8 +6,8 @@ class Medida extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('Medida_model', 'model');
-        
+        $this->load->model('Medida_model', 'medida');
+
         if (!$this->session->userdata('logado')) {
             redirect('Painel');
         }
@@ -15,29 +15,31 @@ class Medida extends CI_Controller {
 
     public function index() {
         $this->load->view('admin/template/header');
-        $data['medida'] = $this->model->listarMedida();
+        $data['medida'] = $this->medida->listar();
         $this->load->view('admin/medida/medida', $data);
         $this->load->view('admin/template/footer');
     }
 
     public function inserir() {
-        $this->form_validation->set_rules('estampa', 'Estampa', 'required|is_unique[ESTAMPA.NOME]');
+        $data['NOME'] = $this->input->post('medida');
+        $data['DESCRICAO'] = $this->input->post('descricao');
+        $this->medida->inserir($data);
+        redirect('/Medida');
+    }
+    
+    public function editar($idi) {
+        $data['medida'] = $this->medida->editar($idi);
+        $this->load->view('admin/template/header');
+        $this->load->view('admin/medida/editar', $data);
+        $this->load->view('admin/template/footer');
+    }
 
-        if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('estampa_existe', 'msg');
-            redirect('/Estampa');
-        } else {
-            $data['NOME'] = $this->input->post('estampa');
-            $data['ID_ATIVO'] = $this->input->post('ativo');
-            $result = $this->model->inserir($data);
-            if ($result == true) {
-                $this->session->set_flashdata('estampa_ok', 'msg');
-                redirect('/Estampa');
-            } else {
-                $this->session->set_flashdata('estampa_fail', 'msg');
-                redirect('/Estampa');
-            }
-        }
+    public function atualizar() {
+        $data['ID_MEDIDA'] = $this->input->post('ID_MEDIDA');
+        $data['NOME'] = $this->input->post('medida');
+        $data['DESCRICAO'] = $this->input->post('descricao');
+        $this->medida->atualizar($data);
+        redirect('/Medida');
     }
 
 }

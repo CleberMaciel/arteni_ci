@@ -180,21 +180,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
-                            <li>
+<!--                            <li>
                                 <a href="kitchen.html">Faça seu pedido!</a>
-                            </li>
+                            </li>-->
 
                             <li class="dropdown mega-dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modelos
                                     <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
                                     <div class="w3ls_vegetables">
                                         <ul>
-                                            <?php foreach ($tipo as $tipos): ?>
+                                            <?php foreach ($categoria as $c): ?>
                                                 <li>
-                                                    <a href="<?php echo base_url('listar_materia/listar_materia/') . $tipos->ID_MATERIA_PRIMA_TIPO; ?>">
-                                                        <?php echo $tipos->NOME; ?>
+
+                                                    <a href="<?php echo base_url('modelo/mostrarModelos/') . $c->ID_CATEGORIA; ?>">
+                                                        <?php echo $c->NOME; ?>
                                                     </a>
                                                 </li>
                                             <?php endforeach; ?>
@@ -202,24 +203,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                 </div>
                             </li>
-                            <li class="dropdown mega-dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matéria-Prima
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-                                    <div class="w3ls_vegetables">
-                                        <ul>
-                                            <?php foreach ($tipo as $tipos): ?>
-                                                <li>
-                                                    <a href="<?php echo base_url('listar_materia/listar_materia/') . $tipos->ID_MATERIA_PRIMA_TIPO; ?>">
-                                                        <?php echo $tipos->NOME; ?>
-                                                    </a>
-                                                </li>
-                                            <?php endforeach; ?>
-                                        </ul>
+                            <?php foreach ($tipo as $t): ?>
+                                <li class="dropdown mega-dropdown active">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php echo $t->NOME; ?>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                                        <div class="w3ls_vegetables">
+                                            <ul>
+                                                <?php foreach ($sub as $s): ?>
+                                                    <li>
+                                                        <?php if ($t->ID_MATERIA_PRIMA_TIPO == $s->ID_MATERIA_PRIMA_TIPO) { ?>
+                                                            <a href="<?php echo base_url('materia_prima/mostrarMateria/') . $s->ID_SUB_MPT; ?>">
+                                                                <?php echo $s->NOME; ?>
+                                                            </a>
+                                                        <?php } ?>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

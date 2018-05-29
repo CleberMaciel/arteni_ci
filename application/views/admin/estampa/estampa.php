@@ -14,9 +14,17 @@
                     <?php echo form_open('Estampa/inserir'); ?> 
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Nome da Estampa</label>
-                            <input class="form-control" placeholder="Texto aqui" name="estampa" required="true">
-                            <input type="hidden" name="ativo" value="1">
+                            <label>Titulo da Estampa</label>
+                            <input class="form-control" placeholder="Titulo da estampa" name="estampa" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label>Cor da estampa</label>
+                            <select class="form-control" name="cor">
+                                <option selected="true" disabled="disabled">Escola a cor</option>    
+                                <?php foreach ($cor as $c): ?>
+                                    <option value="<?php echo $c->ID_COR; ?>"><?php echo $c->NOME; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-default">Salvar</button>
                         <button type="reset" class="btn btn-default">Limpar campo</button>
@@ -41,15 +49,15 @@
                                     <?php foreach ($estampa as $e): ?>
                                         <td><?php echo $e->NOME; ?> </td>
                                         <td><?php
-                                            if ($e->ID_ATIVO == 1) {
+                                            if ($e->STATUS_E == 1) {
                                                 echo "Ativo";
                                             } else {
                                                 echo "Inativo";
                                             }
                                             ?> </td>
-                                        <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Estampa/ativo/' . $e->ID_ESTAMPA; ?>">Editar</a></td>       
+                                        <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Estampa/editar/' . $e->ID_ESTAMPA; ?>">Editar</a></td>       
                                         <?php
-                                        if ($e->ID_ATIVO == 1) {
+                                        if ($e->STATUS_E == 1) {
                                             ?>
                                             <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Estampa/inativo/' . $e->ID_ESTAMPA; ?>">Desativar</a></td> 
                                             <?php

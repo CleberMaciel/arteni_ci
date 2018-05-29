@@ -20,14 +20,6 @@ class Materia_tipo extends CI_Controller {
         $this->load->view('admin/template/footer');
     }
 
-    public function listar_materia($idi) {
-        $data['materia'] = $this->model->listar_tipo_materia($idi);
-        $data['tipo'] = $this->model->listarTipo();
-        $this->load->view('publico/template/header', $data);
-        $this->load->view('publico/materia_prima/materia', $data);
-        $this->load->view('publico/template/footer');
-    }
-
     public function detalhes($idi) {
         $data['materia'] = $this->model->detalhes($idi);
         $data['tipo'] = $this->model->listarTipo();
@@ -44,7 +36,7 @@ class Materia_tipo extends CI_Controller {
             redirect('Materia_tipo');
         } else {
             $data['NOME'] = $this->input->post('tipo');
-            $data['ID_ATIVO'] = $this->input->post('ativo');
+
             $result = $this->model->inserir($data);
             if ($result == true) {
                 $this->session->set_flashdata('tipo_ok', 'msg');

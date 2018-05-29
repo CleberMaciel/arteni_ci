@@ -16,6 +16,10 @@ class Checkout extends CI_Controller {
         $this->load->model('Pedidos_model', 'pedidos');
         $this->load->model('Itens_model', 'itens');
         $this->load->model('Checkout_model', 'check');
+        $this->load->model('Materia_sub_model', 'model_sub');
+        $this->load->model('Produto_model', 'produto');
+        $this->load->model('Produto_mp_model', 'produto_mp');
+        $this->load->model('Categoria_modelo_model', 'categoria');
     }
 
     public function index() {
@@ -39,7 +43,7 @@ class Checkout extends CI_Controller {
 
         $this->pagseguro->set_user($usuario);
 
-        // insere produtos para botão PagSeguro
+// insere produtos para botão PagSeguro
         foreach ($this->cart->contents() as $p) {
 
             $produtos['id'] = $p['id'];
@@ -54,9 +58,9 @@ class Checkout extends CI_Controller {
             }
         }
 
-        // ID do pedido
+// ID do pedido
         $config['reference'] = rand(999, 9999);
-        // gera botão
+// gera botão
 
         if ($dados != null) {
             $botao['botao'] = $this->pagseguro->get_button($config);
@@ -64,34 +68,70 @@ class Checkout extends CI_Controller {
 
             $dados1['ID_PEDIDOS'] = $config['reference'];
             $dados1['CLIENTE'] = $this->session->userdata('user_clientelogado')->ID_CLIENTE;
-            $dados1['PRODUTOS'] = $this->cart->total();
+            $dados1['VALOR_PEDIDO'] = $this->cart->total();
             $dados1['STATUS_COMPRA'] = 0;
             $dados1['STATUS_VALIDO'] = 0;
             $this->pedidos->inserir($dados1);
 
             foreach ($dados as $d) {
-                $itens['PEDIDO'] = $config['reference'];
-                $itens['ITEM'] = $d['name'];
+                $itens['ID_PEDIDO'] = $config['reference'];
+                $itens['ID_PRODUTO'] = $d['id'];
                 $itens['QUANTIDADE'] = $d['quantidade'];
                 $itens['PRECO'] = number_format($d['valor'], 2, '.', '');
                 $this->itens->inserir($itens);
+
+//                $itens['ID_PEDIDO'] = 1142;
+//                $itens['ID_PRODUTO'] = 92;
+//                $itens['QUANTIDADE'] = 1;
+//                $itens['PRECO'] = 1.0;
+//                $this->itens->inserir($itens);
             }
         } else {
             $botao['botao'] = "Sem itens no carrinho";
         }
-
-        $data['tipo'] = $this->materia_tipo->listarTipo();
+        $data['categoria'] = $this->categoria->listar();
+        $data['tipo'] = $this->materia_tipo->lista();
+        $data['sub'] = $this->model_sub->listaSub();
         $this->load->view('publico/template/header', $data);
         $this->load->view('publico/checkout/checkout', $botao);
         $this->load->view('publico/template/footer');
     }
 
     public function adicionar() {
-        $dados['id'] = $this->input->post('id');
+        $data['ID_MATERIA_PRIMA'] = $this->input->post('idmateria');
+        $data['STATUS_PC'] = 1;
+        $id_produto = $this->produto->inserir($data);
+
+        $dados['id'] = $id_produto;
         $dados['qty'] = $this->input->post('quantidade');
         $dados['price'] = $this->input->post('preco');
         $dados['name'] = $this->input->post('nome');
         $dados['foto'] = $this->input->post('foto');
+        $this->cart->insert($dados);
+        redirect("checkout");
+    }
+
+    //adiciona modelo ao carrinho de compras
+    public function adicionarModelo() {
+        $data['ID_MODELO'] = $this->input->post('idmodelo');
+        $data['STATUS_PC'] = 1;
+
+        $id_produto = $this->produto->inserir($data);
+        foreach ($this->input->post('materiaprima') as $k => $m) {
+            $data1['ID_PRODUTO'] = $id_produto;
+            $data1['ID_MATERIA_PRIMA'] = $m;
+
+            $data1['EXTERNO'] = $m[1];
+            $data1['INTERNO'] = $m[1];
+            $data1['QUANTIDADE'] = 1;
+            $this->produto_mp->inserir($data1);
+        }
+
+        $dados['id'] = $id_produto;
+        $dados['qty'] = 1;
+        $dados['price'] = $this->input->post('preco');
+        $dados['name'] = $this->input->post('nome');
+        $dados['foto'] = 1;
         $this->cart->insert($dados);
         redirect("checkout");
     }

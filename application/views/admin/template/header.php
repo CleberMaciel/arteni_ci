@@ -116,27 +116,53 @@
 
                             <!--scan-->
                             <li>
-
                                 <a href="#"><i class="fa fa-user fa-fw"></i>Clientes<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="<?php echo base_url(); ?>Cliente/listarCliente/"><i class="fa fa-list fa-fw"></i> Ver Clientes</a>
                                     </li>
                                     <li>
+                                        <a href="<?php echo base_url(); ?>Pedidos/listarPedidosCliente/"><i class="fa fa-list fa-fw"></i> Pedidos </a>
+                                    </li>
+                                    <li>
 
                                     </li>
                                 </ul>
                             </li>
+
+                            <!--cor-->
+                            <li>
+                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Cores<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?php echo base_url(); ?>cor">Adicionar cor</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--cor-->
+                            <!--medida-->
+                            <li>
+                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Medida<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?php echo base_url(); ?>medida">Adicionar Medida</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <!--medida-->
                             <!--materia prima-->
                             <li>
-
                                 <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Matéria-Prima<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="<?php echo base_url(); ?>materia_prima">Matéria-Prima</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url(); ?>materia_tipo">Tipo de Matéria-Prima</a>
+                                        <a href="<?php echo base_url(); ?>materia_tipo"> Tipo de Matéria-Prima</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url(); ?>materia_sub_mpt">SubCategoria Tipo de Matéria-Prima</a>
                                     </li>
                                 </ul>
                             </li>
@@ -154,16 +180,27 @@
                             <!--estampa-->
                             <!--produto-->
                             <li>
-                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Produto<span class="fa arrow"></span></a>
+<!--                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Produto<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="<?php echo base_url(); ?>produto">Criar Produto</a>
+                                        <a href="<?php echo base_url(); ?>produto/adicionarMateria">Adicionar Matéria-prima</a>
                                         <a href="<?php echo base_url(); ?>produto_listar">Listar Produtos</a>
+                                    </li>
+                                </ul>-->
+                            </li>
+                            <!--produto-->
+                            <!--modelo-->
+                            <li>
+                                <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Modelo<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?php echo base_url(); ?>modelo">Criar Modelo</a>
+                                        <a href="<?php echo base_url(); ?>modelo/listarModelosCriados">Listar Modelos</a>
                                     </li>
                                 </ul>
                             </li>
-                            <!--produto-->
-
+                            <!--modelo-->
                         </ul> <!---fim do sidbar --->
 
                     </div>

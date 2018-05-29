@@ -14,16 +14,19 @@
                     <?php echo form_open_multipart('Materia_prima/inserir'); ?> 
                     <div class="form-group">
                         <div class="form-group">
-                            <input type="hidden" name="ativo" value="1">
-                            <input type="hidden" name="venda" value="1">
+                            <input type="checkbox" class="form-check-input" name="externo">
+                            <label class="form-check-label" for="exclusivo">Matéria-prima exclusiva para uso externo.</label>
+                        </div>
+                        <div class="form-group">
                             <label>Nome da matéria-prima</label>
-                            <input class="form-control" placeholder="Texto aqui" name="nome" required="true">
-                            <input type="hidden" name="ativo" value="1">
+                            <span class="glyphicon glyphicon-exclamation-sign" data-toggle="tooltip" title="Informar o nome da máteria-prima que irá ser cadastrada. Exemplo: Tricoline."></span>
+                            <input class="form-control" placeholder="Nome da matéria-prima" name="nome" required="true">
                         </div>                    
                         <div class="form-group">
                             <label>Descrição</label>
                             <textarea class="form-control" placeholder="Descrição da matéria-prima" name="descricao" rows="3"></textarea>
                         </div>
+
                         <div class="form-group">
                             <label>Imagem (Tamanho máximo 2MB).</label>
                             <input type="file" name="img">
@@ -31,22 +34,46 @@
                         <div class="form-group">
                             <label>Quantidade adicionada</label>
                             <input class="form-control" placeholder="Quantidade" name="quantidade" required="true" type="number">                            
-                        </div>     
+                        </div>
                         <div class="form-group">
-                            <label>Valor</label>
+                            <label>Quantidade do estoque minimo</label>
+                            <input class="form-control" placeholder="Quantidade do estoque minimo" name="minimo" required="true" type="number">                            
+                        </div>
+                        <div class="form-group">
+                            <label>Valor R$</label>
                             <input class="form-control" placeholder="Valor" name="valor" required="true" type="number" step="0.01">                            
                         </div>     
 
                         <div class="form-group">
-                            <label>Tipo da matéria-prima</label>
-                            <select class="form-control" name="tipo">
-                                <?php foreach ($tipo as $t): ?>
-                                    <option value="<?php echo $t->ID_MATERIA_PRIMA_TIPO; ?>"><?php echo $t->NOME; ?></option>
+                            <label>Cor da Matéria-prima</label>
+                            <select class="form-control" name="cor">
+                                <option selected="true" disabled="disabled">Escola a cor</option>    
+                                <?php foreach ($cor as $c): ?>
+                                    <option value="<?php echo $c->ID_COR; ?>"><?php echo $c->NOME; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Unidade de Medida</label>
+                            <select class="form-control" name="medida">
+                                <option selected="true" disabled="disabled">Escola a unidade</option>    
+                                <?php foreach ($medida as $m): ?>
+                                    <option value="<?php echo $m->ID_MEDIDA; ?>"><?php echo $m->NOME; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Estampa/Cor</label>
+                            <label>Categoria da matéria-prima</label>
+                            <select class="form-control" name="sub">
+                                <option selected="true" disabled="disabled">Escola a categoria</option>    
+                                <?php foreach ($sub as $s): ?>
+                                    <option value="<?php echo $s->ID_SUB_MPT; ?>"><?php echo $s->NOMET . " - "; ?><?php echo $s->NOME; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Estampa</label>
                             <select class="form-control" name="estampa">
                                 <?php foreach ($estampa as $e): ?>
                                     <option value="<?php echo $e->ID_ESTAMPA; ?>"><?php echo $e->NOME; ?></option>
@@ -103,7 +130,7 @@
 
                                         </td>
                                         <?php
-                                        if ($m->ID_VENDA == 1) {
+                                        if ($m->STATUS_VENDA == 1) {
                                             ?>
                                             <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/inativoVenda/' . $m->ID_MATERIA_PRIMA ?>">Desativar Venda</a></td> 
                                             <?php
@@ -114,7 +141,7 @@
                                         }
                                         ?>
                                         <td><?php
-                                            if ($m->ID_ATIVO == 1) {
+                                            if ($m->STATUS_MP == 1) {
                                                 ?> <span class="label label-success">Ativo</span><?php
                                             } else {
                                                 ?> <span class="label label-danger">Inativo</span><?php
@@ -122,7 +149,7 @@
                                             ?> </td>
 
                                         <?php
-                                        if ($m->ID_ATIVO == 1) {
+                                        if ($m->STATUS_MP == 1) {
                                             ?>
                                             <td><a class="btn btn-danger btn-sm" role="button" href="<?php echo base_url() . 'Materia_prima/inativo/' . $m->ID_MATERIA_PRIMA; ?>">Desativar</a></td> 
                                             <?php
@@ -144,3 +171,8 @@
 
 
 
+                <script>
+                    $(document).ready(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
+                </script>

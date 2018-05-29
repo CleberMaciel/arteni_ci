@@ -7,39 +7,36 @@ class Produto_model extends CI_Model {
     }
 
     function inserir($p) {
-        return $this->db->insert('PRODUTO_CRIACAO', $p);
+         $this->db->insert('PRODUTO', $p);
+        return $this->db->insert_id();
+    }
+
+    function listar() {
+        $lista = $this->db->get('PRODUTO');
+        return $lista->result();
     }
 
     function listarProduto() {
         $this->db->select('ID_PRODUTO_CRIACAO');
-        $this->db->select_max('CODIGO');
-        $this->db->select('NOME');
-        $this->db->select('ALTURA');
-        $this->db->select('LARGURA');
-        $this->db->select('PROFUNDIDADE');
-        $this->db->select('ID_ATIVO');
-        $this->db->group_by('CODIGO');
-        return $this->db->get('PRODUTO_CRIACAO')->result();
-    }
-
-    function verInformacoes($idP) {
-        $this->db->where('CODIGO', $idP);
-        $result = $this->db->get('PRODUTO_CRIACAO');
-        return $result->result();
+        $this->db->select('PRODUTO_CRIACAO.NOME');
+        $this->db->select('PRODUTO_CRIACAO.ALTURA');
+        $this->db->select('PRODUTO_CRIACAO.PROFUNDIDADE');
+        $this->db->select('PRODUTO_CRIACAO.LARGURA');
+        $this->db->select('CUSTO_PC.ID_CUSTO');
+        $this->db->select('CUSTO_PC.DESCRICAO');
+        $this->db->from('PRODUTO_CRIACAO');
+        $this->db->join('CUSTO_PC', 'CUSTO_PC.ID_CUSTO = PRODUTO_CRIACAO.ID_CUSTO');
+        return$this->db->get()->result();
     }
 
     function carregarMateriaPrima($cod) {
-//        $this->db->select('MATERIA_PRIMA.NOME as NOME');
-//        $this->db->from('PRODUTO_CRIACAO');
-//        $this->db->join('MATERIA_PRIMA', 'PRODUTO_CRICAO.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA');
-//        $this->db->where('PRODUTO_CRIACAO.CODIGO', $cod);
-//        return $this->db->get()->result();
-        $this->db->select('ID_PRODUTO_CRIACAO');
+        $this->db->select('PRODUTO_CRIACAO.ID_PRODUTO_CRIACAO');
         $this->db->select('MATERIA_PRIMA.NOME');
-        $this->db->select('PRODUTO_CRIACAO.QUANTIDADE');
-        $this->db->from('PRODUTO_CRIACAO');
-        $this->db->join('MATERIA_PRIMA', 'MATERIA_PRIMA.ID_MATERIA_PRIMA = PRODUTO_CRIACAO.ID_MATERIA_PRIMA');
-        $this->db->where('PRODUTO_CRIACAO.CODIGO', $cod);
+        $this->db->select('PRODUTO_MP.QUANTIDADE');
+        $this->db->from('PRODUTO_MP');        
+        $this->db->join('MATERIA_PRIMA', 'PRODUTO_MP.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA');
+        $this->db->join('PRODUTO_CRIACAO', 'PRODUTO_CRIACAO.ID_PRODUTO_CRIACAO= PRODUTO_MP.ID_PRODUTO_CRIACAO');
+        $this->db->where('PRODUTO_CRIACAO.ID_PRODUTO_CRIACAO', $cod);
         return $this->db->get()->result();
     }
 

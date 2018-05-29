@@ -43,24 +43,42 @@
                             <label>Valor</label>
                             <input class="form-control" placeholder="Valor" name="valor" required="true" type="number" step="0.01" value="<?php echo $materia[0]->VALOR; ?>">                            
                         </div>     
+                        <div class="form-group">
+                            <label>Cor da Matéria-prima</label>
+                            <select class="form-control" name="cor">
+                                <option selected="true" disabled="disabled">Escola a cor</option>    
+                                <?php foreach ($cor as $c): ?>
+                                    <option value="<?php echo $c->ID_COR; ?>"><?php echo $c->NOME; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
                         <div class="form-group">
-                            <label>Tipo da matéria-prima</label>
-                            <select class="form-control" name="tipo">
-                                <?php foreach ($tipo as $t): ?>
-                                    <option value="<?php echo $t->ID_MATERIA_PRIMA_TIPO; ?>"><?php echo $t->NOME; ?></option>
+                            <label>Unidade de Medida</label>
+                            <select class="form-control" name="medida">
+                                <option selected="true" disabled="disabled">Escola a unidade</option>    
+                                <?php foreach ($medida as $m): ?>
+                                    <option value="<?php echo $m->ID_MEDIDA; ?>"><?php echo $m->NOME; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Estampa/Cor</label>
+                            <label>Categoria da matéria-prima</label>
+                            <select class="form-control" name="sub">
+                                <option selected="true" disabled="disabled">Escola a categoria</option>    
+                                <?php foreach ($sub as $s): ?>
+                                    <option value="<?php echo $s->ID_SUB_MPT; ?>"><?php echo $s->NOMET . " - "; ?><?php echo $s->NOME; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Estampa</label>
                             <select class="form-control" name="estampa">
                                 <?php foreach ($estampa as $e): ?>
                                     <option value="<?php echo $e->ID_ESTAMPA; ?>"><?php echo $e->NOME; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
                         <button type="submit" class="btn btn-default">Salvar</button>
                         <button type="reset" class="btn btn-default">Limpar campo</button>
 

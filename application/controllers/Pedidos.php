@@ -24,4 +24,13 @@ class Pedidos extends CI_Controller {
         $this->load->view('publico/template/footer');
     }
 
+    public function listarPedidosCliente() {
+        $data['tipo'] = $this->materia_tipo->listarTipo();
+
+        $dados['pedidos'] = $this->pedidos->listarPedidosClientes();
+        $this->load->view('admin/template/header', $data);
+        $this->load->view('admin/cliente/pedidos', $dados);
+        $this->load->view('admin/template/footer');
+    }
+
 }

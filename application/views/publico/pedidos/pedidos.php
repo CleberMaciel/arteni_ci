@@ -20,13 +20,12 @@
                     foreach ($pedidos as $p):
                         ?>
                         <td class="invert"><?php echo $p->ID_PEDIDOS; ?></td>
-                        <td class="invert">R$ <?php echo number_format($p->PRODUTOS, 2, ",", "."); ?></td>
+                        <td class="invert">R$ <?php echo number_format($p->VALOR_PEDIDO, 2, ",", "."); ?></td>
                         <td class="invert"><?php echo date("d/m/Y", strtotime($p->DATA)); ?></td>
-                        
+
                         <?php
                         $status = $p->STATUS_COMPRA;
                         if ($status == 1) {
-                            
                             ?> <td class="invert">Aguardando Pagamento</td><?php
                         } elseif ($status == 2) {
                             ?> <td class="invert">Em analise</td><?php

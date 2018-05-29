@@ -6,8 +6,9 @@ class Estampa extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('Estampa_model', 'model');
-        
+        $this->load->model('Estampa_model', 'estampa');
+        $this->load->model('Cor_model', 'cor');
+
         if (!$this->session->userdata('logado')) {
             redirect('Painel');
         }
@@ -15,7 +16,8 @@ class Estampa extends CI_Controller {
 
     public function index() {
         $this->load->view('admin/template/header');
-        $data['estampa'] = $this->model->listarEstampa();
+        $data['estampa'] = $this->estampa->listarEstampa();
+        $data['cor'] = $this->cor->listar();
         $this->load->view('admin/estampa/estampa', $data);
         $this->load->view('admin/template/footer');
     }
@@ -28,8 +30,8 @@ class Estampa extends CI_Controller {
             redirect('/Estampa');
         } else {
             $data['NOME'] = $this->input->post('estampa');
-            $data['ID_ATIVO'] = $this->input->post('ativo');
-            $result = $this->model->inserir($data);
+            $data['ID_COR'] = $this->input->post('cor');
+            $result = $this->estampa->inserir($data);
             if ($result == true) {
                 $this->session->set_flashdata('estampa_ok', 'msg');
                 redirect('/Estampa');
@@ -41,7 +43,7 @@ class Estampa extends CI_Controller {
     }
 
     public function inativo($id) {
-        $result = $this->model->inativo($id);
+        $result = $this->estampa->inativo($id);
         if ($result == true) {
             $this->session->set_flashdata('estampa_inativo_ok', 'msg');
             redirect('/Estampa');
@@ -52,7 +54,7 @@ class Estampa extends CI_Controller {
     }
 
     public function ativo($id) {
-        $result = $this->model->ativo($id);
+        $result = $this->estampa->ativo($id);
         if ($result == true) {
             $this->session->set_flashdata('estampa_ativo_ok', 'msg');
             redirect('/Estampa');
@@ -60,6 +62,24 @@ class Estampa extends CI_Controller {
             $this->session->set_flashdata('estampa_ativo_fail', 'msg');
             redirect('/Estampa');
         }
+    }
+
+    public function editar($idi) {
+        $data['estampa'] = $this->estampa->editar($idi);
+        $data['cor'] = $this->cor->listar();
+        $this->load->view('admin/template/header');
+
+        $this->load->view('admin/estampa/editar', $data);
+        $this->load->view('admin/template/footer');
+    }
+    
+    
+    public function atualizar() {
+        $data['ID_ESTAMPA'] = $this->input->post('ID_ESTAMPA');
+        $data['NOME'] = $this->input->post('estampa');
+        $data['ID_COR'] = $this->input->post('cor');
+        $this->estampa->atualizar($data);
+        redirect('/estampa');
     }
 
 }

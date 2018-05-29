@@ -16,7 +16,6 @@
                         <div class="form-group">
                             <label>Nome do tipo da matéria-prima</label>
                             <input class="form-control" placeholder="Texto aqui" name="tipo" required="true">
-                            <input type="hidden" name="ativo" value="1">
                         </div>
                         <button type="submit" class="btn btn-default">Salvar</button>
                         <button type="reset" class="btn btn-default">Limpar campo</button>
@@ -40,7 +39,7 @@
                                 <tr class="odd gradeX">
                                     <?php foreach ($tipo as $t): ?>
                                         <td><?php echo $t->NOME; ?> </td>
-                                        <td><?php if ($t->ID_ATIVO == 1) { ?>
+                                        <td><?php if ($t->STATUS_MPT == 1) { ?>
                                                 <span class="label label-success">Ativo</span>
                                                 <?php
                                             } else {
@@ -51,7 +50,7 @@
                                             ?> </td>
                                         <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Editar</a></td>       
                                         <?php
-                                        if ($t->ID_ATIVO == 1) {
+                                        if ($t->STATUS_MPT == 1) {
                                             ?>
                                             <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/inativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Desativar</a></td> 
                                             <?php

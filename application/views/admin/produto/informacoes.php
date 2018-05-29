@@ -16,11 +16,7 @@
                     <div class="form-group">
 
 
-                        <div class="form-group">
-
-                            <label>Código</label>
-                            <input class="form-control" placeholder="Código" name="codigo" required="true" value="<?php echo $informacoes[0]->CODIGO; ?>" disabled>
-                        </div> 
+                     
                         <div class="form-group">                          
                             <label>Nome do produto</label>
                             <input class="form-control" placeholder="Nome do produto" name="nome" required="true" value="<?php echo $informacoes[0]->NOME; ?>" disabled>

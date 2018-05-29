@@ -13,8 +13,7 @@
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>
-                            <th>Código</th>
-                            <th>Imagem</th>
+
                             <th>Nome</th>
                             <th>Altura</th>
                             <th>Largura</th>
@@ -28,13 +27,12 @@
                         <tr class="odd gradeX">
 
                             <?php foreach ($produto as $p): ?>
-                                <td><?php echo $p->CODIGO; ?> </td>
-                                <td>Imagem </td>
+
                                 <td><?php echo $p->NOME; ?> </td>
                                 <td><?php echo $p->ALTURA; ?> cm</td>
                                 <td><?php echo $p->LARGURA; ?> cm</td>
                                 <td><?php echo $p->PROFUNDIDADE; ?> cm</td>
-                                <td> <a id="informacoes" class="btn btn-success"  href="<?php echo base_url() . 'produto_listar/verInformacoes/' . $p->CODIGO; ?>"><i class="fa fa-list-alt"></i> Ver Informações</a>
+                                <td> <a id="informacoes" class="btn btn-success"  href="<?php echo base_url() . 'produto/informacoes/' . $p->ID_PRODUTO_CRIACAO; ?>"><i class="fa fa-list-alt"></i> Ver Informações</a>
                                 <!--<td> <a data-toggle="modal" class="informacoes" href="localhost" data-target="#myModal">click me</a>-->
 
                                 </td>

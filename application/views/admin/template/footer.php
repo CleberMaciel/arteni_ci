@@ -20,52 +20,49 @@
 
 <script>
     $('a.informacoes').on('click', function (e) {
-        e.preventDefault();
-        var url = $(this).attr('href');
-        $(".modal-body").html('<iframe width="100%" height="100%" frameborder="1" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
-    });
-</script>
+    e.preventDefault();
+    var url = $(this).attr('href');
+    $(".modal-body").html('<iframe width="100%" height="100%" frameborder="1" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
+    });</script>
 <script>
-    $(document).ready(function () {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
+    $(document).ready(function() {
+    $('#dataTables-example').DataTable({
+    "language": {
+    "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+    }
     });
-</script>
+    });</script>
 <script>
     $(function () {
-        var scntDiv = $('#campoDinamico');
-        $(document).on('click', '#addSelect', function () {
-            $('<span>' +
-                    '<div class="form-group">' +
-                    '<label>Materia-Prima</label>' +
-                    '<select class="form-control" name="materia_prima[]">' +
-                    "<?php foreach ($materia as $m): ?>" +
-                    '<option value="<?php echo $m->ID_MATERIA_PRIMA; ?>"><?php echo $m->NOME . " - Qtd: " . $m->QTD_TOTAL; ?></option>' +
-                    "<?php endforeach; ?>" +
-                    '</select>' +
-                    '</div>' +
-                    '</select>' +
-                    '<div class="form-group">' +
-                    '<label>Unidades usadas de matéria-prima</label>' +
-                    '<input class="form-control" placeholder="Unidades usadas de matéria-prima" name="quantidade[]" required="true" type="number">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<a class = "btn btn-danger" href="javascript:void(0)" id ="remSelect">' +
-                    'Remover campo' +
-                    '</a>' +
-                    '<br>' +
-                    '-----------------------------------------------------------' +
-                    '</span>').appendTo(scntDiv);
-            return false;
-        });
-        $(document).on('click', '#remSelect', function () {
-            $(this).parents('span').remove();
-            return false;
-        });
-
+    var scntDiv = $('#campoDinamico');
+    $(document).on('click', '#addSelect', function () {
+    $('<span>' +
+            '<div class="form-group">' +
+            '<label>Materia-Prima</label>' +
+            '<select class="form-control" name="materia_prima[]">' +
+            "<?php foreach ($materia as $m): ?>" +
+            '<option value="<?php echo $m->ID_MATERIA_PRIMA; ?>"><?php echo $m->NOME . " - Qtd: " . $m->QTD_TOTAL; ?></option>' +
+            "<?php endforeach; ?>" +
+            '</select>' +
+            '</div>' +
+            '</select>' +
+            '<div class="form-group">' +
+            '<label>Unidades usadas de matéria-prima</label>' +
+            '<input class="form-control" placeholder="Unidades usadas de matéria-prima" name="quantidade[]" required="true" type="number">' +
+            '</div>' +
+            '<div class="form-group">' +
+            '<a class = "btn btn-danger" href="javascript:void(0)" id ="remSelect">' +
+            'Remover campo' +
+            '</a>' +
+            '<br>' +
+            '-----------------------------------------------------------' +
+            '</span>').appendTo(scntDiv);
+    return false;
     });
-</script>
+    $(document).on('click', '#remSelect', function () {
+    $(this).parents('span').remove();
+    return false;
+    }); });</script>
 
 <!--matéria-prima-cadastro-->
 <?php
@@ -73,275 +70,256 @@ if ($this->session->flashdata('tipo_ok')) {
     ?>
     <script type="text/javascript">
         $.bootstrapGrowl("Tipo de matéria-prima cadastrado!", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
+        ele: 'body', // which element to append to
+                type: 'success', // (null, 'info', 'error', 'success')                 offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+                align: 'right', // ('left', 'right', or 'center')
+                width: 250, // (integer, or 'auto')
+                delay: 4000,
+                allow_dismiss: true,
+                stackup_spacing: 10 // spacing between consecutively stacked growls.
         });</script>
 <?php } else if ($this->session->flashdata('tipo_fail')) {
     ?>
     <script type="text/javascript">
         $.bootstrapGrowl("Erro ao cadastrar o tipo de matéria-prima!", {
-            ele: 'body', // which element to append to
-            type: 'error', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+        ele: 'body', // which element to append to
+                type: 'error', // (null, 'info', 'error', 'success')
+                offset: {from:'top', amount: 20}, // 'top', or 'bottom'
+                align: 'right', // ('left', 'right', or 'center')
+                width: 250, // (integer, or 'auto')
+                delay: 4000,
+                allow_dismiss: true,
+                stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });</script>
 
 
-    <!--matéria-prima-inativo-->
+    <!--ma        téria-prima-inativo-->
 <?php } else if ($this->session->flashdata('tipo_inativo_ok')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Tipo de matéria-prima desativado!", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script> 
+    <script type="text/j                        avascript">
+        $.bootstrapGrowl("Tipo de matéria-prima desa                        tivado!", {
+        ele: 'body', // which element t                                o append to
+        type: 'success', // (null, 'info', 'error',                                'success')
+        offset: {from: 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align: 'right', // ('left', 'right', o                                r 'center')
+        width: 250, // (integer,                                or 'auto')
+        d                                elay: 4000,
+        allow_dis                                miss: true,
+        stackup_spacing: 10 // spacing between consecutively stac                        ked growls.
+        });</script> 
 <?php } else if ($this->session->flashdata('tipo_inativo_fail')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Erro ao desativar o tipo de matéria-prima!", {
-            ele: 'body', // which element to append to
-            type: 'error', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script type="text/j                        avascript">
+        $.bootstrapGrowl("Erro ao desativar o tipo de matéria                        -prima!", {
+        ele: 'body', // which element t                                o append to
+        type: 'error', // (null, 'info', 'error',                                'success')
+        offset: {from: 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align: 'right', // ('left', 'right', o                                r 'center')
+        width: 250, // (integer,                                or 'auto')
+        d                                elay: 4000,
+        allow_dis                                miss: true,
+        stackup_spacing: 10 // spacing between consecutively stac                        ked growls.
+        })                ;</script>
 
     <!--matéria-prima-ativo-->
 <?php } else if ($this->session->flashdata('tipo_ativo_ok')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Tipo de matéria-prima ativado!", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script> 
+    <script type="text/j                        avascript">
+        $.bootstrapGrowl("Tipo de matéria-prima a                        tivado!", {
+        ele: 'body', // which element t                                o append to
+        type: 'success', // (null, 'info', 'error',                                'success')
+        offset: {from: 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align: 'right', // ('left', 'right', o                                r 'center')
+        width: 250, // (integer,                                or 'auto')
+        d                                elay: 4000,
+        allow_dis                                miss: true,
+        stackup_spacing: 10 // spacing between consecutively stac                        ked growls.
+        });</script> 
 <?php } else if ($this->session->flashdata('tipo_ativo_fail')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Erro ao ativar o tipo de matéria-prima!", {
-            ele: 'body', // which element to append to
-            type: 'error', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script type="text/j                        avascript">
+        $.bootstrapGrowl("Erro ao ativar o tipo de matéria                        -prima!", {
+        ele: 'body', // which element t                                o append to
+        type: 'error', // (null, 'info', 'error',                                'success')
+        offset: {from: 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align: 'right', // ('left', 'right', o                                r 'center')
+        width: 250, // (integer,                                or 'auto')
+        d                                elay: 4000,
+        allow_dis                                miss: true,
+        stackup_spacing: 10 // spacing between consecutively stac                        ked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('tipo_existe')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Tipo de matéria-prima já existe no banco de dados!", {
-            ele: 'body', // which element to append to
-            type: 'danger', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script type="text/j                        avascript">
+        $.bootstrapGrowl("Tipo de matéria-prima já existe no banco de                        dados!", {
+        ele: 'body', // which element t                                o append to
+        type: 'danger', // (null, 'info', 'error',                                'success')
+        offset: {from: 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align: 'right', // ('left', 'right', o                                r 'center')
+        width: 250, // (integer,                                or 'auto')
+        d                                elay: 4000,
+        allow_dis                                miss: true,
+        stackup_spacing: 10 // spacing between consecutively stac                        ked growls.
+        }                );</script>
     <!--Estampa-->
 <?php } else if ($this->session->flashdata('estampa_existe')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Está estampa já existe no banco de dados!", {
-            ele: 'body', // which element to append to
-            type: 'danger', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script type="text/j                        avascript">
+        $.bootstrapGrowl("Está estampa já existe no banco de                        dados!", {
+        ele: 'body', // which element t                                o append to
+        type: 'danger', // (null, 'info', 'error',                                'success')
+        offset: {from: 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align: 'right', // ('left', 'right', o                                r 'center')
+        width: 250, // (integer,                                or 'auto')
+        d                                elay: 4000,
+        allow_dis                                miss: true,
+        stackup_spacing: 10 // spacing between consecutively stac                        ked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('estampa_ok')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Estampa cadastrada!", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script type="text/j                        avascript">
+        $.bootstrapGrowl("Estampa cada                        strada!", {
+        ele: 'body', // which element t                                o append to
+        type: 'success', // (null, 'info', 'error',                                'success')
+        offset: {from: 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align: 'right', // ('left', 'right', o                                r 'center')
+        width: 250, // (integer,                                or 'auto')
+        d                                elay: 4000,
+        allow_dis                                miss: true,
+        stackup_spacing: 10 // spacing between consecutively stac                        ked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('estampa_fail')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Erro ao cadastrar estampa!", {
-            ele: 'body', // which element to append to
-            type: 'danger', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script type="text/j                        avascript">
+        $.bootstrapGrowl("Erro ao cadastrar e                        stampa!", {
+        ele: 'body', // which element t                                o append to
+        type: 'danger', // (null, 'info', 'error',                                'success')
+        offset: {from: 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align: 'right', // ('left', 'right', o                                r 'center')
+        width: 250, // (integer,                                or 'auto')
+        d                                elay: 4000,
+        allow_dis                                miss: true,
+        stackup_spacing: 10 // spacing between consecutively stac                        ked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('estampa_inativo_ok')) {
     ?>
     <script type="text/javascript">
         $.bootstrapGrowl("Estampa desativada!", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+        ele: 'body', // which element to append to
+                type: 'success', // (null, 'info', 'error', 'success')
+                offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+                align: 'right', // ('left', 'right', or 'center')
+                width: 250, // (integer, or 'auto')
+                delay: 4000,
+                allow_dismiss: true,
+                stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('estampa_ativo_ok')) {
     ?>
     <script type="text/javascript">
         $.bootstrapGrowl("Estampa Ativada!", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+        ele: 'body', // which element to append to
+                type: 'success', // (null, 'info', 'error', 'success')
+                offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+                align: 'right', // ('left', 'right', or 'center')
+                width: 250, // (integer, or 'auto')
+                delay: 4000,
+                allow_dismiss: true,
+                stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('prima_existe')) {
     ?>
     <script type="text/javascript">
         $.bootstrapGrowl("Matéria-prima existente!!", {
-            ele: 'body', // which element to append to
-            type: 'danger', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+        ele: 'body', // which element to append to
+                type: 'danger', // (null, 'info', 'error', 'success')
+                offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+                align: 'right', // ('left', 'right', or 'center')
+                width: 250, // (integer, or 'auto')
+                delay: 4000,
+                allow_dismiss: true,
+                stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('prima_fail')) {
     ?>
     <script type="text/javascript">
-        $.bootstrapGrowl("Erro ao cadastrar Matéria-Prima!!", {
-            ele: 'body', // which element to append to
-            type: 'danger', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+        $.bootstrapGrowl("Er                                                ro ao cadastrar Matéria-Prima!!", {
+        ele: 'b                                                        ody', // which element to append to
+                type: 'danger', //                                                        (null, 'info', 'error', 'success')
+                offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+                align: 'right', // ('left', 'right', or 'center')
+                width: 250, // (integer, or 'auto')
+                delay: 4000,
+                allow_dismiss: true,
+                stackup_spacing: 10 // spacing be                                                tween consecutively stacked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('prima_ok')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Matéria-Prima cadastrada!!", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script type="text/j                    avascript">
+        $.bootstrapGrowl("Matéria-Prima cadas                                                                                trada!!", {
+        ele: 'body', // which element t                                o append to
+        type: 'success', // (null, 'info', 'error',                               'success')
+        offset: {from: 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align: 'right', // ('left', 'right', o                        r 'center')
+        width: 250, // (integer,                    or 'auto')
+        d                   elay: 4000,
+        allow_dis                    miss: true,
+        stackup_spacing: 10 // spacing between consecutively stac                    ked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('prima_inativo_ok')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Matéria-Prima desativada!!", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script type="text/j                    avascript">
+        $.boo                                                        tstrapGrowl("Matéria-Prima desat                                                                                        ivada!!", {
+        ele: 'body', // which element t                                o append to
+        type: 'succ                                                               ess', // (null, 'info', 'error',                                'success')
+        offset: {from                                                                : 'top', amount: 20}, // 'top',                                 or 'bottom'
+        align:                                                                'right', // ('left', 'right', o                    r 'center')
+        width: 250, // (integer, or '                                                                               auto')
+        d                        elay: 4000,
+        allow_dis                    miss: true,
+        stackup_spacing: 10 // sp                                                        acing between consecutively stac                    ked growls.
+        });</script>
 <?php } else if ($this->session->flashdata('prima_ativo_ok')) {
     ?>
     <script type="text/javascript">
-        $.bootstrapGrowl("Matéria-Prima ativada!!", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>  
-</script>
+        $.boot                                                        strapGrowl("Matéria-Prima ativada!!", {
+        ele                                                                : 'body', // which element to append to
+                type: 'success', // (null,'info', 'error', 'success')
+                offset: {from: 't                                                                op', amount: 20}, // 'top', or 'bottom'
+                align: 'ri                                                                ght', // ('left', 'right', or 'center')
+                width: 250, // (integer, or 'auto                                                                ')
+                delay: 4000,
+                allow_dismiss: true,
+                stackup_spacing: 10 // spacin                                                        g between consecutively stacked                                           growls.
+        });</script>  
+    </script>
 <?php } else if ($this->session->flashdata('materia_insuficiente')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Quantidade de matéria-prima inserida é insuficiente.", {
-            ele: 'body', // which element to append to
-            type: 'danger', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script                                 type="text/javascript">
+        $.bootstrapGrowl("Quantidade de mat                                                    éria-prima inser                                                                                                                    ida é insuficiente.", {
+        ele                                                            : 'body', // whi                                        ch element to append to
+                type: 'danger', // (null, 'inf                                        o', 'error', 'success')
+                offset: {from: 't                                                            op', amount: 20}, // 'top', or 'bottom'
+                align: 'ri                                                            ght', // ('left'                                , 'right', or 'center')
+                width: 250, // (integer, or 'auto                                                                       ')
+                delay: 4000,
+                allow_dismiss: true,
+                stackup_spacing: 10 // spacin            g between consec                               utively stacked growls.
+        });</script>
 
 <?php } else if ($this->session->flashdata('prima_atualizada')) {
     ?>
-    <script type="text/javascript">
-        $.bootstrapGrowl("Matéria-prima atualizada.", {
-            ele: 'body', // which element to append to
-            type: 'success', // (null, 'info', 'error', 'success')
-            offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-            align: 'right', // ('left', 'right', or 'center')
-            width: 250, // (integer, or 'auto')
-            delay: 4000,
-            allow_dismiss: true,
-            stackup_spacing: 10 // spacing between consecutively stacked growls.
-        });
-    </script>
+    <script type                            ="text/javascript">
+        $.bootst                                                    rapGrowl("Matéria-pr                                                                                                                        ima atualizada.", {
+        ele                                                            : 'body', // which e                                        lement to append to
+                type: 'success', // (null, 'info',                                         'error', 'success')
+                offset: {from: 't                                                            op', amount: 20}, //                                        'top', or 'bottom'
+                align: 'ri                                                            ght', // ('left', 'r                                ight', or 'center')
+                width: 250, // (integer, or 'auto                                                                       ')
+                delay: 4000,
+                a                                llow_dismiss: true,
+                stackup_spacing: 10 // spacin                                                    g between consecutiv                           ely stacked growls.
+        });</script>
 
 <?php } ?>
 
@@ -350,30 +328,24 @@ if ($this->session->flashdata('tipo_ok')) {
 <script type="text/javascript">
 
     var sound = new Audio("<?php echo base_url('assets/bar/') ?>barcode.wav");
-
     $(document).ready(function () {
 
-        barcode.config.start = 0.1;
-        barcode.config.end = 0.9;
-        barcode.config.video = '#barcodevideo';
-        barcode.config.canvas = '#barcodecanvas';
-        barcode.config.canvasg = '#barcodecanvasg';
-        barcode.setHandler(function (barcode) {
-            $('.result').html(barcode);
-        });
-        barcode.init();
-
-        $('.result').bind('DOMSubtreeModified', function (e) {
-            sound.play();
-
-            $(function () {
-                var valorDaDiv = $('.result').text();
-                $('#orcamentoAssuntoForm').val(valorDaDiv);
-            });
-        });
-
-
-
+    barcode.config.start = 0.1;
+    barcode.config.end = 0.9;
+    barcode.config.video = '#barcodevideo';
+    barcode.config.canvas = '#barcodecanvas';
+    barcode.config.canvasg = '#barcodecanvasg';
+    barcode.setHandler(function (barcode) {
+    $('.result').html(barcode);
+    });
+    barcode.init();
+    $('.result').bind('DOMSubtreeModified', function (e) {
+    sound.play();
+    $(function () {
+    var valorDaDiv = $('.result').text();
+    $('#orcamentoAssuntoForm').val(valorDaDiv);
+    });
+    });
     });
 
 </script>
