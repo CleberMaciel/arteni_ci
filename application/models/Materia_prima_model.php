@@ -83,14 +83,14 @@ class Materia_prima_model extends CI_Model {
 //    }
 
     function reduzirMateriaPrima($referencia) {
-        $this->db->select('MATERIA_PRIMA.QTD_TOTAL - ITENS_PEDIDOS.QUANTIDADE', 'VALOR');
+        $this->db->select('MATERIA_PRIMA.QTD_TOTAL - ITENS_PEDIDOS.QUANTIDADE AS VALOR');
         $this->db->select('ITENS_PEDIDOS.QUANTIDADE');
         $this->db->from('MATERIA_PRIMA');
         $this->db->join('PRODUTO', 'PRODUTO.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA');
         $this->db->join('ITENS_PEDIDOS', 'ITENS_PEDIDOS.ID_PRODUTO = PRODUTO.ID_PRODUTO');
         $this->db->join('PEDIDOS', 'PEDIDOS.ID_PEDIDOS = ITENS_PEDIDOS.ID_PEDIDO');
         $this->db->where('PEDIDOS.ID_PEDIDOS', $referencia);
-        $this->db->set('MATERIA_PRIMA.QTD_TOTAL', 'VALOR');
+        $this->db->set('MATERIA_PRIMA.QTD_TOTAL = VALOR');
         return $this->db->update('MATERIA_PRIMA');
     }
 
