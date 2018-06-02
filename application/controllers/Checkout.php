@@ -74,7 +74,7 @@ class Checkout extends CI_Controller {
             $this->pedidos->inserir($dados1);
 
             foreach ($dados as $d) {
-                $itens['ID_PEDIDOS'] = $config['reference'];
+                $itens['ID_PEDIDO'] = $config['reference'];
                 $itens['ID_PRODUTO'] = $d['id'];
                 $itens['QUANTIDADE'] = $d['quantidade'];
                 $itens['PRECO'] = number_format($d['valor'], 2, '.', '');
