@@ -8,6 +8,7 @@ class Notificacao extends CI_Controller {
         parent::__construct();
         $this->load->model('Checkout_model', 'check');
         $this->load->model('Pedidos_model', 'pedidos');
+        $this->load->model('Materia_prima_model', 'materia_prima');
 
         $this->load->library('pagseguro');
     }
@@ -27,8 +28,17 @@ class Notificacao extends CI_Controller {
             $content = file_get_contents($url);
             $xml = simplexml_load_string($content);
             $this->atualizarPedido($xml->reference, $xml->status);
+
             $this->enviarStatus($xml->reference, $xml->status);
+
+            if ($xml == 3) {
+                $this->reduzirMateriaPrima($xml->reference);
+            }
         }
+    }
+
+    public function reduzirMateriaPrima($ref) {
+        $this->materiaPrima->reduzirMateriaPrima($ref);
     }
 
     public function atualizarPedido($referencia, $status) {

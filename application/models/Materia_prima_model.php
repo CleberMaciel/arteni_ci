@@ -74,11 +74,23 @@ class Materia_prima_model extends CI_Model {
         return $this->db->query('select QTD_TOTAL from MATERIA_PRIMA where ID_MATERIA_PRIMA =' . $idM)->row()->QTD_TOTAL;
     }
 
-    function reduzirMateriaPrima($idM, $valor) {
-        $this->db->select('QTD_TOTAL');
+//    function reduzirMateriaPrima($idM, $valor) {
+//        $this->db->select('QTD_TOTAL');
+//        $this->db->from('MATERIA_PRIMA');
+//        $this->db->where('ID_MATERIA_PRIMA', $idM);
+//        $this->db->set('QTD_TOTAL', $valor);
+//        return $this->db->update('MATERIA_PRIMA');
+//    }
+
+    function reduzirMateriaPrima($referencia) {
+        $this->db->select('MATERIA_PRIMA.QTD_TOTAL - ITENS_PEDIDOS.QUANTIDADE', 'VALOR');
+        $this->db->select('ITENS_PEDIDOS.QUANTIDADE');
         $this->db->from('MATERIA_PRIMA');
-        $this->db->where('ID_MATERIA_PRIMA', $idM);
-        $this->db->set('QTD_TOTAL', $valor);
+        $this->db->join('PRODUTO', 'PRODUTO.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA');
+        $this->db->join('ITENS_PEDIDOS', 'ITENS_PEDIDOS.ID_PRODUTO = PRODUTO.ID_PRODUTO');
+        $this->db->join('PEDIDOS', 'PEDIDOS.ID_PEDIDOS = ITENS_PEDIDOS.ID_PEDIDO');
+        $this->db->where('PEDIDOS.ID_PEDIDOS', $referencia);
+        $this->db->set('MATERIA_PRIMA.QTD_TOTAL', 'VALOR');
         return $this->db->update('MATERIA_PRIMA');
     }
 
