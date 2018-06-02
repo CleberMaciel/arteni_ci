@@ -32,7 +32,9 @@ class Notificacao extends CI_Controller {
             $this->enviarStatus($xml->reference, $xml->status);
 
             if ($xml == 3) {
-                $this->reduzirMateriaPrima($xml->reference);
+                $id = $this->materiaPrima->retornaIdMateria($xml->reference);
+                $valor = $this->materiaPrima->retornaValor($xml->reference);
+                $this->materiaPrima->reduzirMateriaPrima($id, $valor);
             }
         }
     }

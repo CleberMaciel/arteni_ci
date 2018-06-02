@@ -82,16 +82,41 @@ class Materia_prima_model extends CI_Model {
 //        return $this->db->update('MATERIA_PRIMA');
 //    }
 
-    function reduzirMateriaPrima($referencia) {
-        $this->db->select('MATERIA_PRIMA.QTD_TOTAL - ITENS_PEDIDOS.QUANTIDADE', $VALOR);
-        $this->db->select('ITENS_PEDIDOS.QUANTIDADE');
-        $this->db->from('MATERIA_PRIMA');
-        $this->db->join('PRODUTO', 'PRODUTO.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA');
-        $this->db->join('ITENS_PEDIDOS', 'ITENS_PEDIDOS.ID_PRODUTO = PRODUTO.ID_PRODUTO');
-        $this->db->join('PEDIDOS', 'PEDIDOS.ID_PEDIDOS = ITENS_PEDIDOS.ID_PEDIDO');
-        $this->db->where('PEDIDOS.ID_PEDIDOS', $referencia);
+    function reduzirMateriaPrima($id, $valor) {
+        $this->db->where('ID_MATERIA_PRIMA', $id);
+        $this->db->update('MATERIA_PRIMA');
         $this->db->set('MATERIA_PRIMA.QTD_TOTAL', $VALOR);
         return $this->db->update('MATERIA_PRIMA');
+    }
+
+    function retornaValor($referencia) {
+        return $this->db->query('select MATERIA_PRIMA.QTD_TOTAL - ITENS_PEDIDOS.QUANTIDADE AS VALOR
+                          from MATERIA_PRIMA
+                        join PRODUTO 
+                        on PRODUTO.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA
+                        join ITENS_PEDIDOS 
+                        on ITENS_PEDIDOS.ID_PRODUTO = PRODUTO.ID_PRODUTO
+                        join PEDIDOS 
+                        on PEDIDOS.ID_PEDIDOS = ITENS_PEDIDOS.ID_PEDIDO 
+                        WHERE PEDIDOS.ID_PEDIDOS =' . $referencia);
+    }
+
+    function retornaIdMateria($referencia) {
+        return $this->db->query('select MATERIA_PRIMA.ID_MATERIA_PRIMA
+                                from MATERIA_PRIMA
+                                join PRODUTO 
+                                on PRODUTO.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA
+                                join ITENS_PEDIDOS 
+                                on ITENS_PEDIDOS.ID_PRODUTO = PRODUTO.ID_PRODUTO
+                                join PEDIDOS 
+                                on PEDIDOS.ID_PEDIDOS = ITENS_PEDIDOS.ID_PEDIDO
+                                WHERE PEDIDOS.ID_PEDIDOS =' . $referencia);
+    }
+
+    function atualizar($data) {
+        $this->db->where('ID_ESTAMPA', $data['ID_ESTAMPA']);
+        $this->db->set($data);
+        return $this->db->update('ESTAMPA');
     }
 
 }
