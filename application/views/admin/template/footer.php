@@ -1,8 +1,18 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/bar/barcode.js') ?>"></script>
 
+<!-- Morris Charts JavaScript -->
+<script src="<?php echo base_url('assets/js/raphael.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/morris.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/morris-data.js') ?>"></script>
+
+
+
+
+
+
+'
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
 
