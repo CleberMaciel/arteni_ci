@@ -7,8 +7,7 @@ class Pedidos_model extends CI_Model {
     }
 
     function inserir($p) {
-        $this->db->insert('PEDIDOS', $p);
-        return $this->db->insert_id();
+        return $this->db->insert('PEDIDOS', $p);
     }
 
     function listarPedidos($id) {
