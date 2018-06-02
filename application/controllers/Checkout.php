@@ -71,10 +71,10 @@ class Checkout extends CI_Controller {
             $dados1['VALOR_PEDIDO'] = $this->cart->total();
             $dados1['STATUS_COMPRA'] = 0;
             $dados1['STATUS_VALIDO'] = 0;
-            $this->pedidos->inserir($dados1);
+            $id_pedidos = $this->pedidos->inserir($dados1);
 
             foreach ($dados as $d) {
-                $itens['ID_PEDIDO'] = $config['reference'];
+                $itens['ID_PEDIDO'] = $id_pedidos;
                 $itens['ID_PRODUTO'] = $d['id'];
                 $itens['QUANTIDADE'] = $d['quantidade'];
                 $itens['PRECO'] = number_format($d['valor'], 2, '.', '');
