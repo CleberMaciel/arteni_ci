@@ -10,13 +10,20 @@ class Cliente extends CI_Controller {
         $this->load->model('Cliente_model', 'cliente');
         $this->load->model('Pedidos_model', 'pedidos');
 
+        ;
+
+        $this->load->model('Materia_sub_model', 'model_sub');
+        $this->load->model('Categoria_modelo_model', 'categoria');
+
 
         $this->load->model('Materia_sub_model', 'model_sub');
         $this->load->model('Categoria_modelo_model', 'categoria');
     }
 
     public function index() {
-        $data['tipo'] = $this->materia_tipo->listarTipo();
+        $data['tipo'] = $this->materia_tipo->lista();
+        $data['sub'] = $this->model_sub->listaSub();
+        $data['categoria'] = $this->categoria->listar();
         $this->load->view('publico/template/header', $data);
         $this->load->view('publico/cliente/cadastro');
         $this->load->view('publico/template/footer');
