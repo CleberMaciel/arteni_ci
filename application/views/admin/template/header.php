@@ -97,9 +97,9 @@
                             <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('userlogado')->NOME; ?> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+<!--                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                             </li>
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>-->
                             </li>
                             <li class="divider"></li>
                             <li><a href="<?php echo base_url(); ?>Painel/sair"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -176,7 +176,7 @@
                                         <a href="<?php echo base_url(); ?>materia_tipo"> Tipo de Matéria-Prima</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url(); ?>materia_sub_mpt">SubCategoria Tipo de Matéria-Prima</a>
+                                        <a href="<?php echo base_url(); ?>materia_sub_mpt">SubCategoria de Matéria-Prima</a>
                                     </li>
                                 </ul>
                             </li>
@@ -209,6 +209,7 @@
                                 <a href="#"><i class="fa fa-plus-circle fa-fw"></i>Modelo<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
+                                        <a href="<?php echo base_url(); ?>categoria_modelo">Categoria Modelo</a>
                                         <a href="<?php echo base_url(); ?>modelo">Criar Modelo</a>
                                         <a href="<?php echo base_url(); ?>modelo/listarModelosCriados">Adicionar Matéria</a>
                                         <a href="<?php echo base_url(); ?>modelo/listaModelos">Remover Matéria</a>

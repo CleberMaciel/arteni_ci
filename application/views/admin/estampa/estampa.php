@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label>Cor da estampa</label>
                             <select class="form-control" name="cor">
-                                <option selected="true" disabled="disabled">Escola a cor</option>    
+                                <option selected="true" disabled="disabled">Escolha a cor</option>    
                                 <?php foreach ($cor as $c): ?>
                                     <option value="<?php echo $c->ID_COR; ?>"><?php echo $c->NOME; ?></option>
                                 <?php endforeach; ?>
