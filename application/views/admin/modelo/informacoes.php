@@ -4,24 +4,29 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Lista de Modelos</h1>
+                <h1 class="page-header">Informaçẽs sobre modelo</h1>
             </div>
         </div>
-        <?php
-        $id_modelo;
-        ?>
+
         <div class="panel-body">
             <?php
+            $id_modelo;
+            echo "Nome do Produto:" . $modelo[0]->NOME;
+            echo "<br>";
+            echo "Categoria:" . $modelo[0]->CAT_NOME;
+            echo "<br>";
+            echo "Quantidade de tecido interno:" . $modelo[0]->QUANTIDADE_INTERNO;
+            echo "<br>";
+            echo "Quantidade de tecido externo:" . $modelo[0]->QUANTIDADE_EXTERNO;
+            echo "<br>";
+            echo "<br>";
+            echo "Materias-primas pré-definidas:";
+
+
             foreach ($modelo as $m) {
                 $id_modelo = $m->ID_MODELO;
                 echo "<br>";
-                echo "Nome:" . $m->NOME;
-                echo "<br>";
-                echo "Nome:" . $m->CAT_NOME;
-                echo "<br>";
-                echo "Materias-Primas:";
-                echo "<br>";
-                echo $m->SUB_NOME;
+                echo "Material:" . $m->SUB_NOME;
                 echo "<br>";
                 echo "Quantidade:" . $m->QUANTIDADE;
             }
@@ -31,7 +36,7 @@
             <br>
             <br>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Launch demo modal
+                Adicionar Matéria-prima
             </button>
 
             <!-- Modal -->
@@ -39,31 +44,32 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Adicionar Matéria-prima</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <?php echo form_open('Modelo_tipo/inserir'); ?> 
-                            <div class="form-group">
-                                <label>Materia-Prima Tipo</label>
-                                <input type="hidden" name="modelo" value="<?php echo $id_modelo; ?>">
-                                <select class="form-control" name="materia_tipo" id="materia_tipo" aria-label="ngSelected demo">
-                                    <?php foreach ($tipo as $t): ?>
-                                        <option value="<?php echo $t->ID_MATERIA_PRIMA_TIPO; ?>"><?php echo $t->NOME; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
+                            <?php echo form_open('Modelo_materia/inserir'); ?> 
                             <div class="form-group">
                                 <label>Materia-Prima usada</label>
-                                <select class="form-control" name="materia_prima" id="materia_prima" aria-label="ngSelected demo">
+                                <select class="form-control" name="sub" id="sub" aria-label="ngSelected demo">
                                     <option value="" ></option>
                                     <?php foreach ($sub as $s): ?>
                                         <option value="<?php echo $s->ID_SUB_MPT; ?>"><?php echo $s->NOME; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label>Materia-Prima</label>
+                                <input type="hidden" name="modelo" value="<?php echo $id_modelo; ?>">
+                                <select class="form-control" name="materia_prima" id="materia_prima" aria-label="ngSelected demo">
+                                    <?php foreach ($materia as $t): ?>
+                                        <option value="<?php echo $t->ID_MATERIA_PRIMA; ?>"><?php echo $t->NOME; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label>Unidades usadas</label>
                                 <input class="form-control" placeholder="Unidades usadas de matéria-prima" name="quantidade" required="true" type="number">
@@ -83,14 +89,17 @@
             <script type="text/javascript">
                 var base_url = "<?php echo base_url() ?>";
                 $(function () {
-                    $('#materia_tipo').change(function () {
-                        var materia_tipo = $('#materia_tipo').val();
-                        $.post(base_url + 'index.php/ajax/Materia_sub/listarSubMateriaAjax', {
-                            materia_tipo: materia_tipo
+                    $('#sub').change(function () {
+                        var sub = $('#sub').val();
+                        $.post(base_url + 'index.php/ajax/Materia_sub/listarSubMateria', {
+                            sub: sub
+
+
                         }, function (data) {
                             $('#materia_prima').html(data);
                             $('#materia_prima').removeAttr('disabled');
                         });
+                        console.log(materia_tipo);
                     });
                 });
             </script>

@@ -13,41 +13,29 @@
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>
-
-
                             <th>Imagem</th>
                             <th>Nome do Modelo</th>
-                            <th>algo</th>
-                            <th>algo</th>
                             <th>Venda</th>
                             <th>Informações</th>
-
-
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="odd gradeX">
-
                             <?php foreach ($modelo as $m): ?>
 
-                                <td><?php echo $m->IMAGEM; ?> </td>
+                                <td><img  class="img-thumbnail"  style="width: 100px;" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $m->IMAGEM; ?>"></td>
                                 <td><?php echo $m->NOME; ?> </td>
-                                <td><?php echo $m->ALTURA; ?> </td>
-                                <td><?php echo $m->LARGURA; ?> </td>
+
                                 <td><?php
-                                    if ($m->STATUS_MODELO == 0) {
-                                        echo "Está a venda";
+                                    if ($m->STATUS_MODELO == 1) {
+                                        ?><a class = "btn btn-danger btn-sm" role = "button" href = "<?php echo base_url() . 'Modelo/inativoVenda/' . $m->ID_MODELO; ?>">Desativar</a>
+                                        <?php
                                     } else {
-                                        echo "Não está a venda";
+                                        ?><a class = "btn btn-success btn-sm" role = "button" href = "<?php echo base_url() . 'Modelo/ativoVenda/' . $m->ID_MODELO; ?>">Ativar</a>
+                                        <?php
                                     }
                                     ?></td>
-                                <td> <a id="informacoes" class="btn btn-success"  href="<?php echo base_url() . 'modelo/informacoes/' . $m->ID_MODELO; ?>"><i class="fa fa-list-alt"></i> Ver Informações</a>
-                                <!--<td> <a data-toggle="modal" class="informacoes" href="localhost" data-target="#myModal">click me</a>-->
-
-                                </td>
-
-
+                                <td> <a id="informacoes" class="btn btn-success"  href="<?php echo base_url() . 'modelo/informacoes/' . $m->ID_MODELO; ?>"><i class="fa fa-list-alt"></i> Ver Informações</a></td>
                             </tr>
                         <?php endforeach;
                         ?>

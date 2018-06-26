@@ -11,8 +11,9 @@ class Materia_sub extends CI_Controller {
     }
 
         public function listarSubMateria() {
-        $materia_tipo = $this->input->post('materia_tipo');
-        echo $this->Materia_sub_model->listarSubMateriaAjax($materia_tipo);
+        $sub = $this->input->post('sub');
+        echo $this->Materia_sub_model->listarSubMateriaAjax($sub);
+        
     }
 
 }

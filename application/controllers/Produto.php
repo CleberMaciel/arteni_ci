@@ -16,6 +16,9 @@ class Produto extends CI_Controller {
     }
 
     public function index() {
+        if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $data['materia'] = $this->model_prima->listarMateriaCombo();
         $data['custo'] = $this->custo->listar();
         $this->load->view('admin/template/header');
@@ -24,6 +27,9 @@ class Produto extends CI_Controller {
     }
 
     public function listar() {
+        if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $data['produto'] = $this->produto->listarProduto();
         $this->load->view('admin/template/header');
         $this->load->view('admin/produto/listar', $data);
@@ -31,6 +37,10 @@ class Produto extends CI_Controller {
     }
 
     public function informacoes($idP) {
+
+        if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $this->load->view('admin/template/header');
         $data['informacoes'] = $this->produto->editar($idP);
         $data['materia'] = $this->produto->carregarMateriaPrima($idP);
@@ -72,6 +82,9 @@ class Produto extends CI_Controller {
     }
 
     public function adicionarMateria() {
+         if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $data['materia'] = $this->model_prima->listarMateriaCombo();
         $data['custo'] = $this->custo->listar();
         $data['produto'] = $this->produto->listarProduto();

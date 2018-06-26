@@ -104,11 +104,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <div class="mega-dropdown-menu">
                                 <div class="w3ls_vegetables">
                                     <ul class="dropdown-menu drp-mnu">
-                                        <li>
-                                            <a href="<?php echo base_url(); ?>cliente">Minha Conta</a>
-                                        </li>
+
                                         <li>
                                             <a href="<?php echo base_url(); ?>pedidos/meusPedidos/<?php echo $this->session->userdata('user_clientelogado')->ID_CLIENTE; ?>">Meus Pedidos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="modal" data-target="#senha">Alterar senha</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="modal" data-target="#endereco">Alterar Endereço</a>
                                         </li>
                                         <li>
                                             <a href="<?php echo base_url(); ?>cliente/sair">Sair</a>
@@ -180,9 +184,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
-<!--                            <li>
-                                <a href="kitchen.html">Faça seu pedido!</a>
-                            </li>-->
+                            <!--                            <li>
+                                                            <a href="kitchen.html">Faça seu pedido!</a>
+                                                        </li>-->
 
                             <li class="dropdown mega-dropdown active">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modelos
@@ -232,6 +236,94 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <!--            <div class="clearfix"></div>-->
         </div>
+        <!--senha-->
+        <div class="modal fade" id="senha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Alterar senha</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <legend id="legenda">Alterar senha de acesso</legend>
+                        <?php echo form_open('Cliente/alterarSenha') ?>
+                        <div class="form-group">
+                            <label for="cep" >Senha antiga</label>
+                            <input type="password" class="form-control" name="senhaantiga" id="senhantiga" placeholder="******" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cep" >Senha nova</label>
+                            <input type="password" class="form-control" name="senhanova" id="senhanova" placeholder="******" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cep" >Confirma a nova senha</label>
+                            <input type="password" class="form-control" name="senhanova2" id="senhanova2" placeholder="******" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Alterar</button>
+                    </div>
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+        </div>
+        <!--senha-->
+
+        <!--endereco-->
+        <div class="modal fade" id="endereco" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Endereço</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset class="form-group">
+                            <legend id="legenda">Alterar Endereço de Entrega</legend>
+                            <div class="form-group">
+                                <label for="cep" class="control-label required">CEP(*)</label>
+                                <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="estado" class="control-label required">Estado(*)</label>
+                                <input type="text" class="form-control" name="estado" id="estado" placeholder="Estado" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cidade" class="control-label required">Cidade(*)</label>
+                                <input type="text"  class="form-control" name="cidade" id="cidade" placeholder="Cidade" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bairro" class="control-label required">Bairro(*)</label>
+                                <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rua" class="control-label required">Rua(*)</label>
+                                <input type="text"  class="form-control" name="rua" id="rua" placeholder="Rua" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="numero" class="control-label required">Número(*)</label>
+                                <input type="text" class="form-control" name="numero" id="numero" placeholder="Número" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="complemento" class="control-label required">Complemento</label>
+                                <input type="text" class="form-control" name="complemento" placeholder="Complemento">
+                            </div>
+                        </fieldset>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--endereco-->
     </body>
 
 </html>

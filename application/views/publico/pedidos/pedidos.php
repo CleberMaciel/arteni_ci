@@ -19,7 +19,7 @@
                     <?php
                     foreach ($pedidos as $p):
                         ?>
-                        <td class="invert"><?php echo $p->ID_PEDIDOS; ?></td>
+                        <td class="invert"><a href="<?php echo base_url() . 'Pedidos/verItensPedidos/' . $p->ID_PEDIDOS; ?>"><?php echo $p->ID_PEDIDOS; ?></a></td>
                         <td class="invert">R$ <?php echo number_format($p->VALOR_PEDIDO, 2, ",", "."); ?></td>
                         <td class="invert"><?php echo date("d/m/Y", strtotime($p->DATA)); ?></td>
 

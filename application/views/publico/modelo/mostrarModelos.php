@@ -11,7 +11,7 @@
                                 <figure>
                                     <div class="snipcart-item block">
                                         <div class="snipcart-thumb">
-                                            <!--<a href="<?php echo base_url() . 'modelo/detalhes/' . $mat->ID_MATERIA_PRIMA ?>"><img style="width:140px" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $mat->IMAGEM; ?>" alt="<?php echo $mat->NOME; ?>" /></a>-->
+                                            <a href="<?php echo base_url() . 'modelo/detalhes/' . $m->ID_MODELO ?>"><img style="width:140px" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $m->IMAGEM; ?>" alt="<?php echo $m->NOME; ?>" /></a>
                                             <p><?php echo $m->NOME; ?></p>
 
                                             <h4>R$<?php echo $m->VALOR; ?></h4>
@@ -19,7 +19,7 @@
                                         <div class="snipcart-details">
 
                                             <fieldset>
-                                            <a href="<?php echo base_url() . 'modelo/detalhes/' . $m->ID_MODELO;?>">Ver Detalhes</a>
+                                                <a  class="btn btn-info" href="<?php echo base_url() . 'modelo/detalhes/' . $m->ID_MODELO;?>">Ver Detalhes</a>
                                             </fieldset>
 
                                         </div>

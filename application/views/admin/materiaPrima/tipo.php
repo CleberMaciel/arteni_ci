@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label>Nome do tipo da matéria-prima</label>
-                            <input class="form-control" placeholder="Texto aqui" name="tipo" required="true">
+                            <input class="form-control" placeholder="Tipo de matéria-prima" name="tipo" required="true">
                         </div>
                         <button type="submit" class="btn btn-default">Salvar</button>
                         <button type="reset" class="btn btn-default">Limpar campo</button>
@@ -48,7 +48,7 @@
                                                 <?php
                                             }
                                             ?> </td>
-                                        <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/ativo/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Editar</a></td>       
+                                        <td><a class="btn btn-success btn-sm" role="button" href="<?php echo base_url() . 'Materia_tipo/editar/' . $t->ID_MATERIA_PRIMA_TIPO; ?>">Editar</a></td>       
                                         <?php
                                         if ($t->STATUS_MPT == 1) {
                                             ?>

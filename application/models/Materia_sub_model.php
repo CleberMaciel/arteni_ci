@@ -26,22 +26,22 @@ class Materia_sub_model extends CI_Model {
         return $this->db->get()->result();
     }
 
-    function listarSubMateriaAjax($idi) {
-        $sub = $this->listarSubCombo($idi);
-        $op = "<option></option>";
-        foreach ($sub as $s) {
-            $op .= "<option value = '{$s->ID_SUB_MPT}'>$s->NOME</option>" . PHP_EOL;
-        }
-        return $op;
+    function listarSubCombo($idi) {
+        return $this->db->select('MATERIA_PRIMA.ID_MATERIA_PRIMA, MATERIA_PRIMA.NOME')
+                        ->from('MATERIA_PRIMA')
+                        ->join('SUB_MPT', 'SUB_MPT.ID_SUB_MPT = MATERIA_PRIMA.ID_SUB_MPT')
+                        ->where(array('SUB_MPT.ID_SUB_MPT' => $idi))
+                        ->get()
+                        ->result();
     }
 
-    function listarSubCombo($idi) {
-        $this->db->select('*')
-                        ->from('SUB_MPT')
-                        ->join('MATERIA_PRIMA_TIPO', 'MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO = SUB_MPT.ID_MATERIA_PRIMA_TIPO')
-                        ->where(array('MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO' => $idi))->get() - result();
-
-        return $this->db->get()->result();
+    function listarSubMateriaAjax($idi) {
+        $materia = $this->listarSubCombo($idi);
+        $op = "<option></option>";
+        foreach ($materia as $m) {
+            $op .= "<option value = '{$m->ID_MATERIA_PRIMA}'>$m->NOME</option>" . PHP_EOL;
+        }
+        return $op;
     }
 
     function listaSub() {
@@ -51,6 +51,7 @@ class Materia_sub_model extends CI_Model {
         $this->db->from('SUB_MPT');
         $this->db->join('MATERIA_PRIMA_TIPO', 'MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO = SUB_MPT.ID_MATERIA_PRIMA_TIPO');
         $this->db->where('SUB_MPT.ID_MATERIA_PRIMA_TIPO = MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO');
+        $this->db->where('MATERIA_PRIMA_TIPO.STATUS_MPT',1);
         return $this->db->get()->result();
     }
 

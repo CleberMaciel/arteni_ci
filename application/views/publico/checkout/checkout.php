@@ -1,10 +1,13 @@
 <?php
 $contador = 0;
 $contador1 = 0;
+//<?php echo $referencia; 
 ?>
 <div class="w3l_banner_nav_right">
     <div class="checkout-right">
-        <h4>Carrinho de Compras </h4>
+        <h4>Carrinho de Compras   </h4>
+
+
         <!--<a class="btn btn-default btn-sm" role="button" href="#">Atualizar Quantidades</a>-->
 
         <table class="timetable_sub">
@@ -31,14 +34,14 @@ $contador1 = 0;
                         $contador1 = $contador++
                         ?>    
                         <td class="invert"><?php echo $contador; ?></td>
-                        <td class="invert-image"><a href="single.html"><img src="<?php echo base_url(); ?>img/materia_prima/<?php echo $item['foto']; ?>" alt=" " class="img-responsive"></a></td>
+                        <td class="invert-image"><a href="single.html"><img src="<?php echo base_url(); ?>img/materia_prima/<?php echo $item['foto']; ?>" alt=" " class="img-thumbnail"></a></td>
                         <td class="invert">
                             <div class="quantity"> 
                                 <div class="quantity-select">                           
                                     <!--<div class="entry value-minus">&nbsp;</div>-->
 
 
-                                    <div class=""><span><?php echo form_input(array("name" => $quantidade . "[qty]", "value" => $item['qty'])); ?></span></div>
+                                    <div class=""><span><?php echo form_input(array("type" => "number", "min" => 1, "max" => 3, "name" => $quantidade . "[qty]", "value" => $item['qty'])); ?></span></div>
                                     <?php $quantidade++; ?>
                                     <!--<div class="entry value-plus active">&nbsp;</div>-->
                                 </div>
@@ -47,15 +50,15 @@ $contador1 = 0;
                         <td class="invert"><?php echo $item['name']; ?></td>
 
                         <td class="invert">R$ <?php
-                            echo number_format($item['price'], 2, ",", ".");
-                            ;
-                            ?></td>
+                                    echo number_format($item['price'], 2, ",", ".");
+                                    ;
+                                    ?></td>
                         <td class="invert">R$ <?php
-                            $valor_item = $item['price'];
-                            $total_item = $valor_item * $item['qty'];
-                            echo number_format($total_item, 2, ",", ".");
-                            ;
-                            ?></td>
+                        $valor_item = $item['price'];
+                        $total_item = $valor_item * $item['qty'];
+                        echo number_format($total_item, 2, ",", ".");
+                        ;
+                                    ?></td>
                         <td class="invert">
                             <div class="rem">
                                 <div class="">
@@ -64,17 +67,44 @@ $contador1 = 0;
                             </div>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+
+                    <?php
+                    $item['name'] = "frete";
+                    $item['price'] = 26.02;
+                    $item['qty'] = 1;
+                endforeach;
+                ?>
 
             </tbody></table>
-        <strong>Total</strong>:R$ <?php echo number_format($this->cart->total(), 2, ",", "."); ?>
+        <strong>Frete</strong>:R$ 26,02
+        <br>
+
+        <strong>Total + frete</strong>:R$ <?php echo number_format($this->cart->total(), 2, ",", ".") + 26.02; ?>
+
 
         <div class="clearfix"> </div>
         <button type="submit" class="btn btn-default btn-sm">Atualizar Quantidades</button>
         <?php echo form_close(); ?>
         <div class="checkout-right-basket">
-            <?php echo $botao; ?>
+            <?php
+            if ($botao == 0) {
+                ?>
 
+                <?php echo form_open('checkout/finalizar') ?>
+
+                <input type="hidden" value="<?php echo $referencia; ?>" name="referencia">
+                <input type="submit" value="Finalizar" class="btn btn-default">
+                <?php
+                echo form_close();
+            }
+            ?>
+            <?php
+            if ($botao == 1) {
+                ?>
+                <b>Sem itens no carrinho</b>
+                <?php
+            }
+            ?>
         </div>
     </div>
 

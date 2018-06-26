@@ -13,7 +13,7 @@
                                         <div class="snipcart-thumb">
                                             <a href="<?php echo base_url() . 'materia_prima/detalhes/' . $mat->ID_MATERIA_PRIMA ?>"><img style="width:140px" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $mat->IMAGEM; ?>" alt="<?php echo $mat->NOME; ?>" /></a>
                                             <p><?php echo $mat->NOME; ?></p>
-                                            <p>Quantidade em estoque:<?php echo $mat->QTD_TOTAL; ?></p>
+                                            <p>Quantidade em estoque:<?php echo $mat->QTD_TOTAL - $mat->QTD_MIN; ?></p>
                                             <h4>R$<?php echo $mat->VALOR; ?></h4>
                                         </div>
                                         <div class="snipcart-details">

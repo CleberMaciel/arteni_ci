@@ -15,6 +15,9 @@ class Estampa extends CI_Controller {
     }
 
     public function index() {
+         if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $this->load->view('admin/template/header');
         $data['estampa'] = $this->estampa->listarEstampa();
         $data['cor'] = $this->cor->listar();
@@ -65,6 +68,9 @@ class Estampa extends CI_Controller {
     }
 
     public function editar($idi) {
+         if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $data['estampa'] = $this->estampa->editar($idi);
         $data['cor'] = $this->cor->listar();
         $this->load->view('admin/template/header');

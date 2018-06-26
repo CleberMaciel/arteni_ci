@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-
+        <meta http-equiv="Content-Language" content="pt-br">
         <title>ArtêNí - Painel Administrativo</title>
 
         <!-- Bootstrap Core CSS -->
@@ -71,26 +71,26 @@
                 <!-- Top Navigation: Right Menu -->
                 <ul class="nav navbar-right navbar-top-links">
                     <li class="dropdown navbar-inverse">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu dropdown-alerts">
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-comment fa-fw"></i> New Comment
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a class="text-center" href="#">
-                                    <strong>See All Alerts</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
+                        <!--                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                    <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                                                </a>-->
+                        <!--                        <ul class="dropdown-menu dropdown-alerts">
+                                                    <li>
+                                                        <a href="#">
+                                                            <div>
+                                                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                                                <span class="pull-right text-muted small">4 minutes ago</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li>
+                                                        <a class="text-center" href="#">
+                                                            <strong>See All Alerts</strong>
+                                                            <i class="fa fa-angle-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>-->
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -113,7 +113,21 @@
                     <div class="sidebar-nav navbar-collapse">
 
                         <ul class="nav" id="side-menu">
+                            <!--relatorios-->
+                            <li>
+                                <a href="#"><i class="fa fa-user fa-fw"></i>Relatórios<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?php echo base_url(); ?>materia_prima/relatorio/"><i class="fa fa-list fa-fw"></i> Estoque Matéria-prima</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url(); ?>Pedidos/listarPedidosCliente/"><i class="fa fa-list fa-fw"></i> Pedidos </a>
+                                    </li>
+                                    <li>
 
+                                    </li>
+                                </ul>
+                            </li>
                             <!--scan-->
                             <li>
                                 <a href="#"><i class="fa fa-user fa-fw"></i>Clientes<span class="fa arrow"></span></a>
@@ -196,11 +210,14 @@
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="<?php echo base_url(); ?>modelo">Criar Modelo</a>
-                                        <a href="<?php echo base_url(); ?>modelo/listarModelosCriados">Listar Modelos</a>
+                                        <a href="<?php echo base_url(); ?>modelo/listarModelosCriados">Adicionar Matéria</a>
+                                        <a href="<?php echo base_url(); ?>modelo/listaModelos">Remover Matéria</a>
                                     </li>
                                 </ul>
                             </li>
                             <!--modelo-->
+
+
                         </ul> <!---fim do sidbar --->
 
                     </div>

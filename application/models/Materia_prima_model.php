@@ -11,8 +11,7 @@ class Materia_prima_model extends CI_Model {
     }
 
     function listarMateria() {
-        $lista = $this->db->get('MATERIA_PRIMA');
-        return $lista->result();
+        return $this->db->get('MATERIA_PRIMA')->result();
     }
 
     function listarMateriaCombo() {
@@ -74,49 +73,61 @@ class Materia_prima_model extends CI_Model {
         return $this->db->query('select QTD_TOTAL from MATERIA_PRIMA where ID_MATERIA_PRIMA =' . $idM)->row()->QTD_TOTAL;
     }
 
-//    function reduzirMateriaPrima($idM, $valor) {
-//        $this->db->select('QTD_TOTAL');
-//        $this->db->from('MATERIA_PRIMA');
-//        $this->db->where('ID_MATERIA_PRIMA', $idM);
-//        $this->db->set('QTD_TOTAL', $valor);
-//        return $this->db->update('MATERIA_PRIMA');
-//    }
+    function retornaQuantidadeMin($idM) {
+        return $this->db->query('select QTD_MIN from MATERIA_PRIMA where ID_MATERIA_PRIMA =' . $idM)->row()->QTD_MIN;
+    }
 
     function reduzirMateriaPrima($id, $valor) {
-        $this->db->where('ID_MATERIA_PRIMA', $id);
-        $this->db->update('MATERIA_PRIMA');
-        $this->db->set('MATERIA_PRIMA.QTD_TOTAL', $VALOR);
-        return $this->db->update('MATERIA_PRIMA');
+
+        return $this->db->query('update MATERIA_PRIMA SET QTD_TOTAL = QTD_TOTAL - ' . $valor . ' WHERE ID_MATERIA_PRIMA = ' . $id);
     }
 
     function retornaValor($referencia) {
         return $this->db->query('select MATERIA_PRIMA.QTD_TOTAL - ITENS_PEDIDOS.QUANTIDADE AS VALOR
-                          from MATERIA_PRIMA
-                        join PRODUTO 
-                        on PRODUTO.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA
-                        join ITENS_PEDIDOS 
-                        on ITENS_PEDIDOS.ID_PRODUTO = PRODUTO.ID_PRODUTO
-                        join PEDIDOS 
-                        on PEDIDOS.ID_PEDIDOS = ITENS_PEDIDOS.ID_PEDIDO 
-                        WHERE PEDIDOS.ID_PEDIDOS =' . $referencia);
+                                from MATERIA_PRIMA
+                                join ITENS_PEDIDOS 
+                                on ITENS_PEDIDOS.ID_MATERIA_PRIMA  = MATERIA_PRIMA.ID_MATERIA_PRIMA 
+                                join PEDIDOS 
+                                on PEDIDOS.ID_PEDIDOS = ITENS_PEDIDOS.ID_PEDIDO 
+                                WHERE PEDIDOS.ID_PEDIDOS =' . $referencia)->row()->VALOR;
     }
 
     function retornaIdMateria($referencia) {
-        return $this->db->query('select MATERIA_PRIMA.ID_MATERIA_PRIMA
-                                from MATERIA_PRIMA
-                                join PRODUTO 
-                                on PRODUTO.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA
-                                join ITENS_PEDIDOS 
-                                on ITENS_PEDIDOS.ID_PRODUTO = PRODUTO.ID_PRODUTO
-                                join PEDIDOS 
-                                on PEDIDOS.ID_PEDIDOS = ITENS_PEDIDOS.ID_PEDIDO
-                                WHERE PEDIDOS.ID_PEDIDOS =' . $referencia);
+        $this->db->select('MATERIA_PRIMA.ID_MATERIA_PRIMA');
+        $this->db->from('MATERIA_PRIMA');
+        $this->db->join('ITENS_PEDIDOS', 'ITENS_PEDIDOS.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_');
+        $this->db->join('PEDIDOS', 'PEDIDOS.ID_PEDIDOS = ITENS_PEDIDOS.ID_PEDIDO');
+        $this->db->where('PEDIDOS.ID_PEDIDOS', $referencia);
+        return $this->db->get()->row()->ID_MATERIA_PRIMA;
     }
 
-    function atualizar($data) {
-        $this->db->where('ID_ESTAMPA', $data['ID_ESTAMPA']);
-        $this->db->set($data);
-        return $this->db->update('ESTAMPA');
+    function retornarDashboardMateria() {
+        return $this->db->query("select COUNT(MATERIA_PRIMA.ID_MATERIA_PRIMA) AS resultado
+                            from MATERIA_PRIMA
+                            WHERE QTD_MIN >= QTD_TOTAL")->row()->resultado;
+    }
+
+    function exibirDashboardMateria() {
+        return $this->db->query("select COUNT(MATERIA_PRIMA.ID_MATERIA_PRIMA) AS resultado "
+                        . "from MATERIA_PRIMA")->row()->resultado;
+    }
+
+    function retornarEmailMateria($idi) {
+        return $this->db->query("select MATERIA_PRIMA.ID_MATERIA_PRIMA, MATERIA_PRIMA.NOME, MATERIA_PRIMA.QTD_TOTAL
+                       FROM MATERIA_PRIMA WHERE MATERIA_PRIMA.ID_MATERIA_PRIMA =" . $idi)->result();
+    }
+
+    function relatorioMateriaEstoque() {
+        return $this->db->query("select *"
+                        . "from MATERIA_PRIMA where QTD_MIN >= QTD_TOTAL")->result();
+    }
+
+    function comboModeloExterno() {
+        return $this->db->query("select * from MATERIA_PRIMA where STATUS_MP = 1 AND EXTERNO = 1")->result();
+    }
+
+    function comboModeloInterno() {
+        return $this->db->query("select * from MATERIA_PRIMA where STATUS_MP = 1 AND EXTERNO = 0")->result();
     }
 
 }

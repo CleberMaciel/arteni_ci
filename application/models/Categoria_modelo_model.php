@@ -19,6 +19,7 @@ class Categoria_modelo_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('MODELO');
         $this->db->where('MODELO.ID_CATEGORIA', $id);
+        $this->db->where('STATUS_MODELO', 1);
         return $this->db->get()->result();
     }
 

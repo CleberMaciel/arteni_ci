@@ -12,6 +12,7 @@ class Materia_prima extends CI_Controller {
         $this->load->model('Estampa_model', 'model_estampa');
         $this->load->model('Cor_model', 'cor');
         $this->load->model('medida_model', 'medida');
+        $this->load->model('Categoria_modelo_model', 'categoria');
     }
 
     public function index() {
@@ -75,11 +76,13 @@ class Materia_prima extends CI_Controller {
             }
         }
     }
-    
+
     //metodos para publico
     public function mostrarMateria($idi) {
+
         $data['tipo'] = $this->model_tipo->lista();
         $data['sub'] = $this->model_sub->listaSub();
+        $data['categoria'] = $this->categoria->listar();
         $data['materia'] = $this->model_tipo->mostrarMateria($idi);
         $this->load->view('publico/template/header', $data);
         $this->load->view('publico/materia_prima/materia', $data);
@@ -90,14 +93,17 @@ class Materia_prima extends CI_Controller {
 
         $data['tipo'] = $this->model_tipo->lista();
         $data['sub'] = $this->model_sub->listaSub();
+        $data['categoria'] = $this->categoria->listar();
         $data['materia'] = $this->model_prima->detalhes($idi);
         $this->load->view('publico/template/header', $data);
         $this->load->view('publico/materia_prima/detalhes', $data);
         $this->load->view('publico/template/footer');
     }
-    ////
 
     public function editar($id) {
+        if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $data['sub'] = $this->model_sub->lista();
         $data['estampa'] = $this->model_estampa->listarEstampaCombo();
         $data['materia'] = $this->model_prima->listarMateria();
@@ -129,6 +135,9 @@ class Materia_prima extends CI_Controller {
                 $uploadData = $this->upload->data();
                 $data['IMAGEM'] = $uploadData['file_name'];
             }
+        }
+        if ($externo == true) {
+            $data['EXTERNO'] = 1;
         }
 
         $data['ID_MATERIA_PRIMA'] = $this->input->post('id');
@@ -194,6 +203,16 @@ class Materia_prima extends CI_Controller {
             $this->session->set_flashdata('prima_ativo_fail', 'msg');
             redirect('/Materia_prima');
         }
+    }
+
+    public function relatorio() {
+        if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
+        $data['materia'] = $this->model_prima->relatorioMateriaEstoque();
+        $this->load->view('admin/template/header');
+        $this->load->view('admin/materiaPrima/relatorio', $data);
+        $this->load->view('admin/template/footer');
     }
 
 }

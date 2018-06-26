@@ -22,22 +22,21 @@ class Materia_tipo_model extends CI_Model {
         $this->db->select('MATERIA_PRIMA.VALOR');
         $this->db->select('MATERIA_PRIMA.DESCRICAO');
         $this->db->select('MATERIA_PRIMA.QTD_TOTAL');
-
+        $this->db->select('MATERIA_PRIMA.QTD_MIN');
         $this->db->from('MATERIA_PRIMA');
-//        $this->db->join('MATERIA_PRIMA_TIPO', 'MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO = MATERIA_PRIMA.ID_MATERIA_PRIMA_TIPO');
-//        $this->db->where('MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO', $idi);
-//        $this->db->where('MATERIA_PRIMA.ID_VENDA', 1);
+        $this->db->where("MATERIA_PRIMA.STATUS_VENDA", 1);
         return $this->db->get()->result();
     }
 
     function mostrarMateria($id) {
         $this->db->select('MATERIA_PRIMA.ID_MATERIA_PRIMA');
-         $this->db->select('MATERIA_PRIMA.NOME');
+        $this->db->select('MATERIA_PRIMA.NOME');
         $this->db->select('MATERIA_PRIMA.IMAGEM');
         $this->db->select('MATERIA_PRIMA.VALOR');
         $this->db->select('MATERIA_PRIMA.DESCRICAO');
         $this->db->select('MATERIA_PRIMA.ID_SUB_MPT');
-         $this->db->select('MATERIA_PRIMA.QTD_TOTAL');
+        $this->db->select('MATERIA_PRIMA.QTD_TOTAL');
+        $this->db->select('MATERIA_PRIMA.QTD_MIN');
         $this->db->from('MATERIA_PRIMA');
         $this->db->join('SUB_MPT', 'SUB_MPT.ID_SUB_MPT = MATERIA_PRIMA.ID_SUB_MPT');
         //   $this->db->join('PRODUTO_MP', 'PRODUTO_MP.ID_MATERIA_PRIMA = MATERIA_PRIMA.ID_MATERIA_PRIMA');
@@ -54,6 +53,7 @@ class Materia_tipo_model extends CI_Model {
         $this->db->select('MATERIA_PRIMA_TIPO.ID_MATERIA_PRIMA_TIPO');
         $this->db->select('MATERIA_PRIMA_TIPO.NOME');
         $this->db->from('MATERIA_PRIMA_TIPO');
+        $this->db->where('STATUS_MPT', 1);
         return $this->db->get()->result();
     }
 

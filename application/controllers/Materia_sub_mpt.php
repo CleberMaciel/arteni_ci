@@ -15,6 +15,9 @@ class Materia_sub_mpt extends CI_Controller {
     }
 
     public function index() {
+         if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $this->load->view('admin/template/header');
         $data['sub'] = $this->sub->lista();
         $data['tipo'] = $this->model_tipo->listarTipo();
@@ -33,17 +36,20 @@ class Materia_sub_mpt extends CI_Controller {
             $data['ID_MATERIA_PRIMA_TIPO'] = $this->input->post('tipo');
             $result = $this->sub->inserir($data);
             if ($result == true) {
-                $this->session->set_flashdata('prima_ok', 'msg');
+                $this->session->set_flashdata('sub_ok', 'msg');
 
                 redirect('Materia_sub_mpt');
             } else {
-                $this->session->set_flashdata('prima_fail', 'msg');
+                $this->session->set_flashdata('sub_fail', 'msg');
                 redirect('Materia_sub_mpt');
             }
         }
     }
 
     public function editar($id) {
+         if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $data['tipo'] = $this->model_tipo->listarTipo();
         $data['estampa'] = $this->model_estampa->listarEstampaCombo();
         $data['materia'] = $this->model_prima->editar($id);

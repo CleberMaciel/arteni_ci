@@ -5,6 +5,7 @@
 
             <div class="agileinfo_single">
                 <h5><?php echo $materia[0]->NOME; ?></h5>
+                
                 <div class="col-md-4 agileinfo_single_left">
                     <img id="example" src="<?php echo base_url(); ?>img/materia_prima/<?php echo $materia[0]->IMAGEM; ?>" alt=" " class="img-responsive" />
                 </div>

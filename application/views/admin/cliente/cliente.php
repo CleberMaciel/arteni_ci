@@ -20,6 +20,7 @@
                                     <th>Nome</th>
                                     <th>Sobrenome</th>
                                     <th>E-mail</th>
+                                    <th>Telefone</th>
                                     <th>Status</th>                                  
                                 </tr>
                             </thead>
@@ -30,6 +31,7 @@
                                         <td><?php echo $c->NOME; ?> </td>
                                         <td><?php echo $c->SOBRENOME; ?> </td>
                                         <td><?php echo $c->EMAIL; ?> </td>
+                                        <td><?php echo $c->TELEFONE; ?> </td>
 
 
 

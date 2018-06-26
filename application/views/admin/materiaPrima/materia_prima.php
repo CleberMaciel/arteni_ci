@@ -56,8 +56,8 @@
 
                         <div class="form-group">
                             <label>Unidade de Medida</label>
-                            <select class="form-control" name="medida">
-                                <option selected="true" disabled="disabled">Escola a unidade</option>    
+                            <select class="form-control" name="medida" required="required">
+                                <option value="">Escolha a medida</option>    
                                 <?php foreach ($medida as $m): ?>
                                     <option value="<?php echo $m->ID_MEDIDA; ?>"><?php echo $m->NOME; ?></option>
                                 <?php endforeach; ?>
@@ -65,7 +65,8 @@
                         </div>
                         <div class="form-group">
                             <label>Categoria da matéria-prima</label>
-                            <select class="form-control" name="sub">
+                            <select class="form-control" name="sub" required="required">
+                                <option value="">Escolha a Subcategoria</option>    
                                 <option selected="true" disabled="disabled">Escola a categoria</option>    
                                 <?php foreach ($sub as $s): ?>
                                     <option value="<?php echo $s->ID_SUB_MPT; ?>"><?php echo $s->NOMET . " - "; ?><?php echo $s->NOME; ?></option>
@@ -74,7 +75,8 @@
                         </div>
                         <div class="form-group">
                             <label>Estampa</label>
-                            <select class="form-control" name="estampa">
+                            <select class="form-control" name="estampa" required="required">
+                                <option value="">Escolha o tipo de estampa</option>    
                                 <?php foreach ($estampa as $e): ?>
                                     <option value="<?php echo $e->ID_ESTAMPA; ?>"><?php echo $e->NOME; ?></option>
                                 <?php endforeach; ?>

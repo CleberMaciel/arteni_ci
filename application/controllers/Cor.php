@@ -14,6 +14,9 @@ class Cor extends CI_Controller {
     }
 
     public function index() {
+        if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $this->load->view('admin/template/header');
         $data['cor'] = $this->cor->listar();
         $this->load->view('admin/cor/cor', $data);
@@ -22,11 +25,20 @@ class Cor extends CI_Controller {
 
     public function inserir() {
         $data['NOME'] = $this->input->post('cor');
-        $this->cor->inserir($data);
-        redirect('/cor');
+        $result = $this->cor->inserir($data);
+        if ($result == true) {
+            $this->session->set_flashdata('cor_ok', 'msg');
+            redirect('/cor');
+        } else {
+            $this->session->set_flashdata('cor_fail', 'msg');
+            redirect('/cor');
+        }
     }
 
     public function editar($idi) {
+        if (!$this->session->userdata('logado')) {
+            redirect('Painel');
+        }
         $data['cor'] = $this->cor->editar($idi);
         $this->load->view('admin/template/header');
         $this->load->view('admin/cor/editar', $data);

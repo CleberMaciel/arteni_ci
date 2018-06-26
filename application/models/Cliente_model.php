@@ -45,4 +45,17 @@ class Cliente_model extends CI_Model {
         return $this->db->update('ESTAMPA');
     }
 
+    function retornaSenha($ids) {
+        $this->db->select("CLIENTE.SENHA");
+        $this->db->from("CLIENTE");
+        $this->db->where("CLIENTE.ID_CLIENTE", $ids);
+        return $this->db->get()->row()->SENHA;
+    }
+
+    function alterarSenha($nova, $ids) {
+        $this->db->set("CLIENTE.SENHA", $nova);
+        $this->db->where("CLIENTE.ID_CLIENTE", $ids);
+        return $this->db->update("CLIENTE");
+    }
+
 }

@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   |
  */
 //$config['base_url'] = 'http://localhost/arteni_ci/';
+//$config['base_url'] = 'http://192.168.0.11/arteni_ci/';
 $config['base_url'] = 'http://clebermaciel.online/';
 //$config['base_url'] = 'http://www.arteni.com.br/';
 
